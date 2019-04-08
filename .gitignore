@@ -1,3 +1,4 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
 /Waste2Best/build/
 /Waste2Best/dist/
+/Waste2Best/nbproject/private/private.properties
