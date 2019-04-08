@@ -11,4 +11,7 @@ package business.models;
  */
 public class CropCatalog {
     
+    
+    
+    
 }
