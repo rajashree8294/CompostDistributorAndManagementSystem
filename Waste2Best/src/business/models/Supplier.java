@@ -5,10 +5,14 @@
  */
 package business.models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tinyteddybear
  */
 public class Supplier {
+    private ArrayList<Seed> seedDirectory;
+    private ArrayList<Tumbler> tumblerDirectory;
     
 }
