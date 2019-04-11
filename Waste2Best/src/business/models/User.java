@@ -10,10 +10,11 @@ package business.models;
  * @author tinyteddybear
  */
 public class User {
-    String userID;
-    String name;
-    String password;
-    String location;
+    private String userID;
+    private String name;
+    private String password;
+    private String location;
+    
 
     public String getUserID() {
         return userID;

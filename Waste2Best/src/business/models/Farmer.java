@@ -5,10 +5,14 @@
  */
 package business.models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tinyteddybear
  */
 public class Farmer {
-    
+    private ArrayList<CropProduce> cropDirectory;
+    private int investment;
+    private int profit;
 }
