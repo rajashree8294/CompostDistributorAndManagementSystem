@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package business.models;
+package network;
 
 /**
  *
  * @author Rajashree
  */
-public class Lab {
-    
+public class Network {
+
 }
