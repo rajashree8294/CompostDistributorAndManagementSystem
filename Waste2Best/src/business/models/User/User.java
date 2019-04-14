@@ -5,6 +5,8 @@
  */
 package business.models.User;
 
+import business.models.Role.Role;
+
 /**
  *
  * @author tinyteddybear

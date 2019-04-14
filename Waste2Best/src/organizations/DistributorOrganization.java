@@ -6,10 +6,29 @@
 
 package organizations;
 
+import business.models.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Rajashree
  */
-public class DistributorOrganization {
+public class DistributorOrganization extends Organization {
 
+
+
+    public DistributorOrganization() {
+        super(Organization.Type.Distributor.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList();
+       // roles.add(new LabAssistantRole());
+        return roles;
+    }
+     
+   
+    
+    
 }

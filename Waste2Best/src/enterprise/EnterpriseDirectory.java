@@ -6,10 +6,35 @@
 
 package enterprise;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Rajashree
  */
 public class EnterpriseDirectory {
+    private ArrayList<Enterprise> enterpriseList;
+   
 
+    public ArrayList<Enterprise> getEnterpriseList() {
+        return enterpriseList;
+    }
+
+    public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
+        this.enterpriseList = enterpriseList;
+    }
+    
+    public EnterpriseDirectory(){
+        enterpriseList=new ArrayList<Enterprise>();
+    }
+    
+    //Create enterprise
+    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
+        Enterprise enterprise=null;
+        if(type==Enterprise.EnterpriseType.OrganicFoodPromotor){
+            enterprise=new OrganicFoodPromoterEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        return enterprise;
+    }
 }

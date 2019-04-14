@@ -5,6 +5,7 @@
  */
 package business.models.User;
 
+import business.models.Role.Role;
 import java.util.ArrayList;
 
 /**

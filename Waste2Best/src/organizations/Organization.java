@@ -6,7 +6,7 @@
 
 package organizations;
 
-import business.models.User.Role;
+import business.models.Role.Role;
 import business.models.User.UserCatalog;
 import java.util.ArrayList;
 import business.models.workQueue.workQueue;
@@ -25,7 +25,7 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
+        Admin("Admin Organization"), Distributor("Distributor Organization"), Lab("Lab Organization"), Supplier("Supplier Organization");
         private String value;
         private Type(String value) {
             this.value = value;
