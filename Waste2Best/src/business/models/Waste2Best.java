@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.models.workQueue;
+
+package business.models;
 
 /**
  *
- * @author tinyteddybear
+ * @author Rajashree
  */
-public class WorkQueue {
-    
+public class Waste2Best {
+
 }

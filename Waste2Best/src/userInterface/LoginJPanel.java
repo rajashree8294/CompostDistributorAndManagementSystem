@@ -5,17 +5,22 @@
  */
 package userInterface;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Aditya
  */
 public class LoginJPanel extends javax.swing.JPanel {
-
+    private JPanel rightPanel;
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel() {
+
+    LoginJPanel(JPanel rightPanel) {
         initComponents();
+        this.rightPanel = rightPanel;
     }
 
     /**
@@ -88,6 +93,11 @@ public class LoginJPanel extends javax.swing.JPanel {
         loginScreenLabel.setText("LOGIN");
 
         backBttn.setText("Back");
+        backBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBttnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,6 +171,13 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_regBttnActionPerformed
+
+    private void backBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBttnActionPerformed
+        // TODO add your handling code here:
+         rightPanel.remove(this);
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        cardLayout.previous(rightPanel);
+    }//GEN-LAST:event_backBttnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
