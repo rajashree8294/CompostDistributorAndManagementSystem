@@ -170,6 +170,10 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
         // TODO add your handling code here:
+        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel);
+        rightPanel.add("createSignInPanel", createSignInPanel);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.next(rightPanel);
     }//GEN-LAST:event_regBttnActionPerformed
 
     private void backBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBttnActionPerformed

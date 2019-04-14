@@ -5,10 +5,21 @@
  */
 package business.models.workQueue;
 
+import business.models.workRequest.WorkRequest;
+import java.util.ArrayList;
+
 /**
  *
  * @author tinyteddybear
  */
-public class workQueue{
-    
+public class WorkQueue {
+    private ArrayList<WorkRequest> workRequestList;
+
+   public ArrayList<WorkRequest> getWorkRequestList() {
+       return workRequestList;
+   }
+
+   public void setWorkRequestList(ArrayList<WorkRequest> workRequestList) {
+       this.workRequestList = workRequestList;
+   }
 }

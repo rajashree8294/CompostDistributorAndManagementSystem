@@ -31,11 +31,12 @@ public class UserCatalog {
         return null;
     }
     
-     public User createUserAccount(String name,String username, String password, Role role){
+     public User createUserAccount(String name,String username, String password,String location, Role role){
         User user = new User();
         user.setName(name);
         user.setUserID(username);
         user.setPassword(password);
+        user.setLocation(location);
         
         user.setRole(role);
         userAccountList.add(user);
