@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.models;
+package business.models.User;
 
+import business.models.Seed;
+import business.models.Tumbler;
 import java.util.ArrayList;
 
 /**
  *
  * @author tinyteddybear
  */
-public class Farmer {
-    private ArrayList<CropProduce> cropDirectory;
-    private int investment;
-    private int profit;
+public class Supplier {
+    private ArrayList<Seed> seedDirectory;
+    private ArrayList<Tumbler> tumblerDirectory;
+    
 }
