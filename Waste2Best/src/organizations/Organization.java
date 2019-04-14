@@ -9,7 +9,7 @@ package organizations;
 import business.models.User.Role;
 import business.models.User.UserCatalog;
 import java.util.ArrayList;
-import business.models.workQueue.WorkQueue;
+import business.models.workQueue.workQueue;
 
 /**
  *
@@ -18,7 +18,7 @@ import business.models.workQueue.WorkQueue;
 public abstract class Organization {
 
     private String name;
-    private WorkQueue workQueue;
+    private workQueue workQueue;
    
     private UserCatalog userCatalog;
     private int organizationID;
@@ -37,7 +37,7 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-        workQueue = new WorkQueue();
+        workQueue = new workQueue();
        
         userCatalog = new UserCatalog();
         organizationID = counter;
@@ -60,7 +60,7 @@ public abstract class Organization {
         return name;
     }
 
-    public WorkQueue getWorkQueue() {
+    public workQueue getWorkQueue() {
         return workQueue;
     }
 
@@ -68,7 +68,7 @@ public abstract class Organization {
         this.name = name;
     }
 
-    public void setWorkQueue(WorkQueue workQueue) {
+    public void setWorkQueue(workQueue workQueue) {
         this.workQueue = workQueue;
     }
 
