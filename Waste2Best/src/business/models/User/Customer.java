@@ -5,8 +5,8 @@
  */
 package business.models.User;
 
-import business.models.CropProduce;
-import business.models.Tumbler;
+import business.models.Product.CropProduce;
+import business.models.Product.Tumbler;
 import java.util.ArrayList;
 
 /**

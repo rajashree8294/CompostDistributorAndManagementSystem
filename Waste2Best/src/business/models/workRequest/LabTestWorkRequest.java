@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.models;
+package business.models.workRequest;
 
 /**
  *
  * @author Aditya
  */
-public class CropCatalog {
+public class LabTestWorkRequest {
     
-    
-    
+    private String compostId;
+   
     
 }
