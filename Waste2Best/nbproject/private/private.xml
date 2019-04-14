@@ -3,25 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/Tumbler.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/MainJFrame.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workRequest/WorkRequest.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/LoginJPanel.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/SeedCatalog.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/TumblerCatalog.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/Seed.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workRequest/LabTestWorkRequest.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workQueue/workQueue.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Supplier.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/ProductCatalog.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/network/Network.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/admin/AdminWorkAreaJPanel.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Distributor.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Role.java</file>
             <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Customer.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/Product.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/CropCatalog.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/Compost.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Farmer.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/CompostCatalog.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workQueue/WorkQueue.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/Organization.java</file>
             <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/UserInterface.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Product/CropProduce.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Farmer.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/User.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/LoginJPanel.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Supplier.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/DistributorOrganization.java</file>
+            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/LabOrganization.java</file>
         </group>
     </open-files>
 </project-private>

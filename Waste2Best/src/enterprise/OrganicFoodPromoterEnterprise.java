@@ -3,30 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package organizations;
+package enterprise;
 
 import business.models.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author Rajashree
+ * @author Aditya
  */
-public class LabOrganization extends Organization{
+public class OrganicFoodPromoterEnterprise extends Enterprise {
+    
 
-    public LabOrganization() {
-        super(Organization.Type.Lab.getValue());
+
+    
+    public OrganicFoodPromoterEnterprise(String name){
+        super(name,EnterpriseType.OrganicFoodPromotor);
     }
-
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        //roles.add(new LabAssistantRole());
-        return roles;
+        return null;
     }
-     
-   
-    
     
 }

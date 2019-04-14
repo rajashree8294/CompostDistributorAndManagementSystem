@@ -5,7 +5,7 @@
  */
 package business;
 
-import business.models.User.Role;
+import business.models.Role.Role;
 import java.util.ArrayList;
 import network.Network;
 import organizations.Organization;
