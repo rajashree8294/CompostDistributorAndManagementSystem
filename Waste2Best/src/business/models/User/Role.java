@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.models;
-
-import java.util.ArrayList;
+package business.models.User;
 
 /**
  *
  * @author tinyteddybear
  */
-public class Supplier {
-    private ArrayList<Seed> seedDirectory;
-    private ArrayList<Tumbler> tumblerDirectory;
-    
+public class Role {
+    private enum userRole{Supplier,Distributer,Lab,Customer,Farmer};
 }
