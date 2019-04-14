@@ -5,24 +5,10 @@
  */
 package business.models.workQueue;
 
-import business.models.Product.CropProduce;
-import business.models.workRequest.WorkRequest;
-import java.util.ArrayList;
-
 /**
  *
- * @author Aditya
+ * @author tinyteddybear
  */
 public class WorkQueue {
-    
-    private ArrayList<WorkRequest> workRequestList;
-
-    public ArrayList<WorkRequest> getWorkRequestList() {
-        return workRequestList;
-    }
-
-    public void setWorkRequestList(ArrayList<WorkRequest> workRequestList) {
-        this.workRequestList = workRequestList;
-    }
     
 }
