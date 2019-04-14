@@ -5,6 +5,7 @@
  */
 package business.models.User;
 
+
 import business.models.Product.CropProduce;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author tinyteddybear
  */
-public class Farmer {
+public class Farmer extends User{
     private ArrayList<CropProduce> cropDirectory;
     private int investment;
     private int profit;
