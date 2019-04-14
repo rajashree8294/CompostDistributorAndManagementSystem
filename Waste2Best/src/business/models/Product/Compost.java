@@ -10,5 +10,5 @@ package business.models.Product;
  * @author Aditya
  */
 public class Compost extends Product{
-    
+        
 }
