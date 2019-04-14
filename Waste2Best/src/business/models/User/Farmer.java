@@ -5,7 +5,7 @@
  */
 package business.models.User;
 
-import business.models.CropProduce;
+import business.models.Product.CropProduce;
 import java.util.ArrayList;
 
 /**
