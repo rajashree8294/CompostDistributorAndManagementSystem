@@ -10,6 +10,6 @@ package organizations;
  *
  * @author Rajashree
  */
-public class OrganizationDirectory {
+public class OrganizationCatalog {
 
 }
