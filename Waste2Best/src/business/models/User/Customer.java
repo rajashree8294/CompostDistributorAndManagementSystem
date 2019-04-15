@@ -13,10 +13,12 @@ import java.util.ArrayList;
  *
  * @author tinyteddybear
  */
-public class Customer {
+public class Customer extends User{
     private  ArrayList<Tumbler> tumbler;
     private int registrationNumber;
     private int rewardPoints;
+
+    
 
     public ArrayList<Tumbler> getTumbler() {
         return tumbler;

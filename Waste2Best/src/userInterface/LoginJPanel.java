@@ -5,6 +5,8 @@
  */
 package userInterface;
 
+import business.models.User.CustomerCatalog;
+import business.models.User.FarmerCatalog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -14,13 +16,16 @@ import javax.swing.JPanel;
  */
 public class LoginJPanel extends javax.swing.JPanel {
     private JPanel rightPanel;
+    private FarmerCatalog fList;
+    private CustomerCatalog cList;
     /**
      * Creates new form LoginJPanel
      */
 
-    LoginJPanel(JPanel rightPanel) {
+    LoginJPanel(JPanel rightPanel,CustomerCatalog cList) {
         initComponents();
         this.rightPanel = rightPanel;
+        this.cList = cList;
     }
 
     /**
@@ -170,7 +175,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
         // TODO add your handling code here:
-        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel);
+        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel,cList,fList);
         rightPanel.add("createSignInPanel", createSignInPanel);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.next(rightPanel);

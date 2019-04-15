@@ -5,6 +5,8 @@
  */
 package userInterface;
 
+import business.models.User.CustomerCatalog;
+import business.models.User.FarmerCatalog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,7 +22,6 @@ public class AboutUs extends javax.swing.JPanel {
      */
     AboutUs(JPanel rightPanel) {
         initComponents();
-        
         this.righPanel = rightPanel;
     }
 
