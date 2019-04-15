@@ -7,7 +7,7 @@
 package enterprise;
 
 import organizations.Organization;
-import organizations.OrganizationCatalog;
+import organizations.OrganizationDirectory;
 
 /**
  *
@@ -16,9 +16,9 @@ import organizations.OrganizationCatalog;
 public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
-    private OrganizationCatalog organizationDirectory;
+    private OrganizationDirectory organizationDirectory;
 
-    public OrganizationCatalog getOrganizationDirectory() {
+    public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
     
@@ -50,6 +50,6 @@ public abstract class Enterprise extends Organization{
     public Enterprise(String name,EnterpriseType type){
         super(name);
         this.enterpriseType=type;
-        organizationDirectory=new OrganizationCatalog();
+        organizationDirectory=new OrganizationDirectory();
     }
 }

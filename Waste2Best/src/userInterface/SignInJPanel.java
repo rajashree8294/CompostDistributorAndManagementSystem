@@ -11,7 +11,6 @@ import business.models.User.Customer;
 import business.models.User.CustomerCatalog;
 import business.models.User.Farmer;
 import business.models.User.FarmerCatalog;
-import business.models.User.UserCatalog;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

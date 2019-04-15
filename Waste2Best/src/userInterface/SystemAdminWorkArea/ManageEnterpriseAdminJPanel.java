@@ -5,6 +5,7 @@
 package userinterface.SystemAdminWorkArea;
 
 import business.Ecosystem;
+import business.models.Employee.Employee;
 
 import enterprise.Enterprise;
 import network.Network;
@@ -250,9 +251,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         
-       // Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         
-        User account = enterprise.getUserAccountDirectory().createUserAccount(name, username, password, new AdminRole());
+        User account = enterprise.getUserAccountDirectory().createUserAccount(name, username, password,"",employee, new AdminRole());
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

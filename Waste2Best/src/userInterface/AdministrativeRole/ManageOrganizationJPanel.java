@@ -4,13 +4,13 @@
  */
 package userinterface.AdministrativeRole;
 
-import organizations.Organization;
-import organizations.Organization.Type;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import organizations.OrganizationCatalog;
+import organizations.Organization;
+import organizations.Organization.Type;
+import organizations.OrganizationDirectory;
 
 /**
  *
@@ -18,13 +18,13 @@ import organizations.OrganizationCatalog;
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
-    private OrganizationCatalog directory;
+    private OrganizationDirectory directory;
     private JPanel userProcessContainer;
     
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationCatalog directory) {
+    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.directory = directory;

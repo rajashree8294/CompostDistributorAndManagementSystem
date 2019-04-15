@@ -6,8 +6,10 @@
 
 package organizations;
 
+import business.models.Employee.EmployeeDirectory;
 import business.models.Role.Role;
-import business.models.User.UserCatalog;
+import business.models.User.UserDirectory;
+
 import java.util.ArrayList;
 
 
@@ -19,8 +21,9 @@ public abstract class Organization {
 
     private String name;
     private workQueue workQueue;
+    private EmployeeDirectory employeeDirectory;
    
-    private UserCatalog userCatalog;
+    private UserDirectory userCatalog;
     private int organizationID;
     private static int counter=0;
     
@@ -38,22 +41,25 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         workQueue = new workQueue();
-       
-        userCatalog = new UserCatalog();
+       employeeDirectory = new EmployeeDirectory();
+        userCatalog = new UserDirectory();
         organizationID = counter;
         ++counter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
     
-    public UserCatalog getUserAccountDirectory() {
+    public UserDirectory getUserAccountDirectory() {
         return userCatalog;
     }
 
     public int getOrganizationID() {
         return organizationID;
     }
-
+   public EmployeeDirectory getEmployeeDirectory() {
+        return employeeDirectory;
+    }
+    
 
     
     public String getName() {
