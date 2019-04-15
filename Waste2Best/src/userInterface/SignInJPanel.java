@@ -7,6 +7,10 @@ package userInterface;
 
 
 import business.models.Role.Role;
+import business.models.User.Customer;
+import business.models.User.CustomerCatalog;
+import business.models.User.Farmer;
+import business.models.User.FarmerCatalog;
 import business.models.User.UserCatalog;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
@@ -23,9 +27,13 @@ public class SignInJPanel extends javax.swing.JPanel {
     /**
      * Creates new form Market
      */
+    private CustomerCatalog customerList;
+    private FarmerCatalog farmerList;
     private JPanel rightJPanel;
-    public SignInJPanel(JPanel rightJPanel) {
+    public SignInJPanel(JPanel rightJPanel, CustomerCatalog cList, FarmerCatalog fList) {
         initComponents();
+        this.customerList=cList;
+        this.farmerList = fList;
         this.rightJPanel = rightJPanel;
     }
 
@@ -52,6 +60,7 @@ public class SignInJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         textLocation = new javax.swing.JTextField();
         lblErrorPwd = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jLabel2.setText("Name");
 
@@ -111,6 +120,13 @@ public class SignInJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,8 +156,10 @@ public class SignInJPanel extends javax.swing.JPanel {
                                     .addComponent(lblError)
                                     .addComponent(lblErrorPwd)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(buttonSubmit)))))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2)
+                                    .addComponent(buttonSubmit))))))
                 .addContainerGap(416, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -178,7 +196,9 @@ public class SignInJPanel extends javax.swing.JPanel {
                         .addGap(60, 60, 60)))
                 .addGap(18, 18, 18)
                 .addComponent(buttonSubmit)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addComponent(jButton2)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,7 +208,7 @@ public class SignInJPanel extends javax.swing.JPanel {
 
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
         // TODO add your handling code here:
-        if(textName.getText().equals("") || textMail.getText().equals("") || textName.getText().equals("") || textPwd.getText().equals(""))
+        if(textName.getText().equals("") || textMail.getText().equals("") || textPwd.getText().equals("") || textPwd.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null,"One or more fields are empty");
         } 
@@ -201,7 +221,7 @@ public class SignInJPanel extends javax.swing.JPanel {
             String userName="";
             String location="";
             String type="Customer";
-            String password="";
+            String password="sdsdg";
 
             try
             {
@@ -230,9 +250,33 @@ public class SignInJPanel extends javax.swing.JPanel {
                 return;
             }
             
-            UserCatalog u = new UserCatalog();
-            Role r = new Role();
-            u.createUserAccount(name, userName,password, location,type);
+            try
+            {
+                location = textLocation.getText();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input a valid Location");
+                return;
+            }
+            
+            if (type.equals("Customer"))
+            {
+
+                customerList.createCustomerAccount(name, userName, password, location);
+                
+                JOptionPane.showMessageDialog(null, "Customer created successfully");
+            }
+            else
+            {
+
+                Farmer f = farmerList.addFarmer();
+                f.setName(name);
+                f.setLocation(location);
+                f.setPassword(password);
+                
+                JOptionPane.showMessageDialog(null, "Farmer created successfully");
+            }
+        
         }
         else if (!lblError.getText().equals(""))
         {
@@ -287,11 +331,21 @@ public class SignInJPanel extends javax.swing.JPanel {
             lblErrorPwd.setText("Password should at least 8 characters long & contain at least One Uppercase, One digit and # symbol");
     }//GEN-LAST:event_textPwdFocusLost
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        tempcust viewVitalsJPanel = new tempcust(rightJPanel, customerList);
+        //splitPane.setRightComponent(viewJPanel);
+        rightJPanel.add("ViewVitals",viewVitalsJPanel);
+        CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSubmit;
     private javax.swing.JComboBox<String> dropType;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
