@@ -5,6 +5,8 @@
  */
 package userInterface;
 
+import Business.DB4OUtil.DB4OUtil;
+import business.Ecosystem;
 import business.models.User.CustomerCatalog;
 import business.models.User.FarmerCatalog;
 import java.awt.CardLayout;
@@ -19,6 +21,8 @@ public class LoginJPanel extends javax.swing.JPanel {
     private JPanel rightPanel;
     private FarmerCatalog fList;
     private CustomerCatalog cList;
+     private Ecosystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     /**
      * Creates new form LoginJPanel
      */

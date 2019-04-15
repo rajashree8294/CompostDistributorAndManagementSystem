@@ -10,7 +10,8 @@ import business.models.User.User;
 import enterprise.Enterprise;
 import javax.swing.JPanel;
 import organizations.Organization;
-import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
+import userInterface.AdministrativeRole.AdminWorkAreaJPanel;
+
 
 /**
  *
