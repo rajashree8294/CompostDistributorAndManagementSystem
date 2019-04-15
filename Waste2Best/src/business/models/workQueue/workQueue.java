@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package business.models.workQueue;
-
 import business.models.workRequest.WorkRequest;
 import java.util.ArrayList;
 

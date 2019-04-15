@@ -9,6 +9,7 @@ import Business.DB4OUtil.DB4OUtil;
 import business.Ecosystem;
 import business.models.User.CustomerCatalog;
 import business.models.User.FarmerCatalog;
+import business.models.User.UserDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -19,18 +20,15 @@ import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  */
 public class LoginJPanel extends javax.swing.JPanel {
     private JPanel rightPanel;
-    private FarmerCatalog fList;
-    private CustomerCatalog cList;
-     private Ecosystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private UserDirectory userDirectory;
     /**
      * Creates new form LoginJPanel
      */
 
-    LoginJPanel(JPanel rightPanel,CustomerCatalog cList) {
+    LoginJPanel(JPanel rightPanel,UserDirectory userDirectory) {
         initComponents();
         this.rightPanel = rightPanel;
-        this.cList = cList;
+        this.userDirectory = userDirectory;
     }
 
     /**
@@ -186,7 +184,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
         // TODO add your handling code here:
-        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel,cList,fList);
+        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel,userDirectory);
         rightPanel.add("createSignInPanel", createSignInPanel);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.next(rightPanel);

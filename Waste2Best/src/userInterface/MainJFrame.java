@@ -7,6 +7,7 @@ package userInterface;
 
 import business.models.User.CustomerCatalog;
 import business.models.User.FarmerCatalog;
+import business.models.User.UserDirectory;
 import java.awt.CardLayout;
 
 /**
@@ -18,11 +19,10 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private FarmerCatalog fList;
-    private CustomerCatalog cList;
+    private UserDirectory userDirectory;    
     public MainJFrame() {
         initComponents();
-        cList = new CustomerCatalog();
+        userDirectory = new UserDirectory();
     }
 
     /**
@@ -170,7 +170,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        LoginJPanel loginJPanel = new LoginJPanel(rightPanel,cList);
+        LoginJPanel loginJPanel = new LoginJPanel(rightPanel,userDirectory);
         rightPanel.add("LoginJPanel", loginJPanel);
         CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
         cardLayout.next(rightPanel);
