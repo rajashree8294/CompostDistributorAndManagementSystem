@@ -9,7 +9,7 @@ package organizations;
 import business.models.Employee.EmployeeDirectory;
 import business.models.Role.Role;
 import business.models.User.UserDirectory;
-import business.models.workQueue.WorkQueue;
+import business.models.workQueue.workQueue;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public abstract class Organization {
 
     private String name;
-    private WorkQueue workQueue;
+    private workQueue workQueue;
     private EmployeeDirectory employeeDirectory;
    
     private UserDirectory userCatalog;
@@ -41,7 +41,7 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-        workQueue = new WorkQueue();
+        workQueue = new workQueue();
         employeeDirectory = new EmployeeDirectory();
         userCatalog = new UserDirectory();
         organizationID = counter;
@@ -67,7 +67,7 @@ public abstract class Organization {
         return name;
     }
 
-    public WorkQueue getWorkQueue() {
+    public workQueue getWorkQueue() {
         return workQueue;
     }
 
@@ -75,7 +75,7 @@ public abstract class Organization {
         this.name = name;
     }
 
-    public void setWorkQueue(WorkQueue workQueue) {
+    public void setWorkQueue(workQueue workQueue) {
         this.workQueue = workQueue;
     }
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author tinyteddybear
  */
-public class WorkQueue {
+public class workQueue {
     private ArrayList<WorkRequest> workRequestList;
 
    public ArrayList<WorkRequest> getWorkRequestList() {

@@ -5,30 +5,24 @@
  */
 package userInterface;
 
-import Business.DB4OUtil.DB4OUtil;
 import business.Ecosystem;
-import business.models.User.CustomerCatalog;
-import business.models.User.FarmerCatalog;
-import business.models.User.UserDirectory;
+import business.models.User.User;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
  * @author Aditya
  */
 public class LoginJPanel extends javax.swing.JPanel {
-    private JPanel rightPanel;
-    private UserDirectory userDirectory;
-    /**
-     * Creates new form LoginJPanel
-     */
+    private final JPanel rightPanel;
+    private final Ecosystem system;
+    
 
-    LoginJPanel(JPanel rightPanel,UserDirectory userDirectory) {
+    LoginJPanel(JPanel rightPanel, Ecosystem system) {
         initComponents();
         this.rightPanel = rightPanel;
-        this.userDirectory = userDirectory;
+        this.system = system;
     }
 
     /**
@@ -42,13 +36,13 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         userIdLabel = new javax.swing.JLabel();
         userIdTextField = new javax.swing.JTextField();
-        passwordTextfield = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         forgotPswrdBttn = new javax.swing.JButton();
         loginBttn = new javax.swing.JButton();
         regBttn = new javax.swing.JButton();
         loginScreenLabel = new javax.swing.JLabel();
         backBttn = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
 
         setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         setPreferredSize(new java.awt.Dimension(1022, 650));
@@ -60,13 +54,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         userIdTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userIdTextFieldActionPerformed(evt);
-            }
-        });
-
-        passwordTextfield.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        passwordTextfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfieldActionPerformed(evt);
             }
         });
 
@@ -118,11 +105,11 @@ public class LoginJPanel extends javax.swing.JPanel {
                             .addGap(375, 375, 375)
                             .addComponent(passwordLabel)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(regBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(loginBttn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(forgotPswrdBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(passwordTextfield)))
+                                .addComponent(passwordField)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(386, 386, 386)
                             .addComponent(userIdLabel)
@@ -133,7 +120,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backBttn)
                             .addComponent(loginScreenLabel))))
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addGap(422, 422, 422))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,14 +136,14 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
-                    .addComponent(passwordTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginBttn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(forgotPswrdBttn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(regBttn)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,30 +151,32 @@ public class LoginJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_userIdTextFieldActionPerformed
 
-    private void passwordTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfieldActionPerformed
-
     private void forgotPswrdBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPswrdBttnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_forgotPswrdBttnActionPerformed
 
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         // TODO add your handling code here:
-        if(userIdTextField.getText().equals("sysadmin") && passwordTextfield.getText().equals("sysadmin")){
-            SystemAdminWorkAreaJPanel sysAdminScreen = new SystemAdminWorkAreaJPanel(rightPanel, null);
-            rightPanel.add("SystemAdminWorkAreaJPanel", sysAdminScreen);
-            CardLayout layout = (CardLayout) rightPanel.getLayout();
-            layout.next(rightPanel);
-        }
+         char[] input = passwordField.getPassword();
+         String password = String.valueOf(input);
+         
+//        if(userIdTextField.getText().equals("sysadmin") && password.equals("sysadmin")){
+//            SystemAdminWorkAreaJPanel sysAdminScreen = new SystemAdminWorkAreaJPanel(rightPanel, null);
+//            rightPanel.add("SystemAdminWorkAreaJPanel", sysAdminScreen);
+//            CardLayout layout = (CardLayout) rightPanel.getLayout();
+//            layout.next(rightPanel);
+//        }        
+         
+         User user = system.getUserAccountDirectory().authenticateUser(password, password);
+         
     }//GEN-LAST:event_loginBttnActionPerformed
 
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
         // TODO add your handling code here:
-        SignInJPanel createSignInPanel = new SignInJPanel(rightPanel,userDirectory);
-        rightPanel.add("createSignInPanel", createSignInPanel);
-        CardLayout layout = (CardLayout) rightPanel.getLayout();
-        layout.next(rightPanel);
+        // SignInJPanel createSignInPanel = new SignInJPanel(rightPanel, system);
+        // rightPanel.add("createSignInPanel", createSignInPanel);
+        // CardLayout layout = (CardLayout) rightPanel.getLayout();
+        // layout.next(rightPanel);
     }//GEN-LAST:event_regBttnActionPerformed
 
     private void backBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBttnActionPerformed
@@ -203,8 +192,8 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JButton forgotPswrdBttn;
     private javax.swing.JButton loginBttn;
     private javax.swing.JLabel loginScreenLabel;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordTextfield;
     private javax.swing.JButton regBttn;
     private javax.swing.JLabel userIdLabel;
     private javax.swing.JTextField userIdTextField;

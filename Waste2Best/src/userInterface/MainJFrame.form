@@ -165,6 +165,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="21" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="logout" min="-2" pref="138" max="-2" attributes="0"/>
                                       <Component id="loginBtn" min="-2" pref="138" max="-2" attributes="0"/>
                                       <Component id="aboutBtn" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
@@ -179,7 +180,9 @@
                                   <Component id="loginBtn" min="-2" pref="75" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="aboutBtn" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace pref="346" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="logout" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <EmptySpace pref="269" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -213,6 +216,22 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginBtnActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="logout">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Century Schoolbook" size="18" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Logout"/>
+                            <Property name="toolTipText" type="java.lang.String" value="login into system"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>

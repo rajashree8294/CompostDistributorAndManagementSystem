@@ -1,9 +1,11 @@
 package Business.DB4OUtil;
 
 
+import business.ConfigureASystem;
 import business.Ecosystem;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
@@ -54,17 +56,17 @@ public class DB4OUtil {
         conn.close();
     }
     
-    /*public Ecosystem retrieveSystem(){
+    public Ecosystem retrieveSystem(){
         ObjectContainer conn = createConnection();
         ObjectSet<Ecosystem> systems = conn.query(Ecosystem.class); // Change to the object you want to save
         Ecosystem system;
         if (systems.size() == 0){
-            //system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+            system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
             system = systems.get(systems.size() - 1);
         }
         conn.close();
         return system;
-    }*/
+    }
 }
