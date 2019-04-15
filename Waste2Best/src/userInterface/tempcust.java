@@ -7,6 +7,8 @@ package userInterface;
 
 import business.models.User.Customer;
 import business.models.User.CustomerCatalog;
+import business.models.User.User;
+import business.models.User.UserDirectory;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,12 +22,12 @@ public class tempcust extends javax.swing.JPanel {
      * Creates new form tempcust
      */
     
-    private CustomerCatalog cList;
+    private UserDirectory userDirectory;
     private JPanel rightPanel;
-    public tempcust(JPanel rightPanel, CustomerCatalog cList) {
+    public tempcust(JPanel rightPanel, UserDirectory userDirectory) {
         initComponents();
         this.rightPanel = rightPanel;
-        this.cList = cList;
+        this.userDirectory = userDirectory;
         populateTable();
         
     }
@@ -34,11 +36,11 @@ public class tempcust extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel)TableCust.getModel();
         dtm.setRowCount(0);
         
-        for (Customer c : cList.getcustomerAccountList())
+        for (User u: userDirectory.getUserAccountList())
         {
             Object row[] = new Object[2];
-            row[0] = c;
-            row[1] = c.getName();
+            row[0] = u;
+            row[1] = u.getName();
             dtm.addRow(row);
         }
     }

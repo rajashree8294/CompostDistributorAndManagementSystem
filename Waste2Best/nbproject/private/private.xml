@@ -3,28 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Distributor.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Farmer.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/DistributorOrganization.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/AdministrativeRole/ManageUserAccountJPanel.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/network/Network.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/AdministrativeRole/ManageEmployeeJPanel.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/Ecosystem.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/User.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Employee/Employee.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/LoginJPanel.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/RegisterJPanel.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/userInterface/UserInterface.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/enterprise/EnterpriseDirectory.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/LabOrganization.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/enterprise/Enterprise.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/FarmerCatalog.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/Organization.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Supplier.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workQueue/workQueue.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/SupplierOrganization.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/Employee/EmployeeDirectory.java</file>
-            <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/User/Customer.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/AdministrativeRole/AdminWorkAreaJPanel.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/RegisterJPanel.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/AboutUs.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/MainJFrame.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/LoginJPanel.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/business/models/User/FarmerCatalog.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/business/models/User/Farmer.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/business/models/User/UserCatalog.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/UserInterface.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/business/models/User/CustomerCatalog.java</file>
+            <file>file:/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/business/models/User/DistributorCatalog.java</file>
         </group>
     </open-files>
 </project-private>
