@@ -5,6 +5,7 @@
  */
 package business.models.User;
 
+import business.models.Employee.Employee;
 import business.models.Role.Role;
 
 /**
@@ -14,6 +15,15 @@ import business.models.Role.Role;
 public class User {
     private String userID;
     private String name;
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
     private String password;
     private String location;
     private Role role;

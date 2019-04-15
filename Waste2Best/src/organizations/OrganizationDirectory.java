@@ -13,11 +13,11 @@ import organizations.Organization.Type;
  *
  * @author Rajashree
  */
-public class OrganizationCatalog {
+public class OrganizationDirectory {
     
     private ArrayList<Organization> organizationList;
 
-    public OrganizationCatalog() {
+    public OrganizationDirectory() {
         organizationList = new ArrayList();
     }
 
