@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
-  JPanel userProcessContainer;
+    JPanel userProcessContainer;
     Enterprise enterprise;
     /** Creates new form AdminWorkAreaJPanel */
     public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {

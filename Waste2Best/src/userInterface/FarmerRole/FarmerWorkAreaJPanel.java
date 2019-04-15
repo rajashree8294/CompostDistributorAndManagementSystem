@@ -6,7 +6,6 @@
 package userInterface.FarmerRole;
 
 import business.models.User.User;
-import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import javax.swing.JPanel;

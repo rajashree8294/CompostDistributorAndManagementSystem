@@ -5,9 +5,8 @@
  */
 package userInterface;
 
-import business.models.User.CustomerCatalog;
-import business.models.User.FarmerCatalog;
-import business.models.User.UserDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import business.Ecosystem;
 import java.awt.CardLayout;
 
 /**
@@ -19,10 +18,12 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private UserDirectory userDirectory;    
+    private final Ecosystem system;
+    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    
     public MainJFrame() {
         initComponents();
-        userDirectory = new UserDirectory();
+        system = dB4OUtil.retrieveSystem();
     }
 
     /**
@@ -44,6 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         aboutBtn = new javax.swing.JButton();
         loginBtn = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29))
         );
@@ -103,6 +105,17 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        logout.setBackground(new java.awt.Color(204, 204, 255));
+        logout.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
+        logout.setText("Logout");
+        logout.setToolTipText("login into system");
+        logout.setEnabled(false);
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -110,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
@@ -121,7 +135,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
@@ -170,7 +186,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        LoginJPanel loginJPanel = new LoginJPanel(rightPanel,userDirectory);
+        LoginJPanel loginJPanel = new LoginJPanel(rightPanel,system);
         rightPanel.add("LoginJPanel", loginJPanel);
         CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
         cardLayout.next(rightPanel);
@@ -183,6 +199,10 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
         cardLayout.next(rightPanel);
     }//GEN-LAST:event_aboutBtnActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +248,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton loginBtn;
+    private javax.swing.JButton logout;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JSplitPane splitPane1;
     // End of variables declaration//GEN-END:variables
