@@ -9,6 +9,7 @@ import business.models.User.CustomerCatalog;
 import business.models.User.FarmerCatalog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -171,6 +172,12 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         // TODO add your handling code here:
+        if(userIdTextField.getText().equals("sysadmin") && passwordTextfield.getText().equals("sysadmin")){
+            SystemAdminWorkAreaJPanel sysAdminScreen = new SystemAdminWorkAreaJPanel(rightPanel, null);
+            rightPanel.add("SystemAdminWorkAreaJPanel", sysAdminScreen);
+            CardLayout layout = (CardLayout) rightPanel.getLayout();
+            layout.next(rightPanel);
+        }
     }//GEN-LAST:event_loginBttnActionPerformed
 
     private void regBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBttnActionPerformed
