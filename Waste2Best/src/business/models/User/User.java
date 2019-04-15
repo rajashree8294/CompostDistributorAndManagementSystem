@@ -7,6 +7,7 @@ package business.models.User;
 
 import business.models.Employee.Employee;
 import business.models.Role.Role;
+import business.models.workQueue.WorkQueue;
 
 /**
  *
@@ -16,6 +17,15 @@ public class User {
     private String userID;
     private String name;
     private Employee employee;
+    private WorkQueue workQueue;
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
 
     public Employee getEmployee() {
         return employee;

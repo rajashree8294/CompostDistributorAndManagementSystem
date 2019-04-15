@@ -5,19 +5,48 @@
  */
 package business.models.workRequest;
 
+import business.models.User.User;
 import java.util.Date;
 
 /**
  *
  * @author Aditya
  */
-public class WorkRequest {
+public abstract class WorkRequest {
     
     private String message;
-    private String sender;
-    private String receiver;
+    private User sender;
+    private User receiver;
+     private String status;
     private Date requestDate;
     private Date resolveDate;
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+   
+    
+       
 
     public String getMessage() {
         return message;
@@ -27,21 +56,7 @@ public class WorkRequest {
         this.message = message;
     }
 
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
+   
 
     public Date getRequestDate() {
         return requestDate;
