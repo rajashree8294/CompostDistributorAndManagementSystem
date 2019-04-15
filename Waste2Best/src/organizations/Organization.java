@@ -41,7 +41,7 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         workQueue = new workQueue();
-       employeeDirectory = new EmployeeDirectory();
+        employeeDirectory = new EmployeeDirectory();
         userCatalog = new UserDirectory();
         organizationID = counter;
         ++counter;
