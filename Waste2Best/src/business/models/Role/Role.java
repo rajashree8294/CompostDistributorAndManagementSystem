@@ -41,7 +41,7 @@ public abstract class Role {
         }
     }
      
-       public abstract JPanel createWorkArea(JPanel userProcessContainer, 
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             User user, 
             Organization organization, 
             Enterprise enterprise, 

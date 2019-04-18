@@ -7,7 +7,7 @@
 package business;
 
 import business.models.Employee.Employee;
-import business.models.Role.AdminRole;
+import business.models.Role.SystemAdminRole;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ConfigureASystem {
 
         Employee employee = system.getEmployeeDirectory().createEmployee("ARA");
 
-        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", "sysadmin", "NEU", employee, new AdminRole());
+        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", "sysadmin", "NEU", employee, new SystemAdminRole());
 
         return system;
     }
