@@ -53,6 +53,11 @@ public class MarketJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Tumbler");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,12 +138,21 @@ public class MarketJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
                 // TODO add your handling code here:
-        SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel();
+        SeedMarket seedMarketJPanel= new SeedMarket(rightJPanel);
         //splitPane.setRightComponent(viewJPanel);
         rightJPanel.add("SeedMarketJPanel",seedMarketJPanel);
         CardLayout layout = (CardLayout)rightJPanel.getLayout();
         layout.next(rightJPanel);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+         SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel(rightJPanel);
+        //splitPane.setRightComponent(viewJPanel);
+        rightJPanel.add("SeedMarketJPanel",seedMarketJPanel);
+        CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

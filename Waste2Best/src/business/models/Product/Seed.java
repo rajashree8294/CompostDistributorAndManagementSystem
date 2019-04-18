@@ -7,49 +7,18 @@ package business.models.Product;
 
 /**
  *
- * @author Aditya
+ * @author tinyteddybear
  */
 public class Seed extends Product {
     
     
-    private String seedId;
-    private int seedQuantity;
-    private float unit;
-    private double price;
+    private String type;
 
-    public String getSeedId() {
-        return seedId;
+    public String getType() {
+        return type;
     }
 
-    public void setSeedId(String seedId) {
-        this.seedId = seedId;
+    public void setType(String type) {
+        this.type = type;
     }
-
-    public int getSeedQuantity() {
-        return seedQuantity;
-    }
-
-    public void setSeedQuantity(int seedQuantity) {
-        this.seedQuantity = seedQuantity;
-    }
-
-    public float getUnit() {
-        return unit;
-    }
-
-    public void setUnit(float unit) {
-        this.unit = unit;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    
-    
-    
-
 }
