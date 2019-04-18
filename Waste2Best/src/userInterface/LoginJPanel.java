@@ -157,8 +157,11 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         // TODO add your handling code here:
+        String userName = userIdTextField.getText();
          char[] input = passwordField.getPassword();
          String password = String.valueOf(input);
+         
+         User userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
          
 //        if(userIdTextField.getText().equals("sysadmin") && password.equals("sysadmin")){
 //            SystemAdminWorkAreaJPanel sysAdminScreen = new SystemAdminWorkAreaJPanel(rightPanel, null);
@@ -167,7 +170,11 @@ public class LoginJPanel extends javax.swing.JPanel {
 //            layout.next(rightPanel);
 //        }        
          
-         User user = system.getUserAccountDirectory().authenticateUser(password, password);
+         if(userAccount != null){
+            CardLayout layout=(CardLayout)rightPanel.getLayout();
+            rightPanel.add("workArea",userAccount.getRole().createWorkArea(rightPanel, userAccount, null, null, system));
+            layout.next(rightPanel);
+         }
          
     }//GEN-LAST:event_loginBttnActionPerformed
 
