@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package business.models.workQueue;
 
 import business.models.workRequest.WorkRequest;
@@ -10,10 +11,10 @@ import java.util.ArrayList;
 
 /**
  *
- * @author tinyteddybear
+ * @author Rajashree
  */
 public class WorkQueue {
-    private ArrayList<WorkRequest> workRequestList;
+private ArrayList<WorkRequest> workRequestList;
 
    public ArrayList<WorkRequest> getWorkRequestList() {
        return workRequestList;
