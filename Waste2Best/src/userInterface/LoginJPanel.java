@@ -163,13 +163,6 @@ public class LoginJPanel extends javax.swing.JPanel {
          
          User userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
          
-//        if(userIdTextField.getText().equals("sysadmin") && password.equals("sysadmin")){
-//            SystemAdminWorkAreaJPanel sysAdminScreen = new SystemAdminWorkAreaJPanel(rightPanel, null);
-//            rightPanel.add("SystemAdminWorkAreaJPanel", sysAdminScreen);
-//            CardLayout layout = (CardLayout) rightPanel.getLayout();
-//            layout.next(rightPanel);
-//        }        
-         
          if(userAccount != null){
             CardLayout layout=(CardLayout)rightPanel.getLayout();
             rightPanel.add("workArea",userAccount.getRole().createWorkArea(rightPanel, userAccount, null, null, system));
