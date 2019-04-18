@@ -157,7 +157,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         // TODO add your handling code here:
-        String userName = userIdTextField.getText();
+         String userName = userIdTextField.getText();
          char[] input = passwordField.getPassword();
          String password = String.valueOf(input);
          
