@@ -9,11 +9,18 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Aditya
+ * @author tinyteddybear
  */
 public class SeedCatalog {
     
     private ArrayList<Seed> seedList;
+    
+    public SeedCatalog()
+    {
+        
+        seedList = new ArrayList();
+    }
+    
 
     public ArrayList<Seed> getSeedList() {
         return seedList;
@@ -22,6 +29,16 @@ public class SeedCatalog {
     public void setSeedList(ArrayList<Seed> seedList) {
         this.seedList = seedList;
     }
+    public Seed createSeed(double price,int quantity , String type,String name, double totalPrice){
+        Seed seed = new Seed();
+        seed.setPrice(price);
+        seed.setQuantity(quantity);
+        seed.setName(name);
+        seed.setType(type);
+        seed.settPrice(totalPrice);
 
+        seedList.add(seed);
+        return seed;
+    }
     
 }

@@ -15,7 +15,6 @@ public class Tumbler extends Product {
     private float height;
     private float width;
     private String type;
-    private float price;
 
     public int getCapacity() {
         return capacity;
@@ -49,13 +48,6 @@ public class Tumbler extends Product {
         this.type = type;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
     
     
 }

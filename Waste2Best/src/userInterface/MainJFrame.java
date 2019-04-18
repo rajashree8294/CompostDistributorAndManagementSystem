@@ -8,6 +8,7 @@ package userInterface;
 import Business.DB4OUtil.DB4OUtil;
 import business.Ecosystem;
 import business.models.User.User;
+import business.models.User.UserDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,9 +21,9 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private final Ecosystem system;
-    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    
+    private Ecosystem system;
+    private UserDirectory userDirectory;  
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
