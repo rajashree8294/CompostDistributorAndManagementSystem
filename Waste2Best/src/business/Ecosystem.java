@@ -21,6 +21,7 @@ public class Ecosystem extends Organization{
 
     public Ecosystem() {
         super(null);
+        networkList=new ArrayList<Network>();
     }
     
     public static Ecosystem getInstance(){

@@ -51,7 +51,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }
 
     private void populateComboBox() {
-        networkJComboBox.removeAllItems();
+       networkJComboBox.removeAllItems();
         enterpriseTypeJComboBox.removeAllItems();
 
         for (Network network : system.getNetworkList()) {
