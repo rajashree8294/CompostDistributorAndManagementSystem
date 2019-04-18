@@ -8,6 +8,7 @@ package business;
 
 import business.models.Employee.Employee;
 import business.models.Role.SystemAdminRole;
+import network.Network;
 
 /**
  *
@@ -18,6 +19,9 @@ public class ConfigureASystem {
     public static Ecosystem configure(){
 
         Ecosystem system = Ecosystem.getInstance();
+        
+        Network network = system.createAndAddNetwork();
+        network.setName("Boston");
 
         Employee employee = system.getEmployeeDirectory().createEmployee("ARA");
 

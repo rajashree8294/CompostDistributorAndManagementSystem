@@ -9,8 +9,12 @@ import Business.DB4OUtil.DB4OUtil;
 import business.Ecosystem;
 import business.models.User.User;
 import business.models.User.UserDirectory;
+import enterprise.Enterprise;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import network.Network;
+import organizations.Organization;
 
 /**
  *
@@ -219,12 +223,53 @@ public class MainJFrame extends javax.swing.JFrame {
         String password = String.valueOf(input);
          
         User userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-         
-        if(userAccount != null){
-           CardLayout layout=(CardLayout)rightPanel.getLayout();
-           rightPanel.add("workArea",userAccount.getRole().createWorkArea(rightPanel, userAccount, null, null, system));
-           layout.next(rightPanel);
+       
+        
+        Enterprise inEnterprise=null;
+        Organization inOrganization=null;
+        
+        if(userAccount==null){
+            //Step 2: Go inside each network and check each enterprise
+            for(Network network:system.getNetworkList()){
+                //Step 2.a: check against each enterprise
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if(userAccount==null){
+                       //Step 3:check against each organization for each enterprise
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null){
+                               inEnterprise=enterprise;
+                               inOrganization=organization;
+                               break;
+                           }
+                       }
+                        
+                    }
+                    else{
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
+            }
         }
+        
+        if(userAccount==null){
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            return;
+        }
+        else{
+            CardLayout layout=(CardLayout)rightPanel.getLayout();
+            rightPanel.add("workArea",userAccount.getRole().createWorkArea(rightPanel, userAccount, inOrganization, inEnterprise, system));
+            layout.next(rightPanel);
+        }
+        
         
         loginBtn.setEnabled(false);
         logoutBtn.setEnabled(true);
