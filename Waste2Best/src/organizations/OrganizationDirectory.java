@@ -36,6 +36,18 @@ public class OrganizationDirectory {
             organization = new DistributorOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.Customer.getValue())){
+            organization = new CustomerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Farmer.getValue())){
+            organization = new FarmerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Supplier.getValue())){
+            organization = new SupplierOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
 }
