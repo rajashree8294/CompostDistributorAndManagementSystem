@@ -6,6 +6,7 @@
 package userInterface.DistributorRole;
 
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
@@ -29,7 +30,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-     public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SellCropProduceWorkRequest request) {
+     public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, WorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
