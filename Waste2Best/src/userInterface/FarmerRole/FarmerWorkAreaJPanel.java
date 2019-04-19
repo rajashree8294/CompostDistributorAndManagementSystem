@@ -17,7 +17,7 @@ import organizations.FarmerOrganization;
  * @author Aditya
  */
 public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
-   private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private FarmerOrganization organization;
     private Enterprise enterprise;
     private User userAccount;
@@ -69,7 +69,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Farmer Work Panel");
+        jLabel1.setText("Farmer Dashboard");
 
         sellCropProduceBttn.setText("Sell Crop Produce");
         sellCropProduceBttn.addActionListener(new java.awt.event.ActionListener() {
