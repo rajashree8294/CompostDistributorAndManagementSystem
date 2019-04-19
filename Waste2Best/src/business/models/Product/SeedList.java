@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *
  * @author tinyteddybear
  */
-public class SeedCatalog {
+public class SeedList {
     
     private ArrayList<Seed> seedList;
     
-    public SeedCatalog()
+    public SeedList()
     {
         
         seedList = new ArrayList();

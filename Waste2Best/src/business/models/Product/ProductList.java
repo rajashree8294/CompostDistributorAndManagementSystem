@@ -9,6 +9,6 @@ package business.models.Product;
  *
  * @author Aditya
  */
-public class ProductCatalog {
+public class ProductList {
     
 }

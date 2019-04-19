@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Aditya
  */
-public class TumblerCatalog {
+public class TumblerList {
     
 private ArrayList<Tumbler> tumblerList;
 
