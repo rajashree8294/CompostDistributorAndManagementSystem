@@ -26,7 +26,6 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private Ecosystem system;
-    private UserDirectory userDirectory;  
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public MainJFrame() {
         initComponents();

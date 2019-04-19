@@ -6,7 +6,7 @@
 package userInterface;
 
 import business.models.Product.Seed;
-import business.models.Product.SeedCatalog;
+import business.models.Product.SeedList;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.Label;
@@ -28,12 +28,12 @@ public class SeedMarketJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SeedMarketJPanel
      */
-    private SeedCatalog seedCatalog;
+    private SeedList seedCatalog;
     private JPanel rightJPanel;
     public SeedMarketJPanel(JPanel rightJPanel) {
         initComponents();
         this.rightJPanel = rightJPanel;
-        seedCatalog = new SeedCatalog();
+        seedCatalog = new SeedList();
         /*BufferedImage img = null;
         try {
             img = ImageIO.read(new File("/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/blueberry-seeds.jpg"));

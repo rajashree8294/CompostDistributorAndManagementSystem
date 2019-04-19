@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Aditya
  */
-public class CropCatalog {
+public class CropList {
 private ArrayList<CropProduce> cropProduceList;
 
     public ArrayList<CropProduce> getCropProduce() {
