@@ -6,7 +6,7 @@
 package userInterface;
 
 import business.models.Product.Seed;
-import business.models.Product.SeedCatalog;
+import business.models.Product.SeedList;
 import business.models.User.User;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -21,8 +21,8 @@ public class ShoppingCart extends javax.swing.JPanel {
      * Creates new form ShoppingCart
      */
     private JPanel rightJPanel;
-    private SeedCatalog seedList;
-    public ShoppingCart(JPanel rightJPanel, SeedCatalog seedList) {
+    private SeedList seedList;
+    public ShoppingCart(JPanel rightJPanel, SeedList seedList) {
         initComponents();
         this.seedList=seedList;
         this.rightJPanel=rightJPanel;
