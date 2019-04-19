@@ -6,19 +6,12 @@
 package userInterface;
 
 
-import business.models.Employee.Employee;
 import business.models.Role.CustomerRole;
 import business.models.Role.FarmerRole;
-import business.models.Role.Role;
-import business.models.User.Customer;
-import business.models.User.CustomerCatalog;
-import business.models.User.Farmer;
-import business.models.User.FarmerCatalog;
 import business.models.User.UserDirectory;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 

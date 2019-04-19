@@ -57,6 +57,7 @@ public class MainJFrame extends javax.swing.JFrame {
         passwordTxt = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        registerBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +136,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 51, 102));
         jLabel3.setText("Password");
 
+        registerBtn.setBackground(new java.awt.Color(204, 204, 255));
+        registerBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
+        registerBtn.setText("Register");
+        registerBtn.setToolTipText("login into system");
+        registerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -149,7 +160,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addComponent(aboutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                        .addComponent(passwordTxt)))
+                        .addComponent(passwordTxt)
+                        .addComponent(registerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         leftPanelLayout.setVerticalGroup(
@@ -167,7 +179,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -222,8 +236,7 @@ public class MainJFrame extends javax.swing.JFrame {
         char[] input = passwordTxt.getPassword();
         String password = String.valueOf(input);
          
-        User userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-       
+        User userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);       
         
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
@@ -244,7 +257,6 @@ public class MainJFrame extends javax.swing.JFrame {
                                break;
                            }
                        }
-                        
                     }
                     else{
                        inEnterprise=enterprise;
@@ -269,7 +281,6 @@ public class MainJFrame extends javax.swing.JFrame {
             rightPanel.add("workArea",userAccount.getRole().createWorkArea(rightPanel, userAccount, inOrganization, inEnterprise, system));
             layout.next(rightPanel);
         }
-        
         
         loginBtn.setEnabled(false);
         logoutBtn.setEnabled(true);
@@ -302,6 +313,13 @@ public class MainJFrame extends javax.swing.JFrame {
         crdLyt.next(rightPanel);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
+        SignInJPanel signInJPanel = new SignInJPanel( rightPanel, system.getUserAccountDirectory());
+       rightPanel.add("signInJPanel", signInJPanel);
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        cardLayout.next(rightPanel);        
+    }//GEN-LAST:event_registerBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +370,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton loginBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JButton registerBtn;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JSplitPane splitPane1;
     // End of variables declaration//GEN-END:variables
