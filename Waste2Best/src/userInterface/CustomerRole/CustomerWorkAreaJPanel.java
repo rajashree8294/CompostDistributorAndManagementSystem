@@ -5,17 +5,21 @@
  */
 package userInterface.CustomerRole;
 
+import business.Ecosystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Aditya
  */
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form CustomerWorkAreaJPanel
-     */
-    public CustomerWorkAreaJPanel() {
+    JPanel rightPanel;
+    Ecosystem ecosystem;
+    
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, Ecosystem business) {
         initComponents();
+        this.rightPanel = userProcessContainer;
+        this.ecosystem = business;
     }
 
     /**

@@ -6,9 +6,10 @@
 package userInterface;
 
 
+import business.Ecosystem;
 import business.models.Role.CustomerRole;
 import business.models.Role.FarmerRole;
-import business.models.User.UserDirectory;
+import business.models.User.User;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,11 +25,11 @@ public class SignInJPanel extends javax.swing.JPanel {
     /**
      * Creates new form Market
      */
-    private UserDirectory userDirectory;
+    private Ecosystem system;
     private JPanel rightJPanel;
-    public SignInJPanel(JPanel rightJPanel, UserDirectory userDirectory) {
+    public SignInJPanel(JPanel rightJPanel, Ecosystem system) {
         initComponents();
-        this.userDirectory = userDirectory;
+        this.system = system;
         this.rightJPanel = rightJPanel;
     }
 
@@ -46,17 +47,15 @@ public class SignInJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         textMail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textPwd = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        dropType = new javax.swing.JComboBox<>();
+        dropType = new javax.swing.JComboBox<String>();
         buttonSubmit = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         textLocation = new javax.swing.JTextField();
         lblErrorPwd = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        textPwd = new javax.swing.JTextField();
 
         jLabel2.setText("Name");
 
@@ -76,15 +75,9 @@ public class SignInJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Password");
 
-        textPwd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textPwdFocusLost(evt);
-            }
-        });
-
         jLabel5.setText("Type");
 
-        dropType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Farmer" }));
+        dropType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Customer", "Farmer" }));
 
         buttonSubmit.setText("Submit");
         buttonSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -116,17 +109,9 @@ public class SignInJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        textPwd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textPwdFocusLost(evt);
             }
         });
 
@@ -135,76 +120,72 @@ public class SignInJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textLocation, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textMail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textPwd, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dropType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblError)
-                                    .addComponent(lblErrorPwd)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2)
-                                    .addComponent(buttonSubmit)
-                                    .addComponent(jButton3))))))
-                .addContainerGap(416, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(230, 230, 230)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblError)
+                                .addComponent(lblErrorPwd)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(148, 148, 148)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(textName)
+                                .addComponent(textMail)
+                                .addComponent(dropType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textPwd)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(96, 96, 96)
+                            .addComponent(buttonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(141, 141, 141)))
+                    .addComponent(jButton1))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblError))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblErrorPwd))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dropType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(textPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblErrorPwd)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dropType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(textLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49)
                 .addComponent(buttonSubmit)
-                .addGap(56, 56, 56)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(172, 172, 172))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -214,21 +195,17 @@ public class SignInJPanel extends javax.swing.JPanel {
 
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
         // TODO add your handling code here:
-        if(textName.getText().equals("") || textMail.getText().equals("") || textPwd.getText().equals("") || textPwd.getText().equals(""))
-        {
+        if(textName.getText().equals("") || textMail.getText().equals("") || textPwd.getText().equals("")){
             JOptionPane.showMessageDialog(null,"One or more fields are empty");
         } 
-        else if(lblError.getText().equals("") && lblErrorPwd.getText().equals(""))
+        else if(lblError.getText().equals(""))
         {
-
-
             String name="";
-            String mail="";
-            String userName="";
+            String email="";
+            String password="";
             String location="";
             Object type=dropType.getSelectedItem();
             String userType = type.toString();
-            String password="";
 
             try
             {
@@ -241,19 +218,19 @@ public class SignInJPanel extends javax.swing.JPanel {
 
             try
             {
-                mail = textPwd.getText();
+                email = textMail.getText();
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Please input a valid Location");
+                JOptionPane.showMessageDialog(null, "Please input a valid Email");
                 return;
             }
 
             try
             {
-                userName = textName.getText();
+                password = textPwd.getText();
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Please input a valid UserName");
+                JOptionPane.showMessageDialog(null, "Please input a valid Password");
                 return;
             }
             
@@ -268,27 +245,25 @@ public class SignInJPanel extends javax.swing.JPanel {
             
             if (userType.equals("Customer"))
             {
-            
-                userDirectory.createUserAccount(name, userName, password, location,null,new CustomerRole());
+                system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new CustomerRole());
                 
                 JOptionPane.showMessageDialog(null, "Customer created successfully");
             }
             else if  (userType.equals("Farmer"))
             {
-                userDirectory.createUserAccount(name, userName, password, location,null,new FarmerRole());
+                system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new FarmerRole());
                 
                 JOptionPane.showMessageDialog(null, "Farmer created successfully");
             }
-        
         }
         else if (!lblError.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please input a valid E-Mail");
         }
-        else if (!lblErrorPwd.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Please input a valid Password");
-        }
+//        else if (!lblErrorPwd.getText().equals(""))
+//        {
+//            JOptionPane.showMessageDialog(null, "Please input a valid Password");
+//        }
         
     }//GEN-LAST:event_buttonSubmitActionPerformed
 
@@ -325,40 +300,13 @@ public class SignInJPanel extends javax.swing.JPanel {
 
     private void textPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPwdFocusLost
         // TODO add your handling code here:
-        String regex = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9#!@$]{8,}";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(textPwd.getText());
-        if(matcher.matches())
-            lblErrorPwd.setText("");
-        else
-            lblErrorPwd.setText("Password should at least 8 characters long & contain at least One Uppercase, One digit and # symbol");
     }//GEN-LAST:event_textPwdFocusLost
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        tempcust viewVitalsJPanel = new tempcust(rightJPanel, userDirectory);
-        //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("ViewVitals",viewVitalsJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        MarketJPanel marketJPanel= new MarketJPanel(rightJPanel);
-        //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("MarketJPanel",marketJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSubmit;
     private javax.swing.JComboBox<String> dropType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

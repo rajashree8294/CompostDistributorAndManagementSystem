@@ -8,7 +8,6 @@ package userInterface;
 import Business.DB4OUtil.DB4OUtil;
 import business.Ecosystem;
 import business.models.User.User;
-import business.models.User.UserDirectory;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -314,7 +313,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-        SignInJPanel signInJPanel = new SignInJPanel( rightPanel, system.getUserAccountDirectory());
+        SignInJPanel signInJPanel = new SignInJPanel( rightPanel, system);
        rightPanel.add("signInJPanel", signInJPanel);
         CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
         cardLayout.next(rightPanel);        
