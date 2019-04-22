@@ -9,7 +9,6 @@ package userInterface;
 import business.Ecosystem;
 import business.models.Role.CustomerRole;
 import business.models.Role.FarmerRole;
-import business.models.User.User;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -301,7 +300,7 @@ public class SignInJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CardLayout layout = (CardLayout)rightJPanel.getLayout();
         rightJPanel.remove(this);
-        layout.previous(rightJPanel);        // TODO add your handling code here:
+        layout.previous(rightJPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textMailFocusLost

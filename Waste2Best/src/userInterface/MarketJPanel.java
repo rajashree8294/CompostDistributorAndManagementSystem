@@ -5,6 +5,7 @@
  */
 package userInterface;
 
+import business.Ecosystem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -17,10 +18,13 @@ public class MarketJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MarketJPanel
      */
-    private JPanel rightJPanel;
-    public MarketJPanel(JPanel rightJPanel) {
-        initComponents();
-        this.rightJPanel=rightJPanel;
+    private JPanel rightPanel;
+    private Ecosystem system;
+
+    public MarketJPanel(JPanel rightPanel, Ecosystem system) {
+       initComponents();
+       this.rightPanel = rightPanel;
+       this.system = system;
     }
 
     /**
@@ -40,6 +44,7 @@ public class MarketJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         jSplitPane1.setDividerLocation(875);
 
@@ -69,7 +74,7 @@ public class MarketJPanel extends javax.swing.JPanel {
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,12 +99,21 @@ public class MarketJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(595, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(backBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(42, 42, 42)
                 .addComponent(jButton5)
@@ -111,8 +125,9 @@ public class MarketJPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(593, Short.MAX_VALUE))
+                    .addComponent(jButton5)
+                    .addComponent(backBtn))
+                .addContainerGap(598, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -121,11 +136,14 @@ public class MarketJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -138,24 +156,32 @@ public class MarketJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
                 // TODO add your handling code here:
-        SeedMarket seedMarketJPanel= new SeedMarket(rightJPanel);
+        SeedMarket seedMarketJPanel= new SeedMarket(rightPanel);
         //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("SeedMarketJPanel",seedMarketJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
+        rightPanel.add("SeedMarketJPanel",seedMarketJPanel);
+        CardLayout layout = (CardLayout)rightPanel.getLayout();
+        layout.next(rightPanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel(rightJPanel);
+         SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel(rightPanel);
         //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("SeedMarketJPanel",seedMarketJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
+        rightPanel.add("SeedMarketJPanel",seedMarketJPanel);
+        CardLayout layout = (CardLayout)rightPanel.getLayout();
+        layout.next(rightPanel);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout)rightPanel.getLayout();
+        rightPanel.remove(this);
+        layout.previous(rightPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
