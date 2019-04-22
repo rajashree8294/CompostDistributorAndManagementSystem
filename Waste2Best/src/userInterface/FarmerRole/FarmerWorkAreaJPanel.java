@@ -8,6 +8,7 @@ package userInterface.FarmerRole;
 import business.models.User.User;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.FarmerOrganization;
@@ -161,6 +162,9 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sellCropProduceBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellCropProduceBttnActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestSellProductPanel", new RequestSellProductPanel(userProcessContainer, userAccount, enterprise));
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_sellCropProduceBttnActionPerformed
 
 
