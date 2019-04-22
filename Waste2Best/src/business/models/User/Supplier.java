@@ -7,7 +7,9 @@ package business.models.User;
 
 
 import business.models.Product.Seed;
+import business.models.Product.SeedList;
 import business.models.Product.Tumbler;
+import business.models.Product.TumblerList;
 import java.util.ArrayList;
 
 /**
@@ -15,25 +17,23 @@ import java.util.ArrayList;
  * @author tinyteddybear
  */
 public class Supplier extends User{
-    private ArrayList<Seed> seedDirectory;
-    private ArrayList<Tumbler> tumblerDirectory;
+    private SeedList seedList;
+    private TumblerList tumblerList;
 
-    public ArrayList<Seed> getSeedDirectory() {
-        return seedDirectory;
+    public SeedList getSeedList() {
+        return seedList;
     }
 
-    public void setSeedDirectory(ArrayList<Seed> seedDirectory) {
-        this.seedDirectory = seedDirectory;
+    public void setSeedList(SeedList seedList) {
+        this.seedList = seedList;
     }
 
-    public ArrayList<Tumbler> getTumblerDirectory() {
-        return tumblerDirectory;
+    public TumblerList getTumblerList() {
+        return tumblerList;
     }
 
-    public void setTumblerDirectory(ArrayList<Tumbler> tumblerDirectory) {
-        this.tumblerDirectory = tumblerDirectory;
+    public void setTumblerList(TumblerList tumblerList) {
+        this.tumblerList = tumblerList;
     }
-    
-    
-    
+   
 }

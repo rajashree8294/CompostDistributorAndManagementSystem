@@ -26,7 +26,8 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     private FarmerOrganization organization;
     private Enterprise enterprise;
     private User userAccount;
-    private Ecosystem system;
+    private JPanel rightJPanel;
+    
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -37,7 +38,6 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
-        this.system=system;
       //  valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
@@ -70,6 +70,8 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         sellCropProduceBttn = new javax.swing.JButton();
         marketBttn = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
 
@@ -89,6 +91,11 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 marketBttnActionPerformed(evt);
             }
         });
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("EnterPrise :");
+
+        valueLabel.setText("<value>");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,18 +169,22 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sellCropProduceBttnActionPerformed
 
     private void marketBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketBttnActionPerformed
-        MarketJPanel marketJPanel = new MarketJPanel(rightPanel, system);
-        rightPanel.add("MarketJPanel", marketJPanel);
-        CardLayout layout = (CardLayout) rightPanel.getLayout();
-        layout.next(rightPanel);
+        // TODO add your handling code here:
+        MarketJPanel marketJPanel= new MarketJPanel(rightJPanel,enterprise);
+        //splitPane.setRightComponent(viewJPanel);
+        rightJPanel.add("MarketJPanel",marketJPanel);
+        CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_marketBttnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton marketBttn;
     private javax.swing.JButton sellCropProduceBttn;
+    private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
