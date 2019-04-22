@@ -126,6 +126,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
          request.setMessage(message);
          request.setSender(userAccount);
          request.setStatus("Sent to Supplier");
+         
+         
         
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){

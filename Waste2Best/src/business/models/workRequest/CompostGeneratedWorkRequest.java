@@ -11,4 +11,23 @@ package business.models.workRequest;
  */
 public class CompostGeneratedWorkRequest extends WorkRequest{
     
+    private int compostQuantity;
+    private String  compostUserName;
+
+    public int getCompostQuantity() {
+        return compostQuantity;
+    }
+
+    public void setCompostQuantity(int compostQuantity) {
+        this.compostQuantity = compostQuantity;
+    }
+
+    public String getCompostUserName() {
+        return compostUserName;
+    }
+
+    public void setCompostUserName(String compostUserName) {
+        this.compostUserName = compostUserName;
+    }
+    
 }

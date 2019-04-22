@@ -6,13 +6,17 @@
 package userInterface.SupplierRole;
 
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 
 import organizations.SupplierOrganization;
+import userInterface.DistributorRole.ProcessWorkRequestJPanel;
 
 /**
  *
@@ -194,14 +198,29 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
-      //  SellCropProduceWorkRequest request = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+       if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
+        SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-       /* request.setStatus("Processing");
+        sellCropProduceWorkRequest.setStatus("Processing");
 
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, request);
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);*/
+        layout.next(userProcessContainer);
+               
+            }
+            
+             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+        CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        compostGeneratedWorkRequest.setStatus("Processing");
+
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
     }//GEN-LAST:event_processJButtonActionPerformed
 
 
