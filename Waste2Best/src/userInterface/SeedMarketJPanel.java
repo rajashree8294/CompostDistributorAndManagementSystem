@@ -7,17 +7,24 @@ package userInterface;
 
 import business.models.Product.Seed;
 import business.models.Product.SeedList;
+import business.models.User.User;
+import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import organizations.Organization;
+import organizations.OrganizationDirectory;
+import organizations.SupplierOrganization;
 
 /**
  *
@@ -28,12 +35,16 @@ public class SeedMarketJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SeedMarketJPanel
      */
+    private Organization org;
     private SeedList seedCatalog;
     private JPanel rightJPanel;
-    public SeedMarketJPanel(JPanel rightJPanel) {
+    private Enterprise enterprise;
+    private ArrayList<User> userAccountList = new ArrayList();
+    public SeedMarketJPanel(JPanel rightJPanel, Enterprise enterprise) {
         initComponents();
         this.rightJPanel = rightJPanel;
         seedCatalog = new SeedList();
+        this.enterprise = enterprise;
         /*BufferedImage img = null;
         try {
             img = ImageIO.read(new File("/Users/tinyteddybear/Documents/GitRepAssn/wastetobest_mavericks/Waste2Best/src/userInterface/blueberry-seeds.jpg"));
@@ -547,7 +558,20 @@ public class SeedMarketJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+         
+         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+              org = organization;
+              List a = org.getUserAccountDirectory().getUserAccountList();
+                      for (User ua : userAccountList)
+                if (ua.getRole().equals("Supplier")){
 
+            }
+           }
+       }
+         
          Object tempblueBerryQuantity = spnBBQ.getValue();
          int blueBerryQuantity = Integer.parseInt(tempblueBerryQuantity.toString());
          String tempBlueBerryPrice = txtBBPrice.getText();

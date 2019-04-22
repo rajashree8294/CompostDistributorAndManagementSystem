@@ -5,7 +5,7 @@
  */
 package userInterface;
 
-import business.Ecosystem;
+import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,12 +19,11 @@ public class MarketJPanel extends javax.swing.JPanel {
      * Creates new form MarketJPanel
      */
     private JPanel rightPanel;
-    private Ecosystem system;
-
-    public MarketJPanel(JPanel rightPanel, Ecosystem system) {
-       initComponents();
-       this.rightPanel = rightPanel;
-       this.system = system;
+    private Enterprise enterprise;
+    public MarketJPanel(JPanel rightJPanel,Enterprise enterprise ) {
+        initComponents();
+        this.rightPanel=rightJPanel;
+        this.enterprise= enterprise;
     }
 
     /**
@@ -165,8 +164,9 @@ public class MarketJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel(rightPanel);
         //splitPane.setRightComponent(viewJPanel);
+        SeedMarketJPanel seedMarketJPanel= new SeedMarketJPanel(rightPanel,enterprise);
+
         rightPanel.add("SeedMarketJPanel",seedMarketJPanel);
         CardLayout layout = (CardLayout)rightPanel.getLayout();
         layout.next(rightPanel);

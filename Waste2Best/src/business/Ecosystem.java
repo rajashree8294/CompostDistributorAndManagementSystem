@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.models.Product.SeedList;
 import business.models.Role.Role;
 import java.util.ArrayList;
 import network.Network;
@@ -18,10 +19,11 @@ public class Ecosystem extends Organization{
     
     private static Ecosystem business;
     private ArrayList<Network> networkList;
-
+    private SeedList seedList;
     public Ecosystem() {
         super(null);
         networkList=new ArrayList<Network>();
+        seedList = new SeedList();
     }
     
     public static Ecosystem getInstance(){
