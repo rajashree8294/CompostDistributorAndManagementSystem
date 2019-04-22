@@ -198,7 +198,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
-       if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
+        if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
         SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
         sellCropProduceWorkRequest.setStatus("Processing");
@@ -210,7 +210,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                
             }
             
-             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+        if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
         compostGeneratedWorkRequest.setStatus("Processing");
