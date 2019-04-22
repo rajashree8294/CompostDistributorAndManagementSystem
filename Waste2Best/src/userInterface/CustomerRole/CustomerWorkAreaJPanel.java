@@ -6,22 +6,54 @@
 package userInterface.CustomerRole;
 
 import business.Ecosystem;
+import business.models.User.User;
+import business.models.workRequest.WorkRequest;
+import enterprise.Enterprise;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import organizations.FarmerOrganization;
+import userInterface.FarmerRole.RequestSellProductPanel;
 
 /**
  *
  * @author Aditya
  */
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
-    JPanel rightPanel;
-    Ecosystem ecosystem;
-    
-    public CustomerWorkAreaJPanel(JPanel userProcessContainer, Ecosystem business) {
+     private JPanel rightPanel;
+    private FarmerOrganization organization;
+    private Enterprise enterprise;
+    private User userAccount;
+    /**
+     * Creates new form DoctorWorkAreaJPanel
+     */
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, User account, FarmerOrganization organization, Enterprise enterprise) {
         initComponents();
+        
         this.rightPanel = userProcessContainer;
-        this.ecosystem = business;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
+      //  valueLabel.setText(enterprise.getName());
+        populateRequestTable();
     }
 
+    
+        public void populateRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
+           // String result = ((SellCropProduceWorkRequest) request).getTestResult();
+           // row[3] = result == null ? "Waiting" : result;
+            
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,6 +146,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void compostPickUpBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compostPickUpBttnActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        rightPanel.add("RequestSellProductPanel", new RequestSellProductPanel(rightPanel, userAccount, enterprise));
+        layout.next(rightPanel);
     }//GEN-LAST:event_compostPickUpBttnActionPerformed
 
 
