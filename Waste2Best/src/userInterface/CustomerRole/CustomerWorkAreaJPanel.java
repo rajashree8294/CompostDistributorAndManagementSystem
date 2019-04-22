@@ -7,11 +7,13 @@ package userInterface.CustomerRole;
 
 import business.Ecosystem;
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import organizations.CustomerOrganization;
 import organizations.FarmerOrganization;
 import userInterface.FarmerRole.RequestSellProductPanel;
 
@@ -21,19 +23,20 @@ import userInterface.FarmerRole.RequestSellProductPanel;
  */
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
      private JPanel rightPanel;
-    private FarmerOrganization organization;
+    private CustomerOrganization organization;
     private Enterprise enterprise;
     private User userAccount;
+    private Ecosystem system;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public CustomerWorkAreaJPanel(JPanel userProcessContainer, User account, FarmerOrganization organization, Enterprise enterprise) {
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, User account, CustomerOrganization organization, Enterprise enterprise,Ecosystem system) {
         initComponents();
-        
         this.rightPanel = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        this.system=system;
       //  valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
@@ -48,8 +51,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-           // String result = ((SellCropProduceWorkRequest) request).getTestResult();
-           // row[3] = result == null ? "Waiting" : result;
+            //String result = ((CompostGeneratedWorkRequest) request).getTestResult();
+            //row[3] = result == null ? "Waiting" : result;
             
             model.addRow(row);
         }
@@ -147,7 +150,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void compostPickUpBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compostPickUpBttnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) rightPanel.getLayout();
-        rightPanel.add("RequestSellProductPanel", new RequestSellProductPanel(rightPanel, userAccount, enterprise));
+        rightPanel.add("RequestCompostPickupJPanel", new RequestCompostPickupJPanel(rightPanel, userAccount, enterprise));
         layout.next(rightPanel);
     }//GEN-LAST:event_compostPickUpBttnActionPerformed
 
