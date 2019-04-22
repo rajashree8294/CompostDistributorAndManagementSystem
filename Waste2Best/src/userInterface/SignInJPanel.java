@@ -50,12 +50,14 @@ public class SignInJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         dropType = new javax.swing.JComboBox<String>();
         buttonSubmit = new javax.swing.JButton();
-        lblError = new javax.swing.JLabel();
+        emailError = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         textLocation = new javax.swing.JTextField();
         lblErrorPwd = new javax.swing.JLabel();
         textPwd = new javax.swing.JTextField();
+        passwordError = new javax.swing.JLabel();
+        passwordError1 = new javax.swing.JLabel();
 
         jLabel2.setText("Name");
 
@@ -86,10 +88,10 @@ public class SignInJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblError.setText("  ");
-        lblError.addFocusListener(new java.awt.event.FocusAdapter() {
+        emailError.setText("  ");
+        emailError.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lblErrorFocusLost(evt);
+                emailErrorFocusLost(evt);
             }
         });
 
@@ -115,6 +117,20 @@ public class SignInJPanel extends javax.swing.JPanel {
             }
         });
 
+        passwordError.setText("  ");
+        passwordError.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordErrorFocusLost(evt);
+            }
+        });
+
+        passwordError1.setText("  ");
+        passwordError1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordError1FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,32 +138,40 @@ public class SignInJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(230, 230, 230)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblError)
-                                .addComponent(lblErrorPwd)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGap(148, 148, 148)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textName)
-                                .addComponent(textMail)
-                                .addComponent(dropType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textPwd)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(96, 96, 96)
-                            .addComponent(buttonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(141, 141, 141)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addComponent(lblErrorPwd))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(148, 148, 148)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textName)
+                                    .addComponent(textMail)
+                                    .addComponent(dropType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textPwd)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(buttonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(141, 141, 141)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordError, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                            .addComponent(emailError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jButton1))
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(569, Short.MAX_VALUE)
+                    .addComponent(passwordError1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(416, 416, 416)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,21 +180,25 @@ public class SignInJPanel extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(textPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emailError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textMail, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(passwordError, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblErrorPwd)
@@ -186,6 +214,11 @@ public class SignInJPanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addComponent(buttonSubmit)
                 .addGap(172, 172, 172))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(258, 258, 258)
+                    .addComponent(passwordError1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addGap(360, 360, 360)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,13 +226,18 @@ public class SignInJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNameActionPerformed
 
+    private void clearForm(){
+        textName.setText("");
+        textMail.setText("");
+        textPwd.setText("");
+        textLocation.setText("");
+    }
+    
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
         // TODO add your handling code here:
-        if(textName.getText().equals("") || textMail.getText().equals("") || textPwd.getText().equals("")){
+        if(textName.getText().equals("") || textMail.getText().equals("") || textPwd.getText().equals("") || textLocation.getText().equals("")){
             JOptionPane.showMessageDialog(null,"One or more fields are empty");
-        } 
-        else if(lblError.getText().equals(""))
-        {
+        } else if(emailError.getText().equals("") && passwordError.getText().equals("")) {
             String name="";
             String email="";
             String password="";
@@ -207,8 +245,7 @@ public class SignInJPanel extends javax.swing.JPanel {
             Object type=dropType.getSelectedItem();
             String userType = type.toString();
 
-            try
-            {
+            try {
                 name = textName.getText();
             }
             catch(Exception e){
@@ -216,8 +253,7 @@ public class SignInJPanel extends javax.swing.JPanel {
                 return;
             }
 
-            try
-            {
+            try {
                 email = textMail.getText();
             }
             catch(Exception e){
@@ -225,8 +261,7 @@ public class SignInJPanel extends javax.swing.JPanel {
                 return;
             }
 
-            try
-            {
+            try {
                 password = textPwd.getText();
             }
             catch(Exception e){
@@ -234,8 +269,7 @@ public class SignInJPanel extends javax.swing.JPanel {
                 return;
             }
             
-            try
-            {
+            try {
                 location = textLocation.getText();
             }
             catch(Exception e){
@@ -243,33 +277,26 @@ public class SignInJPanel extends javax.swing.JPanel {
                 return;
             }
             
-            if (userType.equals("Customer"))
-            {
-                system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new CustomerRole());
-                
-                JOptionPane.showMessageDialog(null, "Customer created successfully");
+            switch (userType) {
+                case "Customer":system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new CustomerRole());
+                                JOptionPane.showMessageDialog(rightJPanel, "Customer created successfully");
+                                clearForm();
+                                break;
+                case "Farmer":  system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new FarmerRole());
+                                JOptionPane.showMessageDialog(rightJPanel, "Farmer created successfully");
+                                clearForm();
+                                break;
             }
-            else if  (userType.equals("Farmer"))
-            {
-                system.getUserAccountDirectory().createUserAccount(name, email, password, location,null,new FarmerRole());
-                
-                JOptionPane.showMessageDialog(null, "Farmer created successfully");
-            }
-        }
-        else if (!lblError.getText().equals(""))
-        {
+        } else if (!emailError.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please input a valid E-Mail");
+        } else if (!passwordError.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please input a valid Password");
         }
-//        else if (!lblErrorPwd.getText().equals(""))
-//        {
-//            JOptionPane.showMessageDialog(null, "Please input a valid Password");
-//        }
-        
     }//GEN-LAST:event_buttonSubmitActionPerformed
 
-    private void lblErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblErrorFocusLost
+    private void emailErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailErrorFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblErrorFocusLost
+    }//GEN-LAST:event_emailErrorFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CardLayout layout = (CardLayout)rightJPanel.getLayout();
@@ -285,12 +312,11 @@ public class SignInJPanel extends javax.swing.JPanel {
         Matcher matcher = pattern.matcher(textMail.getText());
 
         if(matcher.matches()){
-           lblError.setText("");
+           emailError.setText("");
         }
         else{
-           lblError.setText("Enter Email with @ and .");
-        }
-        
+           emailError.setText("Enter Email with @ and .");
+        }        
     }//GEN-LAST:event_textMailFocusLost
 
     private void lblErrorPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblErrorPwdFocusLost
@@ -300,20 +326,40 @@ public class SignInJPanel extends javax.swing.JPanel {
 
     private void textPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textPwdFocusLost
         // TODO add your handling code here:
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9@$#]{8,}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(textPwd.getText());
+
+        if(matcher.matches()){
+           passwordError.setText("");
+        }
+        else{
+           passwordError.setText("Password should 8 characters long with at least 1 Uppercase, 1 digit");
+        }
     }//GEN-LAST:event_textPwdFocusLost
+
+    private void passwordErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordErrorFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordErrorFocusLost
+
+    private void passwordError1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordError1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordError1FocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSubmit;
     private javax.swing.JComboBox<String> dropType;
+    private javax.swing.JLabel emailError;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblErrorPwd;
+    private javax.swing.JLabel passwordError;
+    private javax.swing.JLabel passwordError1;
     private javax.swing.JTextField textLocation;
     private javax.swing.JTextField textMail;
     private javax.swing.JTextField textName;
