@@ -5,52 +5,41 @@
  */
 package userInterface.FarmerRole;
 
-import business.models.User.User;
-import business.models.workRequest.WorkRequest;
-import enterprise.Enterprise;
+import business.Ecosystem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-import organizations.FarmerOrganization;
 
 /**
  *
  * @author Aditya
  */
 public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
-    private JPanel userProcessContainer;
-    private FarmerOrganization organization;
-    private Enterprise enterprise;
-    private User userAccount;
-    /**
-     * Creates new form DoctorWorkAreaJPanel
-     */
-    public FarmerWorkAreaJPanel(JPanel userProcessContainer, User account, FarmerOrganization organization, Enterprise enterprise) {
+    private JPanel rightPanel;
+    private Ecosystem system;
+
+    public FarmerWorkAreaJPanel(JPanel rightPanel, Ecosystem system) {
         initComponents();
+        this.rightPanel = rightPanel;
+        this.system = system;
         
-        this.userProcessContainer = userProcessContainer;
-        this.organization = organization;
-        this.enterprise = enterprise;
-        this.userAccount = account;
-        valueLabel.setText(enterprise.getName());
-        populateRequestTable();
+        //populateRequestTable();
     }
     
-       public void populateRequestTable(){
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
-        model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-           // String result = ((SellCropProduceWorkRequest) request).getTestResult();
-           // row[3] = result == null ? "Waiting" : result;
-            
-            model.addRow(row);
-        }
-    }
+//       public void populateRequestTable(){
+//        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+//        
+//        model.setRowCount(0);
+//        for (WorkRequest request : system..getWorkQueue().getWorkRequestList()){
+//            Object[] row = new Object[4];
+//            row[0] = request.getMessage();
+//            row[1] = request.getReceiver();
+//            row[2] = request.getStatus();
+//           // String result = ((SellCropProduceWorkRequest) request).getTestResult();
+//           // row[3] = result == null ? "Waiting" : result;
+//            
+//            model.addRow(row);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -162,9 +151,9 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sellCropProduceBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellCropProduceBttnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestSellProductPanel", new RequestSellProductPanel(userProcessContainer, userAccount, enterprise));
-        layout.next(userProcessContainer);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+       // rightPanel.add("RequestSellProductPanel", new RequestSellProductPanel(userProcessContainer, userAccount, enterprise));
+        layout.next(rightPanel);
     }//GEN-LAST:event_sellCropProduceBttnActionPerformed
 
 

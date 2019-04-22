@@ -9,8 +9,8 @@ import business.Ecosystem;
 import business.models.User.User;
 import enterprise.Enterprise;
 import javax.swing.JPanel;
-import organizations.LabOrganization;
 import organizations.Organization;
+import userInterface.FarmerRole.FarmerWorkAreaJPanel;
 
 /**
  *
@@ -20,10 +20,6 @@ public class FarmerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, Organization organization, Enterprise enterprise, Ecosystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new FarmerWorkAreaJPanel(userProcessContainer, business);
     }
-   /*  @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, User account, Organization organization, Enterprise enterprise, Ecosystem business) {
-        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, (LabOrganization)organization, enterprise);
-    }*/
 }
