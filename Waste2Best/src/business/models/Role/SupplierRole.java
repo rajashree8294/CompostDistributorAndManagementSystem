@@ -9,9 +9,9 @@ import business.Ecosystem;
 import business.models.User.User;
 import enterprise.Enterprise;
 import javax.swing.JPanel;
-import organizations.DistributorOrganization;
 import organizations.Organization;
 import organizations.SupplierOrganization;
+import userInterface.SupplierRole.SupplierWorkAreaJPanel;
 
 /**
  *
@@ -19,9 +19,9 @@ import organizations.SupplierOrganization;
  */
 public class SupplierRole extends Role {
     
-      @Override
+    @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User account, Organization organization, Enterprise enterprise, Ecosystem business) {
-        return null ; // SupplierWorkAreaJPanel(userProcessContainer, account, (SupplierOrganization)organization, enterprise);
+        return new SupplierWorkAreaJPanel(userProcessContainer, account, (SupplierOrganization)organization, enterprise);
     }
     
     

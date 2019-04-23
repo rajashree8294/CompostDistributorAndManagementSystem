@@ -16,14 +16,13 @@ import enterprise.Enterprise;
  * @author tinyteddybear
  */
 public abstract class Role {
-   // private enum userRole{Supplier,Distributor,Lab,Customer,Farmer};
      public enum RoleType{
         Admin("Admin"),
         Supplier("Supplier"),
         Distributor("Distributor"),
-        LabAssistant("Lab Assistant"),
-        Customer("Customer"),
-        Farmer("Farmer");
+        LabAssistant("Lab Assistant");
+//        Customer("Customer"),
+//        Farmer("Farmer");
         
         
         private String value;

@@ -7,6 +7,7 @@
 package organizations;
 
 import business.models.Role.Role;
+import business.models.Role.SupplierRole;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +23,7 @@ public class SupplierOrganization extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        //roles.add(new LabAssistantRole());
+        roles.add(new SupplierRole());
         return roles;
     }
     

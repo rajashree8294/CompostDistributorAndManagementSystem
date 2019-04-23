@@ -15,6 +15,15 @@ abstract class Product {
     private double price;
     private int quantity;
     private double tPrice;
+    private String productType;
+
+    public String getType() {
+        return productType;
+    }
+
+    public void setType(String type) {
+        this.productType = type;
+    }
 
     public double gettPrice() {
         return tPrice;
