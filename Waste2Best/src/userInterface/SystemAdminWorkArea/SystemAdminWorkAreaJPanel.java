@@ -33,11 +33,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem = ecosystem;
         //populateTree();
     }
-
-    public SystemAdminWorkAreaJPanel(JPanel rightPanel) {
-       
-    }
-    
+   
     public void populateTree(){
         DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
         ArrayList<Network> networkList=ecosystem.getNetworkList();
