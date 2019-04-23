@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdministrativeRole;
+package userInterface.AdministrativeRole;
 
 
 import business.models.Employee.Employee;
@@ -10,6 +10,9 @@ import business.models.Role.Role;
 import business.models.User.User;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.Organization;
@@ -98,13 +101,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         organizationJComboBox = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         roleJComboBox = new javax.swing.JComboBox();
-        nameJTextField1 = new javax.swing.JTextField();
+        nameJTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        emailError = new javax.swing.JLabel();
+        passwordError = new javax.swing.JLabel();
+        NameError = new javax.swing.JLabel();
 
         createUserJButton.setText("Create");
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createUserJButtonActionPerformed(evt);
+            }
+        });
+
+        userNameJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userNameJTextFieldFocusLost(evt);
             }
         });
 
@@ -141,6 +153,12 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Password");
 
+        passwordJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordJTextFieldFocusLost(evt);
+            }
+        });
+
         jLabel3.setText("Employee");
 
         employeeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -166,7 +184,33 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        nameJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nameJTextFieldFocusLost(evt);
+            }
+        });
+
         jLabel6.setText(" Name");
+
+        emailError.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailErrorFocusLost(evt);
+            }
+        });
+
+        passwordError.setText("  ");
+        passwordError.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordErrorFocusLost(evt);
+            }
+        });
+
+        NameError.setText("  ");
+        NameError.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NameErrorFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -176,46 +220,54 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addComponent(backjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(createUserJButton)
-                .addGap(174, 174, 174))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(createUserJButton)
+                        .addGap(174, 174, 174))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel1))
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(employeeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(214, 214, 214))))
+                                        .addComponent(emailError, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(passwordError, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(210, 210, 210)
+                                        .addComponent(NameError, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel1))
-                                            .addComponent(jLabel4))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameJTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel3)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(employeeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(214, 214, 214)))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(152, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,16 +289,19 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordError))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backjButton1)
                     .addComponent(createUserJButton))
@@ -255,16 +310,63 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String userName = userNameJTextField.getText();
-        String name = nameJTextField1.getText();
-        String password = passwordJTextField.getText();
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        Employee employee = (Employee) employeeJComboBox.getSelectedItem();
-        Role role = (Role) roleJComboBox.getSelectedItem();
+        if (userNameJTextField.getText().equals("") || nameJTextField.getText().equals("") || passwordJTextField.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"One or more fields are empty");
+        } 
+        else if (emailError.getText().equals("") && passwordError.getText().equals("") && NameError.getText().equals(""))
         
-        organization.getUserAccountDirectory().createUserAccount(name, userName, password, "", employee, role);
+        {
+            String name ="";
+            String userName="";
+            String password="";
+            try{
+                userName = userNameJTextField.getText();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input a valid UserName");
+            return;
+            }
         
-        popData();
+            try{
+                name = nameJTextField.getText();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input a valid Name");
+            return;
+            }
+            
+            try{
+                password = passwordJTextField.getText();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input a valid Name");
+            return;
+            }
+        
+            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+            Employee employee = (Employee) employeeJComboBox.getSelectedItem();
+            Role role = (Role) roleJComboBox.getSelectedItem();
+
+            organization.getUserAccountDirectory().createUserAccount(name, userName, password, "", employee, role);
+
+            popData();
+        }
+        
+        else if (!emailError.getText().equals(""))
+         {
+             JOptionPane.showMessageDialog(null,"Please Enter a valid Email ID");
+         }
+         else if (!passwordError.getText().equals(""))
+         {
+             JOptionPane.showMessageDialog(null,"Please Enter a valid Password");
+         }
+        else if (!NameError.getText().equals(""))
+         {
+             JOptionPane.showMessageDialog(null,"Please Enter a valid Name");
+         }
+        
+
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
@@ -282,9 +384,67 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
+    private void emailErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailErrorFocusLost
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_emailErrorFocusLost
+
+    private void passwordErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordErrorFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_passwordErrorFocusLost
+
+    private void userNameJTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameJTextFieldFocusLost
+        // TODO add your handling code here:
+        String regex = "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(userNameJTextField.getText());
+
+        if(matcher.matches()){
+           emailError.setText("");
+        }
+        else{
+           emailError.setText("Enter Email with @ and .");
+        }   
+    }//GEN-LAST:event_userNameJTextFieldFocusLost
+
+    private void passwordJTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJTextFieldFocusLost
+        // TODO add your handling code here:
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9@$!#]{8,}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(passwordJTextField.getText());
+
+        if(matcher.matches()){
+           passwordError.setText("");
+        }
+        else{
+           passwordError.setText("Password should 8 characters long with at least 1 Uppercase, 1 digit");
+        }
+    }//GEN-LAST:event_passwordJTextFieldFocusLost
+
+    private void nameJTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameJTextFieldFocusLost
+        // TODO add your handling code here:
+        String regex = "^[A-Za-z\\s?]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nameJTextField.getText());
+        
+        if(matcher.matches()){
+           NameError.setText("");
+        }
+        else{
+           NameError.setText("Name should be Alphabetical");
+        }
+    }//GEN-LAST:event_nameJTextFieldFocusLost
+
+    private void NameErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameErrorFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameErrorFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NameError;
     private javax.swing.JButton backjButton1;
     private javax.swing.JButton createUserJButton;
+    private javax.swing.JLabel emailError;
     private javax.swing.JComboBox employeeJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -293,8 +453,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameJTextField1;
+    private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
+    private javax.swing.JLabel passwordError;
     private javax.swing.JTextField passwordJTextField;
     private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTable userJTable;

@@ -121,7 +121,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
         logger.info("Manage User JPanel is being called");
-        userinterface.AdministrativeRole.ManageUserAccountJPanel muajp = new userinterface.AdministrativeRole.ManageUserAccountJPanel(userProcessContainer, enterprise);
+        userInterface.AdministrativeRole.ManageUserAccountJPanel muajp = new userInterface.AdministrativeRole.ManageUserAccountJPanel(userProcessContainer, enterprise);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
