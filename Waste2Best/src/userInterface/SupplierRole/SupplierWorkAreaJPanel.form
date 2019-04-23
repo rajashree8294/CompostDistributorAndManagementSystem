@@ -17,16 +17,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="seedBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="seedBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="tumblerBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="assignJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                       <Component id="processJButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="291" max="32767" attributes="0"/>
+              <EmptySpace pref="292" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -63,7 +67,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="assignJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="seedBtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="seedBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tumblerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -158,6 +165,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seedBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="tumblerBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Tumbler"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tumblerBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
