@@ -6,6 +6,7 @@
 
 package enterprise;
 
+import business.models.Product.ProductDirectory;
 import organizations.Organization;
 import organizations.OrganizationDirectory;
 
@@ -17,6 +18,15 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private ProductDirectory productDirectory;
+
+    public ProductDirectory getProductDirectory() {
+        return productDirectory;
+    }
+
+    public void setProductDirectory(ProductDirectory productDirectory) {
+        this.productDirectory = productDirectory;
+    }
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;

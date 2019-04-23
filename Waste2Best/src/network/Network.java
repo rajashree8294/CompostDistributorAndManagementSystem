@@ -17,7 +17,7 @@ public class Network {
     private EnterpriseDirectory enterpriseDirectory;
     
     public Network(){
-        enterpriseDirectory=new EnterpriseDirectory();
+        enterpriseDirectory = new EnterpriseDirectory();
     }
     public String getName() {
         return name;
