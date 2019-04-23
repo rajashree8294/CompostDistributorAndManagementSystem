@@ -306,16 +306,7 @@ public class SignInJPanel extends javax.swing.JPanel {
     private void textMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textMailFocusLost
         // TODO add your handling code here:
         //String regex = "^[A-Za-z0-9]+@[A-Za-z]+.[A-Za-z]+.+[A-Za-z]$";
-        String regex = "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(textMail.getText());
-
-        if(matcher.matches()){
-           emailError.setText("");
-        }
-        else{
-           emailError.setText("Enter Email with @ and .");
-        }        
+ 
     }//GEN-LAST:event_textMailFocusLost
 
     private void lblErrorPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblErrorPwdFocusLost
