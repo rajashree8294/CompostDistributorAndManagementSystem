@@ -60,9 +60,7 @@ public abstract class Organization {
    public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-    
-
-    
+       
     public String getName() {
         return name;
     }
@@ -83,6 +81,4 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-    
-    
 }

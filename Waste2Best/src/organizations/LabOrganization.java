@@ -6,6 +6,7 @@
 
 package organizations;
 
+import business.models.Role.LabAssistant;
 import business.models.Role.Role;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class LabOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        //roles.add(new LabAssistantRole());
+        roles.add(new LabAssistant());
         return roles;
     }
      

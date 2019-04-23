@@ -13,6 +13,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import network.Network;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import organizations.Organization;
 
 /**
@@ -24,8 +26,10 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private Ecosystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private final Ecosystem system;
+    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private final Logger logger = LoggerFactory.getLogger(MainJFrame.class);
+
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();

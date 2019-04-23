@@ -24,10 +24,10 @@ import userInterface.DistributorRole.ProcessWorkRequestJPanel;
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
    
-     private JPanel userProcessContainer;
-    private SupplierOrganization organization;
-    private Enterprise enterprise;
-    private User userAccount;
+    private final JPanel userProcessContainer;
+    private final SupplierOrganization organization;
+    private final Enterprise enterprise;
+    private final User userAccount;
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
@@ -38,7 +38,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         valueLabel.setText(enterprise.getName());
-        populateTable();
+        //populateTable();
         
     }
     
@@ -74,6 +74,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         processJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        seedBtn = new javax.swing.JButton();
+        tumblerBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Supplier Dashboard");
@@ -125,16 +127,36 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        seedBtn.setText("Add Seed");
+        seedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seedBtnActionPerformed(evt);
+            }
+        });
+
+        tumblerBtn.setText("Add Tumbler");
+        tumblerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tumblerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(assignJButton)
-                .addGap(220, 220, 220)
-                .addComponent(processJButton)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addGap(260, 260, 260)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(seedBtn)
+                        .addGap(36, 36, 36)
+                        .addComponent(tumblerBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(assignJButton)
+                        .addGap(182, 182, 182)
+                        .addComponent(processJButton)))
+                .addContainerGap(292, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -153,12 +175,19 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(326, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(315, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(assignJButton)
-                    .addComponent(processJButton))
-                .addGap(156, 156, 156))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(processJButton)
+                        .addGap(156, 156, 156))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(assignJButton)
+                        .addGap(118, 118, 118)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(seedBtn)
+                            .addComponent(tumblerBtn))
+                        .addGap(23, 23, 23))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(8, 8, 8)
@@ -223,6 +252,21 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_processJButtonActionPerformed
 
+    private void seedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seedBtnActionPerformed
+        // TODO add your handling code here:
+        NewSeedJPanel newSeedJPanel = new NewSeedJPanel(enterprise, userProcessContainer);
+        userProcessContainer.add("NewSeedJPanel", newSeedJPanel);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_seedBtnActionPerformed
+
+    private void tumblerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtnActionPerformed
+        NewTumblerJPanel newTumblerJPanel = new NewTumblerJPanel(enterprise, userProcessContainer);
+        userProcessContainer.add("NewTumblerJPanel", newTumblerJPanel);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_tumblerBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
@@ -230,6 +274,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
+    private javax.swing.JButton seedBtn;
+    private javax.swing.JButton tumblerBtn;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
