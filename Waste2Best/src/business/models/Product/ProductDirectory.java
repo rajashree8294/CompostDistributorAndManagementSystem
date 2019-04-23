@@ -5,16 +5,21 @@
  */
 package business.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDirectory {
-    private List<Product> productList;
+    private ArrayList<Product> productList;
+    
+    public ProductDirectory(){
+        productList = new ArrayList<>();
+    }
 
     public List<Product> getProducts() {
         return productList;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.productList = products;
     }
     
