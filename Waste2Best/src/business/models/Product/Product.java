@@ -17,13 +17,14 @@ abstract class Product {
     private double tPrice;
     private String productType;
 
-    public String getType() {
+    public String getProductType() {
         return productType;
     }
 
-    public void setType(String type) {
-        this.productType = type;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
+
 
     public double gettPrice() {
         return tPrice;

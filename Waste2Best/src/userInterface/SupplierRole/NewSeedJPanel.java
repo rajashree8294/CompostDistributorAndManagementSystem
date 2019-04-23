@@ -5,7 +5,10 @@
  */
 package userInterface.SupplierRole;
 
+import business.models.Product.Seed;
 import enterprise.Enterprise;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -40,6 +43,7 @@ public class NewSeedJPanel extends javax.swing.JPanel {
         quantityTxt = new javax.swing.JTextField();
         typeTxt = new javax.swing.JTextField();
         seedBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         jLabel1.setText("Price");
 
@@ -53,6 +57,13 @@ public class NewSeedJPanel extends javax.swing.JPanel {
         seedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seedBtnActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -77,13 +88,18 @@ public class NewSeedJPanel extends javax.swing.JPanel {
                             .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(246, 246, 246)
-                        .addComponent(seedBtn)))
+                        .addComponent(seedBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(backBtn)))
                 .addContainerGap(544, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addGap(44, 44, 44)
+                .addComponent(backBtn)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(nameTxt))
@@ -106,11 +122,30 @@ public class NewSeedJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void seedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seedBtnActionPerformed
+       if(nameTxt.getText().equals("") || priceTxt.getText().equals("") || quantityTxt.getText().equals("") || typeTxt.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "One or more fields are empty");
+       } else{
+        Seed seed = (Seed) enterprise.getProductDirectory().createProduct("seed");
+        seed.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
+        seed.setName(nameTxt.getText());
+        seed.setPrice(Double.parseDouble(priceTxt.getText()));
+        seed.setQuantity(Integer.parseInt(quantityTxt.getText()));
+        seed.setType(typeTxt.getText());
+        seed.setProductType("seed");
         
+        JOptionPane.showMessageDialog(null, "Seed Added Successfully");
+       }
     }//GEN-LAST:event_seedBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

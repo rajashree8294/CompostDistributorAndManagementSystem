@@ -13,10 +13,6 @@ import java.util.ArrayList;
  * @author Aditya
  */
 public class OrganicFoodPromoterEnterprise extends Enterprise {
-    
-
-
-    
     public OrganicFoodPromoterEnterprise(String name){
         super(name,EnterpriseType.OrganicFoodPromotor);
     }
