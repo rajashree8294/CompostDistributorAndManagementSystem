@@ -72,6 +72,11 @@
             <file>file:/C:/wastetobest_mavericks/Waste2Best/src/organizations/OrganizationDirectory.java</file>
             <file>file:/C:/wastetobest_mavericks/Waste2Best/src/enterprise/Enterprise.java</file>
             <file>file:/C:/wastetobest_mavericks/Waste2Best/src/business/models/workQueue/workQueue.java</file>
+            <file>file:/C:/Users/lenovo/wastetobest_mavericks/Waste2Best/src/userInterface/CustomerRole/RequestCompostPickupJPanel.java</file>
+            <file>file:/C:/Users/lenovo/wastetobest_mavericks/Waste2Best/src/userInterface/CustomerRole/TumblerPurchaseJPanel.java</file>
+            <file>file:/C:/Users/lenovo/wastetobest_mavericks/Waste2Best/src/business/models/workRequest/TumblerWorkRequest.java</file>
+            <file>file:/C:/Users/lenovo/wastetobest_mavericks/Waste2Best/src/userInterface/DistributorRole/DistributorWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/lenovo/wastetobest_mavericks/Waste2Best/src/userInterface/CustomerRole/CustomerWorkAreaJPanel.java</file>
         </group>
     </open-files>
 </project-private>
