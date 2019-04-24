@@ -39,7 +39,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
       //  valueLabel.setText(enterprise.getName());
-        populateRequestTable();
+      //  populateRequestTable();
     }
     
        public void populateRequestTable(){

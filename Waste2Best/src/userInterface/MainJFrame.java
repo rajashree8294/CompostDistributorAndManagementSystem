@@ -59,7 +59,6 @@ public class MainJFrame extends javax.swing.JFrame {
         passwordTxt = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        registerBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +90,6 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane1.setTopComponent(jPanel2);
 
         jSplitPane1.setDividerLocation(180);
-        jSplitPane1.setDividerSize(5);
 
         rightPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightPanel.setLayout(new java.awt.CardLayout());
@@ -132,21 +130,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 102));
-        jLabel2.setText("Email ID");
+        jLabel2.setText("User ID");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 102));
         jLabel3.setText("Password");
-
-        registerBtn.setBackground(new java.awt.Color(204, 204, 255));
-        registerBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
-        registerBtn.setText("Register");
-        registerBtn.setToolTipText("login into system");
-        registerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -162,8 +150,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addComponent(aboutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                        .addComponent(passwordTxt)
-                        .addComponent(registerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
+                        .addComponent(passwordTxt)))
                 .addGap(20, 20, 20))
         );
         leftPanelLayout.setVerticalGroup(
@@ -181,9 +168,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -316,13 +301,6 @@ public class MainJFrame extends javax.swing.JFrame {
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
-    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-        SignInJPanel signInJPanel = new SignInJPanel( rightPanel, system);
-       rightPanel.add("signInJPanel", signInJPanel);
-        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
-        cardLayout.next(rightPanel);        
-    }//GEN-LAST:event_registerBtnActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -372,7 +350,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton loginBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPasswordField passwordTxt;
-    private javax.swing.JButton registerBtn;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JSplitPane splitPane1;
     // End of variables declaration//GEN-END:variables

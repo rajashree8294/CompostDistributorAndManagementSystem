@@ -7,12 +7,16 @@ package userInterface.SupplierRole;
 
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.LabTestWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import organizations.DistributorOrganization;
+import organizations.LabOrganization;
+import organizations.Organization;
 
 
 import organizations.SupplierOrganization;
@@ -76,6 +80,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         seedBtn = new javax.swing.JButton();
         tumblerBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Supplier Dashboard");
@@ -141,6 +146,13 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Request Compost Test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,12 +163,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(seedBtn)
                         .addGap(36, 36, 36)
-                        .addComponent(tumblerBtn))
+                        .addComponent(tumblerBtn)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(assignJButton)
                         .addGap(182, 182, 182)
                         .addComponent(processJButton)))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -186,7 +200,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(seedBtn)
-                            .addComponent(tumblerBtn))
+                            .addComponent(tumblerBtn)
+                            .addComponent(jButton1))
                         .addGap(23, 23, 23))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -267,10 +282,36 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_tumblerBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        LabTestWorkRequest request = new LabTestWorkRequest();
+       
+        
+        request.setSender(userAccount);
+        request.setStatus("Sent");
+        
+         Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof LabOrganization){
+                org = organization;
+                break;
+            }
+        }
+        if (org!=null){
+            org.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;

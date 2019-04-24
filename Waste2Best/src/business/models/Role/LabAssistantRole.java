@@ -12,15 +12,16 @@ import javax.swing.JPanel;
 import organizations.DistributorOrganization;
 import organizations.LabOrganization;
 import organizations.Organization;
+import userInterface.LabRole.LabAssistant.LabAssistantWorkAreaJPanel;
 
 /**
  *
  * @author Aditya
  */
-public class LabAssistant extends Role {
+public class LabAssistantRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User account, Organization organization, Enterprise enterprise, Ecosystem business) {
-        return null;// wip LabAssistantWorkAreaJPanel(userProcessContainer, account, (LabOrganization)organization, enterprise);
+        return new  LabAssistantWorkAreaJPanel(userProcessContainer, account, (LabOrganization)organization, enterprise);
     }
     
 }
