@@ -20,7 +20,7 @@ import organizations.Organization;
  */
 public class RequestCompostPickupJPanel extends javax.swing.JPanel {
 
-   private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private Enterprise enterprise;
     private User user;
     /**

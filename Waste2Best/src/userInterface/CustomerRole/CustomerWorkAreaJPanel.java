@@ -38,18 +38,17 @@ public final class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }
 
-    
-        public void  populateRequestTable(){
+    public void  populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+
         model.setRowCount(0);
         userAccount.getWorkQueue().getWorkRequestList().stream().map((request) -> {
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-//            String result = ((CompostGeneratedWorkRequest) request).getTestResult();
-//            row[3] = result == null ? "Waiting" : result;
+    //            String result = ((CompostGeneratedWorkRequest) request).getTestResult();
+    //            row[3] = result == null ? "Waiting" : result;
             return row;            
         }).forEach((row) -> {
             model.addRow(row);
@@ -169,7 +168,10 @@ public final class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_compostPickUpBttnActionPerformed
 
     private void tumblerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtnActionPerformed
-        // TODO add your handling code here:
+        TumblerPurchaseJPanel tumblerPurchaseJPanel = new TumblerPurchaseJPanel(rightPanel, userAccount, organization, enterprise);
+        rightPanel.add("TumblerPurchaseJPanel", tumblerPurchaseJPanel);
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        cardLayout.next(rightPanel);
     }//GEN-LAST:event_tumblerBtnActionPerformed
 
     private void tumblerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtn1ActionPerformed

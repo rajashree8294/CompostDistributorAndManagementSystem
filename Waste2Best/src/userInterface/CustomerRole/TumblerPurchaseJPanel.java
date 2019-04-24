@@ -5,19 +5,32 @@
  */
 package userInterface.CustomerRole;
 
+import business.models.User.User;
+import business.models.workRequest.TumblerWorkRequest;
+import enterprise.Enterprise;
 import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JPanel;
+import organizations.CustomerOrganization;
+import organizations.DistributorOrganization;
+import organizations.Organization;
 
 /**
  *
  * @author lenovo
  */
 public class TumblerPurchaseJPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form TumblerPurchaseJPanel
-     */
-    public TumblerPurchaseJPanel() {
+    private final JPanel rightPanel;
+    private final User userAccount;
+    private final CustomerOrganization organization;
+    private final Enterprise enterprise;
+    
+    TumblerPurchaseJPanel(JPanel rightPanel, User userAccount, CustomerOrganization organization, Enterprise enterprise) {
         initComponents();
+        this.rightPanel = rightPanel;
+        this.userAccount = userAccount;
+        this.organization = organization;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -33,7 +46,7 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
         typeCombo = new javax.swing.JComboBox();
         quantityLabel = new javax.swing.JLabel();
         tumblerTypeLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        quantityTxt = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
@@ -46,13 +59,18 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
 
         tumblerTypeLabel.setText("Tumbler Type");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        quantityTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                quantityTxtActionPerformed(evt);
             }
         });
 
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +103,7 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(quantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(63, 63, 63)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(quantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(355, 355, 355))
         );
         layout.setVerticalGroup(
@@ -100,7 +118,7 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
@@ -109,22 +127,47 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void quantityTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_quantityTxtActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-      /*  userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);*/
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.previous(rightPanel);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        String type = String.valueOf(typeCombo.getSelectedItem());
+        int quantity = Integer.parseInt(quantityTxt.getText());
+        
+        TumblerWorkRequest request = new TumblerWorkRequest();
+        request.setSender(userAccount);
+        request.setStatus("Sent");
+        request.setRequestDate(new Date());
+        request.setQuantity(quantity);
+        request.setType(type);
+        request.setMessage("New Tumbler Request");
+        
+        Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof DistributorOrganization){
+                org = organization;
+                break;
+            }
+        }
+        if (org!=null){
+            org.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }
+    }//GEN-LAST:event_submitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel quantityLabel;
+    private javax.swing.JTextField quantityTxt;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel tumblerTypeLabel;
     private javax.swing.JComboBox typeCombo;
