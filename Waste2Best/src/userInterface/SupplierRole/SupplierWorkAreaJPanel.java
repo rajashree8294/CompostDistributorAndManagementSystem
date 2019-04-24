@@ -247,7 +247,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         sellCropProduceWorkRequest.setStatus("Processing");
 
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
+        SupplierProcessWorkAreaJPanel processWorkRequestJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -259,7 +259,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         compostGeneratedWorkRequest.setStatus("Processing");
 
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
+        SupplierProcessWorkAreaJPanel processWorkRequestJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
