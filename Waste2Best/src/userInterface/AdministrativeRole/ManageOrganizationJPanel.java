@@ -6,11 +6,17 @@ package userinterface.AdministrativeRole;
 
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import organizations.CustomerOrganization;
+import organizations.DistributorOrganization;
+import organizations.FarmerOrganization;
+import organizations.LabOrganization;
 import organizations.Organization;
 import organizations.Organization.Type;
 import organizations.OrganizationDirectory;
+import organizations.SupplierOrganization;
 
 /**
  *
@@ -97,8 +103,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(organizationJTable);
-        organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-        organizationJTable.getColumnModel().getColumn(1).setResizable(false);
+        if (organizationJTable.getColumnModel().getColumnCount() > 0) {
+            organizationJTable.getColumnModel().getColumn(0).setResizable(false);
+            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         addJButton.setText("Add Organization");
         addJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +116,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
 
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationJComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Organization Type ");
 
@@ -159,8 +172,57 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         Type type = (Type) organizationJComboBox.getSelectedItem();
-        directory.createOrganization(type);
+        int checkFlag = 1;
+        if(type.getValue().equals(Type.Lab.getValue())){
+           for (Organization organization : directory.getOrganizationList()){
+           if (organization instanceof LabOrganization){
+              JOptionPane.showMessageDialog(null, "Lab Organization exists"); 
+              checkFlag = 0;
+               break;
+           }  } 
+       }
+        
+           if(type.getValue().equals(Type.Distributor.getValue())){
+           for (Organization organization : directory.getOrganizationList()){
+           if (organization instanceof DistributorOrganization){
+              JOptionPane.showMessageDialog(null, "Distributor Organization exists"); 
+              checkFlag = 0;
+               break;
+           }
+         } 
+       }
+            if(type.getValue().equals(Type.Farmer.getValue())){
+           for (Organization organization : directory.getOrganizationList()){
+           if (organization instanceof FarmerOrganization){
+              JOptionPane.showMessageDialog(null, "Farmer Organization exists"); 
+              checkFlag = 0;
+               break;
+           }
+         } 
+       }
+             if(type.getValue().equals(Type.Supplier.getValue())){
+           for (Organization organization : directory.getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+              JOptionPane.showMessageDialog(null, "Supplier Organization exists");
+              checkFlag = 0;
+               break;
+           }
+         } 
+       }
+             if(type.getValue().equals(Type.Customer.getValue())){
+           for (Organization organization : directory.getOrganizationList()){
+           if (organization instanceof CustomerOrganization){
+              JOptionPane.showMessageDialog(null, "Customer Organization exists");
+              checkFlag = 0;
+               break;
+           }
+         } 
+       }
+             if (checkFlag==1){
+                directory.createOrganization(type);
         populateTable();
+           }
+        
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -169,6 +231,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;

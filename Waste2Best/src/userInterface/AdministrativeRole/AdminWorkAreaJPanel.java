@@ -5,11 +5,14 @@
  */
 package userInterface.AdministrativeRole;
 
+import business.Ecosystem;
+import business.models.User.User;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import organizations.Organization;
 
 /**
  *
@@ -17,15 +20,22 @@ import org.slf4j.LoggerFactory;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
-    Enterprise enterprise;
-    JPanel userProcessContainer;
+    private Enterprise enterprise;
+    private JPanel userProcessContainer;
     private final Logger logger = LoggerFactory.getLogger(AdminWorkAreaJPanel.class);
+    private User account;
+    private Organization organization;
+    private Ecosystem business;
+            
 
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, User account, Organization organization,  Enterprise enterprise, Ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         valueLabel.setText(enterprise.getName());
+        this.account=account;
+        this.business=business;
+        this.organization=organization;
     }
 
     /**
@@ -121,14 +131,14 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
         logger.info("Manage User JPanel is being called");
-        userInterface.AdministrativeRole.ManageUserAccountJPanel muajp = new userInterface.AdministrativeRole.ManageUserAccountJPanel(userProcessContainer, enterprise);
+        userInterface.AdministrativeRole.ManageUserAccountJPanel muajp = new userInterface.AdministrativeRole.ManageUserAccountJPanel(userProcessContainer, enterprise, organization, business);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_userJButtonActionPerformed
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-        userinterface.AdministrativeRole.ManageEmployeeJPanel manageEmployeeJPanel = new userinterface.AdministrativeRole.ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userinterface.AdministrativeRole.ManageEmployeeJPanel manageEmployeeJPanel = new userinterface.AdministrativeRole.ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), business);
         userProcessContainer.add("ManageEmployeeJPanel", manageEmployeeJPanel);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

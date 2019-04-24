@@ -5,6 +5,7 @@
 package userInterface.AdministrativeRole;
 
 
+import business.Ecosystem;
 import business.models.Employee.Employee;
 import business.models.Role.Role;
 import business.models.User.User;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import network.Network;
 import organizations.Organization;
 
 /**
@@ -28,11 +30,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      */
     private JPanel container;
     private Enterprise enterprise;
+    private Organization organization;
+    private Ecosystem business;
 
-    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
+    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise, Organization organization , Ecosystem business) {
         initComponents();
         this.enterprise = enterprise;
         this.container = container;
+        this.organization = organization;
+        this.business=business;
 
         popOrganizationComboBox();
        // employeeJComboBox.removeAllItems();
@@ -356,15 +362,47 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             Employee employee = (Employee) employeeJComboBox.getSelectedItem();
             Role role = (Role) roleJComboBox.getSelectedItem();
             
-             User checkUser = organization.getUserAccountDirectory().checkUser(userName);
-            if (checkUser==null)
+              User userAccount=business.getUserAccountDirectory().checkUser(userName);       
+        
+        Enterprise inEnterprise=null;
+        Organization inOrganization=null;
+        
+        if(userAccount==null){
+            //Step 2: Go inside each network and check each enterprise
+            for(Network network:business.getNetworkList()){
+                //Step 2.a: check against each enterprise
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    userAccount=enterprise.getUserAccountDirectory().checkUser(userName);
+                    if(userAccount==null){
+                       //Step 3:check against each organization for each enterprise
+                       for(Organization org:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=org.getUserAccountDirectory().checkUser(userName);
+                           if(userAccount!=null){
+                               JOptionPane.showMessageDialog(null, "Username already exists!");
+                               break;
+                           }
+                       }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Username already exists!");
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
+            }
+        }
+            if (userAccount==null)
             {
             organization.getUserAccountDirectory().createUserAccount(name, userName, password, "", employee, role);
 
             popData();
             
-            }else{
-                JOptionPane.showMessageDialog(null, "Username already exists!");
             }
             
         }
