@@ -14,6 +14,7 @@ import business.models.User.User;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -253,7 +254,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         
-        User account = enterprise.getUserAccountDirectory().createUserAccount(name, username, password,"",employee, new AdminRole());
+         User useraccount =   enterprise.getUserAccountDirectory().checkUser(username);
+         
+         if (useraccount==null){
+        
+        User account =  enterprise.getUserAccountDirectory().createUserAccount(name, username, password,"",employee, new AdminRole());
+        
+         }else{
+             JOptionPane.showMessageDialog(null,"Username already exists!");
+         }
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed
