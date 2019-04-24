@@ -43,6 +43,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         this.request = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
+        
     }
 
     /**
@@ -144,6 +145,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         DistributorWorkAreaJPanel dwjp = (DistributorWorkAreaJPanel) component;
         dwjp.populateTable();
+        
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

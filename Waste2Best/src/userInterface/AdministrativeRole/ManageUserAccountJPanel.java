@@ -183,6 +183,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel4.setText("Role");
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleJComboBoxActionPerformed(evt);
+            }
+        });
 
         nameJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -439,6 +444,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void NameErrorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameErrorFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_NameErrorFocusLost
+
+    private void roleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NameError;
