@@ -7,26 +7,23 @@ package userInterface.CustomerRole;
 
 import business.Ecosystem;
 import business.models.User.User;
-import business.models.workRequest.CompostGeneratedWorkRequest;
-import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.CustomerOrganization;
-import organizations.FarmerOrganization;
-import userInterface.FarmerRole.RequestSellProductPanel;
 
 /**
  *
  * @author Aditya
  */
-public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
-     private JPanel rightPanel;
+public final class CustomerWorkAreaJPanel extends javax.swing.JPanel {
+    private JPanel rightPanel;
     private CustomerOrganization organization;
     private Enterprise enterprise;
     private User userAccount;
     private Ecosystem system;
+    
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -37,25 +34,26 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system=system;
-      // valueLabel.setText(enterprise.getName());
-        //populateRequestTable();
+
+        populateRequestTable();
     }
 
     
-        public void populateRequestTable(){
+        public void  populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        userAccount.getWorkQueue().getWorkRequestList().stream().map((request) -> {
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-            //String result = ((CompostGeneratedWorkRequest) request).getTestResult();
-            //row[3] = result == null ? "Waiting" : result;
-            
+//            String result = ((CompostGeneratedWorkRequest) request).getTestResult();
+//            row[3] = result == null ? "Waiting" : result;
+            return row;            
+        }).forEach((row) -> {
             model.addRow(row);
-        }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,10 +66,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         compostPickUpBttn = new javax.swing.JButton();
-        marketBttn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        marketBttn1 = new javax.swing.JButton();
+        tumblerBtn = new javax.swing.JButton();
+        tumblerBtn1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Customer Dashboard");
@@ -80,13 +78,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         compostPickUpBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compostPickUpBttnActionPerformed(evt);
-            }
-        });
-
-        marketBttn.setText("Order Tumbler");
-        marketBttn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marketBttnActionPerformed(evt);
             }
         });
 
@@ -118,10 +109,17 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        marketBttn1.setText("Order Products");
-        marketBttn1.addActionListener(new java.awt.event.ActionListener() {
+        tumblerBtn.setText("Purchase Tumbler");
+        tumblerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marketBttn1ActionPerformed(evt);
+                tumblerBtnActionPerformed(evt);
+            }
+        });
+
+        tumblerBtn1.setText("Purchase Products");
+        tumblerBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tumblerBtn1ActionPerformed(evt);
             }
         });
 
@@ -132,15 +130,15 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(509, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(marketBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tumblerBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(marketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(tumblerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
                 .addComponent(compostPickUpBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -154,9 +152,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(marketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(marketBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(compostPickUpBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tumblerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(compostPickUpBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tumblerBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(82, 82, 82)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(291, Short.MAX_VALUE))
@@ -170,21 +168,21 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(rightPanel);
     }//GEN-LAST:event_compostPickUpBttnActionPerformed
 
-    private void marketBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketBttnActionPerformed
+    private void tumblerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_marketBttnActionPerformed
+    }//GEN-LAST:event_tumblerBtnActionPerformed
 
-    private void marketBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketBttn1ActionPerformed
+    private void tumblerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtn1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_marketBttn1ActionPerformed
+    }//GEN-LAST:event_tumblerBtn1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton compostPickUpBttn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton marketBttn;
-    private javax.swing.JButton marketBttn1;
+    private javax.swing.JButton tumblerBtn;
+    private javax.swing.JButton tumblerBtn1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

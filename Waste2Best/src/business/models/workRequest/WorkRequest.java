@@ -17,7 +17,7 @@ public abstract class WorkRequest {
     private String message;
     private User sender;
     private User receiver;
-     private String status;
+    private String status;
     private Date requestDate;
     private Date resolveDate;
 
@@ -56,8 +56,6 @@ public abstract class WorkRequest {
         this.message = message;
     }
 
-   
-
     public Date getRequestDate() {
         return requestDate;
     }
@@ -73,6 +71,4 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
-    
-    
 }
