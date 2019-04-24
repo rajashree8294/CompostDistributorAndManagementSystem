@@ -5,17 +5,30 @@
  */
 package userInterface.LabRole.LabAssistant;
 
+import business.models.User.User;
+import business.models.workRequest.WorkRequest;
+import enterprise.Enterprise;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tinyteddybear
  */
 public class LabAssistantProcessJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    WorkRequest request;
+    User userAccount;
+    Enterprise enterprise;
     /**
-     * Creates new form LabAssistantProcessJPanel
+     * Creates new form ProcessWorkRequestJPanel
      */
-    public LabAssistantProcessJPanel() {
+     public LabAssistantProcessJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, WorkRequest request) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.request = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
     }
 
     /**
