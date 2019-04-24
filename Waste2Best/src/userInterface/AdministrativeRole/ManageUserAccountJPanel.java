@@ -315,6 +315,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
+       
+        
+        
         if (userNameJTextField.getText().equals("") || nameJTextField.getText().equals("") || passwordJTextField.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null,"One or more fields are empty");
@@ -352,10 +355,18 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             Organization organization = (Organization) organizationJComboBox.getSelectedItem();
             Employee employee = (Employee) employeeJComboBox.getSelectedItem();
             Role role = (Role) roleJComboBox.getSelectedItem();
-
+            
+             User checkUser = organization.getUserAccountDirectory().checkUser(userName);
+            if (checkUser==null)
+            {
             organization.getUserAccountDirectory().createUserAccount(name, userName, password, "", employee, role);
 
             popData();
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "Username already exists!");
+            }
+            
         }
         
         else if (!emailError.getText().equals(""))
