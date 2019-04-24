@@ -31,13 +31,6 @@ public class ConfigureASystem {
 
         system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", "sysadmin", "NEU", employee, new SystemAdminRole());
         
-       // Employee employeeSup = system.getEmployeeDirectory().createEmployee("Supp");
-
-       // Supplier supplier = (Supplier)system.getUserAccountDirectory().createUserAccount("Supplier", "Supplier", "Supplier", "NEU", employeeSup, new SupplierRole());
-       // SeedList SeedInventory = new SeedList();
-        //Seed blueBerry = new Seed();
-        //blueBerry.setQuantity(18);
-       
         return system;
     }
 }

@@ -26,19 +26,30 @@ import organizations.SupplierOrganization;
 public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     
-    JPanel userProcessContainer;
-    WorkRequest request;
-    User userAccount;
-    Enterprise enterprise;
+    private JPanel userProcessContainer;
+    private SellCropProduceWorkRequest cRequest;
+    private CompostGeneratedWorkRequest coRequest;
+    private User userAccount;
+    private Enterprise enterprise;
+    private int flag;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-     public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, WorkRequest request) {
+     public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SellCropProduceWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.request = request;
+        this.cRequest = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
+        flag = 1;
+    }
+     public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  CompostGeneratedWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.coRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 2;
     }
 
     /**
@@ -125,14 +136,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
       //  request.setTestResult(resultJTextField.getText());
+      if (flag ==1 )
+      {
         String message = messageJTextField.getText();
-        request.setMessage(message);
-        request.setReceiver(userAccount);
-        request.setStatus("Sent to Supplier");
-
-
-
-       Organization org = null;
+        cRequest.setMessage(message);
+        cRequest.setReceiver(userAccount);
+        cRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
            if (organization instanceof SupplierOrganization){
                org = organization;
@@ -140,9 +151,35 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
            }
        }
        if (org!=null){
-           org.getWorkQueue().getWorkRequestList().add(request);
-           userAccount.getWorkQueue().getWorkRequestList().add(request);
+           org.getWorkQueue().getWorkRequestList().add(cRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(cRequest);
        }
+      }
+      else if (flag ==2 )
+             
+      {
+        String message = messageJTextField.getText();
+        coRequest.setMessage(message);
+        coRequest.setReceiver(userAccount);
+        coRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+               org = organization;
+               break;
+           }
+       }
+       if (org!=null){
+           org.getWorkQueue().getWorkRequestList().add(coRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(coRequest);
+       }
+      }
+
+
+
+
+       
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
