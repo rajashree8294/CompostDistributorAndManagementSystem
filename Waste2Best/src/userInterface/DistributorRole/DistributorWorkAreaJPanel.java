@@ -5,7 +5,6 @@
  */
 package userInterface.DistributorRole;
 
-import business.Ecosystem;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
@@ -15,8 +14,6 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.DistributorOrganization;
-import organizations.FarmerOrganization;
-import organizations.Organization;
 
 /**
  *
@@ -24,7 +21,7 @@ import organizations.Organization;
  */
 public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
    private JPanel userProcessContainer;
-    private FarmerOrganization organization;
+    private DistributorOrganization organization;
     private Enterprise enterprise;
     private User userAccount;
     /**
@@ -32,7 +29,7 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DistributorWorkAreaJPanel(JPanel userProcessContainer, User account, FarmerOrganization organization, Enterprise enterprise) {
+    public DistributorWorkAreaJPanel(JPanel userProcessContainer, User account, DistributorOrganization organization, Enterprise enterprise) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;

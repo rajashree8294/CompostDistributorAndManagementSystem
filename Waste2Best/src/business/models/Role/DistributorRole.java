@@ -11,6 +11,7 @@ import enterprise.Enterprise;
 import javax.swing.JPanel;
 import organizations.DistributorOrganization;
 import organizations.Organization;
+import userInterface.DistributorRole.DistributorWorkAreaJPanel;
 
 /**
  *
@@ -22,7 +23,7 @@ public class DistributorRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User account, Organization organization, Enterprise enterprise, Ecosystem business) {
-        return null;/* new DistributorWorkAreaJPanel(userProcessContainer, account, (DistributorOrganization)organization, enterprise);*/
+        return  new DistributorWorkAreaJPanel(userProcessContainer, account, (DistributorOrganization) organization, enterprise);
     }
     
     

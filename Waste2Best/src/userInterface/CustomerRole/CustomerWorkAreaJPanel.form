@@ -17,18 +17,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="544" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="316" max="-2" attributes="0"/>
-              <EmptySpace pref="290" max="32767" attributes="0"/>
-              <Component id="compostPickUpBttn" min="-2" pref="183" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <Component id="marketBttn1" min="-2" pref="200" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="marketBttn" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="346" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="compostPickUpBttn" min="-2" pref="183" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,14 +45,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="compostPickUpBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="marketBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="marketBttn1" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="compostPickUpBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="97" max="-2" attributes="0"/>
-              <EmptySpace pref="330" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="92" max="-2" attributes="0"/>
+              <EmptySpace pref="291" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,8 +77,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="marketBttn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Market Place"/>
+        <Property name="text" type="java.lang.String" value="Order Tumbler"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marketBttnActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -101,5 +107,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="marketBttn1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Order Products"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marketBttn1ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

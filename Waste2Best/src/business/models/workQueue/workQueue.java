@@ -16,6 +16,10 @@ import java.util.ArrayList;
 public class workQueue {
 private ArrayList<WorkRequest> workRequestList;
 
+   public workQueue(){
+       workRequestList = new ArrayList<>();
+   }
+
    public ArrayList<WorkRequest> getWorkRequestList() {
        return workRequestList;
    }
