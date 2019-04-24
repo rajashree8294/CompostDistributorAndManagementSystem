@@ -8,6 +8,7 @@ import business.Ecosystem;
 import network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -145,9 +146,17 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         String name = nameJTextField.getText();
-
+        int checkFlag=1;
+        for(Network network : system.getNetworkList()){
+            if(network.getName().equals(name)){
+                 JOptionPane.showMessageDialog(null,"This Network Exists!");
+                 checkFlag=0;
+            }
+        }
+       if(checkFlag==1){
         Network network = system.createAndAddNetwork();
         network.setName(name);
+       }
 
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed

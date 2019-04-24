@@ -194,16 +194,23 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
         String name = nameJTextField.getText();
-
+        int checkFlag = 1;
+       for(Enterprise e :  network.getEnterpriseDirectory().getEnterpriseList()){
+           if (e.getName().equals(name)){
+                 JOptionPane.showMessageDialog(null,"This Enterprise Exists!");
+                 checkFlag=0;
+           } 
+    }
+       if(checkFlag==1){
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
+       }
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
         sysAdminwjp.populateTree();

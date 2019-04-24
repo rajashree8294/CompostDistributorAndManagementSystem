@@ -6,6 +6,7 @@
 package userinterface.AdministrativeRole;
 
 
+import business.Ecosystem;
 import business.models.Employee.Employee;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -21,15 +22,16 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private OrganizationDirectory organizationDir;
     private JPanel userProcessContainer;
+    private Ecosystem business;
     
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
+    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir, Ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDir = organizationDir;
-        
+        this.business = business;
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
     }
