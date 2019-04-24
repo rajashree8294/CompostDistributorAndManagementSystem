@@ -43,10 +43,12 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         cropIdTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         cropQuantityTextField = new javax.swing.JTextField();
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cropPriceTextField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         jLabel1.setText("Message");
 
@@ -64,8 +66,6 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setText("Crop Quantity");
-
         cropQuantityTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cropQuantityTextFieldActionPerformed(evt);
@@ -77,6 +77,16 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
 
+        jLabel6.setText("Crop Quantity");
+
+        cropPriceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cropPriceTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Crop Price");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,18 +97,20 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
                         .addGap(213, 213, 213)
                         .addComponent(submitButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
+                        .addGap(194, 194, 194)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cropQuantityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                             .addComponent(messageTextField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cropNameTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cropIdTextField, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(cropIdTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cropPriceTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +119,7 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
                                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +144,15 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cropIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(cropQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cropQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cropPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(24, 24, 24)
                 .addComponent(submitButton)
                 .addContainerGap(187, Short.MAX_VALUE))
         );
@@ -148,12 +164,14 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
           String message = messageTextField.getText();
           String cropName = cropNameTextField.getText();
           String cropId = cropIdTextField.getText();
+          Double cropPrice = Double.parseDouble(cropPriceTextField.getText());
           Integer cropQuantity =  Integer.valueOf(cropQuantityTextField.getText());
         
         SellCropProduceWorkRequest request = new SellCropProduceWorkRequest();
         request.setCropId(cropId);
         request.setCropName(cropName);
         request.setCropQuantity(cropQuantity);
+        request.setPrice(cropPrice);
         request.setSender(user);
         request.setStatus("Sent");
         
@@ -174,17 +192,23 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cropQuantityTextFieldActionPerformed
 
+    private void cropPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropPriceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cropPriceTextFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cropIdTextField;
     private javax.swing.JTextField cropNameTextField;
+    private javax.swing.JTextField cropPriceTextField;
     private javax.swing.JTextField cropQuantityTextField;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField messageTextField;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel valueLabel;

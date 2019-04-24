@@ -5,6 +5,8 @@
  */
 package userInterface.DistributorRole;
 
+import business.models.Product.CropProduce;
+import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
@@ -12,6 +14,7 @@ import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import organizations.Organization;
 import organizations.SupplierOrganization;
@@ -129,17 +132,15 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
          
          
         
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof SupplierOrganization){
-                org = organization;
-                break;
-            }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
+         
+        CropProduce crop = (CropProduce) enterprise.getProductDirectory().createProduct("crop");
+        crop.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
+        crop.setName(request.getMessage());
+
+        
+        JOptionPane.showMessageDialog(null, "Seed Added Successfully");
+         
+       
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 

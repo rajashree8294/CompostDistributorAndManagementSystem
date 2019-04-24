@@ -14,7 +14,17 @@ public class SellCropProduceWorkRequest extends WorkRequest {
     private String cropId;
     private int cropQuantity;
     private String cropName;
+    private double price;
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    
     public String getCropId() {
         return cropId;
     }
@@ -38,5 +48,7 @@ public class SellCropProduceWorkRequest extends WorkRequest {
     public void setCropName(String cropName) {
         this.cropName = cropName;
     }
+    
+    
     
 }

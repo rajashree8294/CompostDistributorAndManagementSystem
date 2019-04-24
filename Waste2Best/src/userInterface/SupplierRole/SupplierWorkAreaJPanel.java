@@ -42,7 +42,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         valueLabel.setText(enterprise.getName());
-        //populateTable();
+        populateTable();
         
     }
     
