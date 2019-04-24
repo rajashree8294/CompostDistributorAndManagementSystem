@@ -39,7 +39,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
       //  valueLabel.setText(enterprise.getName());
-      //  populateRequestTable();
+        //populateRequestTable();
     }
     
        public void populateRequestTable(){
@@ -69,7 +69,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         sellCropProduceBttn = new javax.swing.JButton();
-        marketBttn = new javax.swing.JButton();
+        orderBttn = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -85,10 +85,10 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        marketBttn.setText("Market Place");
-        marketBttn.addActionListener(new java.awt.event.ActionListener() {
+        orderBttn.setText("Order Seed");
+        orderBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marketBttnActionPerformed(evt);
+                orderBttnActionPerformed(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
                         .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(marketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(orderBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -154,7 +154,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(marketBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(orderBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(106, 106, 106)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(267, Short.MAX_VALUE))
@@ -168,21 +168,21 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(rightPanel);
     }//GEN-LAST:event_sellCropProduceBttnActionPerformed
 
-    private void marketBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marketBttnActionPerformed
+    private void orderBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBttnActionPerformed
         // TODO add your handling code here:
         MarketJPanel marketJPanel= new MarketJPanel(rightJPanel,enterprise);
         //splitPane.setRightComponent(viewJPanel);
         rightJPanel.add("MarketJPanel",marketJPanel);
         CardLayout layout = (CardLayout)rightJPanel.getLayout();
         layout.next(rightJPanel);
-    }//GEN-LAST:event_marketBttnActionPerformed
+    }//GEN-LAST:event_orderBttnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton marketBttn;
+    private javax.swing.JButton orderBttn;
     private javax.swing.JButton sellCropProduceBttn;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;

@@ -396,7 +396,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void userNameJTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameJTextFieldFocusLost
         // TODO add your handling code here:
-        String regex = "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(userNameJTextField.getText());
 

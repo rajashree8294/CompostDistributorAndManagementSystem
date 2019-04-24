@@ -28,7 +28,7 @@
                       <EmptySpace pref="304" max="32767" attributes="0"/>
                       <Component id="sellCropProduceBttn" min="-2" pref="183" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="marketBttn" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="orderBttn" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="sellCropProduceBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="marketBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="orderBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -75,12 +75,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sellCropProduceBttnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="marketBttn">
+    <Component class="javax.swing.JButton" name="orderBttn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Market Place"/>
+        <Property name="text" type="java.lang.String" value="Order Seed"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marketBttnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderBttnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="enterpriseLabel">
