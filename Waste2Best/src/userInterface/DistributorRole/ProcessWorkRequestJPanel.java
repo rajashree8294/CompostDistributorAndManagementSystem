@@ -124,7 +124,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
       //  request.setTestResult(resultJTextField.getText());
          String message = messageJTextField.getText();
          request.setMessage(message);
-         request.setSender(userAccount);
+         request.setReceiver(userAccount);
          request.setStatus("Sent to Supplier");
          
          
