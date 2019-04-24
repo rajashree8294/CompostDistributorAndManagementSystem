@@ -32,6 +32,14 @@ public class UserDirectory {
         return null;
     }
     
+    public User checkUser(String username){
+        for (User ua : userAccountList)
+            if (ua.getUserID().equals(username)){
+                return ua;
+            }
+        return null;
+    }
+    
      public User createUserAccount(String name,String username, String password,String location, Employee employee, Role role){
         User user = new User();
         user.setName(name);
