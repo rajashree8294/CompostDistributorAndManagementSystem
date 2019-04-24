@@ -18,6 +18,13 @@ public class User {
     private String name;
     private Employee employee;
     private workQueue workQueue;
+    private String password;
+    private String location;
+    private Role role;
+    
+    public User() {
+        workQueue = new workQueue();
+    }
 
     public workQueue getWorkQueue() {
         return workQueue;
@@ -34,9 +41,6 @@ public class User {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    private String password;
-    private String location;
-    private Role role;
 
     public Role getRole() {
         return role;
@@ -76,7 +80,5 @@ public class User {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-    
-    
+    }    
 }
