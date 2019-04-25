@@ -6,24 +6,18 @@
 package userInterface.SupplierRole;
 
 import business.models.Product.Compost;
-import java.awt.Component;
 import business.models.Product.CropProduce;
-import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
-import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import organizations.Organization;
-import organizations.SupplierOrganization;
-import userInterface.DistributorRole.DistributorWorkAreaJPanel;
 
 
 /**
@@ -36,13 +30,13 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form SupplierProcessWorkAreaJPanel
      */
     
-    private JPanel userProcessContainer;
+    private final JPanel userProcessContainer;
     private SellCropProduceWorkRequest sCrequest;
     private CompostGeneratedWorkRequest cGrequest;
     private PurchaseCompostWorkRequest pCRequest;
-    private User userAccount;
-    private Enterprise enterprise;
-    private int flag;
+    private final User userAccount;
+    private final Enterprise enterprise;
+    private  final int flag;
     private FoodProductWorkRequest foRequest;
     private TumblerWorkRequest tRequest;
     
@@ -218,7 +212,6 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         sCrequest.setStatus("Completed");
 
         CropProduce crop = (CropProduce) enterprise.getProductDirectory().createProduct("crop");
-        crop.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
         crop.setName(sCrequest.getCropName());
         crop.setExpenses( sCrequest.getExpenses());
         crop.setCompostRequired(sCrequest.getCompostRequired());
@@ -231,14 +224,12 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         
         if (flag==2){
             processLabel.setText("Adding Compost to Directory");
-            
             String message = messageJTextField.getText();
             cGrequest.setMessage(message);
             cGrequest.setReceiver(userAccount);
             cGrequest.setStatus("Completed");
             
-         Compost compost = (Compost) enterprise.getProductDirectory().createProduct("compost");
-        compost.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
+        Compost compost = (Compost) enterprise.getProductDirectory().createProduct("compost");
         compost.setName(cGrequest.getCompostUserName());
         compost.setQuantity(cGrequest.getCompostQuantity());
      //   compost.setPrice(sCrequest.getPrice());
@@ -246,8 +237,13 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         if (flag==3){
-            processLabel.setText("Sending Food to Customer");
+            processLabel.setText("Sending Food Products to Customer");
             String message = messageJTextField.getText();
+            enterprise.getProductDirectory().getProducts().stream().forEach(product -> {
+                if(product.getProductId().equalsIgnoreCase(foRequest.getProductId())){
+                    product.setQuantity(product.getQuantity() - foRequest.getQuantity());
+                }
+            });
             foRequest.setMessage(message);
             foRequest.setReceiver(userAccount);
             foRequest.setStatus("Completed");
