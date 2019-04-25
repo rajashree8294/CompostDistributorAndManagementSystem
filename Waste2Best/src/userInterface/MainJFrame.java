@@ -65,7 +65,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane1.setDividerSize(1);
         splitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("West2Best: Compost Managing and Distributing Platform");
@@ -74,22 +74,23 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(334, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGap(307, 307, 307))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29))
+                .addGap(20, 20, 20))
         );
 
         splitPane1.setTopComponent(jPanel2);
 
         jSplitPane1.setDividerLocation(180);
+        jSplitPane1.setAutoscrolls(true);
 
         rightPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -98,36 +99,40 @@ public class MainJFrame extends javax.swing.JFrame {
 
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        aboutBtn.setBackground(new java.awt.Color(204, 204, 255));
+        aboutBtn.setBackground(new java.awt.Color(153, 204, 255));
         aboutBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
         aboutBtn.setText("About US");
-        aboutBtn.setToolTipText("login into system");
+        aboutBtn.setToolTipText("Know more about us");
+        aboutBtn.setVerifyInputWhenFocusTarget(false);
         aboutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutBtnActionPerformed(evt);
             }
         });
 
-        loginBtn.setBackground(new java.awt.Color(204, 204, 255));
+        loginBtn.setBackground(new java.awt.Color(153, 204, 255));
         loginBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
         loginBtn.setText("Login");
         loginBtn.setToolTipText("login into system");
+        loginBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/userInterface/aboutUs.png"))); // NOI18N
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
 
-        logoutBtn.setBackground(new java.awt.Color(204, 204, 255));
+        logoutBtn.setBackground(new java.awt.Color(153, 204, 255));
         logoutBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
         logoutBtn.setText("Logout");
-        logoutBtn.setToolTipText("login into system");
+        logoutBtn.setToolTipText("Log out from system");
         logoutBtn.setEnabled(false);
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
             }
         });
+
+        emailTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 102));
@@ -169,9 +174,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
@@ -180,13 +185,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jSplitPane1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         splitPane1.setRightComponent(jPanel3);
