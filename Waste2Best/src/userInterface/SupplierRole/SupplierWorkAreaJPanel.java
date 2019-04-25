@@ -323,11 +323,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }   }else{
             JOptionPane.showMessageDialog(null, "Please select only compost requests for testing");
         }
-        
-        
-        
-        
-        
     }//GEN-LAST:event_reqCompostButtonActionPerformed
 
     private void processJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButton1ActionPerformed

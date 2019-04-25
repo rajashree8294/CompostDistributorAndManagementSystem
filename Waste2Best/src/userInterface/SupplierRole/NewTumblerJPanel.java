@@ -49,6 +49,8 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
         typeCombo = new javax.swing.JComboBox();
         addTumblerBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        quantTxt = new javax.swing.JTextField();
 
         jLabel1.setText("Price");
 
@@ -78,6 +80,8 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText("Quantity");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +96,8 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(widthTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
@@ -100,19 +105,22 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
                             .addComponent(capacityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(priceTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(typeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(typeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(quantTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(addTumblerBtn))
+                        .addGap(21, 21, 21)
+                        .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(backBtn)))
+                        .addGap(181, 181, 181)
+                        .addComponent(addTumblerBtn)))
                 .addContainerGap(602, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(24, 24, 24)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -136,21 +144,22 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(widthTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(addTumblerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(addTumblerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTumblerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTumblerBtnActionPerformed
         if(nameTxt.getText().equals("") || priceTxt.getText().equals("") || capacityTxt.getText().equals("") || 
-                heightTxt.getText().equals("") || widthTxt.getText().equals("")) {
+                heightTxt.getText().equals("") || widthTxt.getText().equals("") || quantTxt.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "One or more fields are empty");
         } else {
             Tumbler tumbler = (Tumbler) enterprise.getProductDirectory().createProduct("tumbler");
-            tumbler.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
             tumbler.setName(nameTxt.getText());
             tumbler.setPrice(Double.parseDouble(priceTxt.getText()));
             tumbler.setType(String.valueOf(typeCombo.getSelectedItem()));
@@ -158,6 +167,7 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
             tumbler.setHeight(Integer.parseInt(heightTxt.getText()));
             tumbler.setWidth(Integer.parseInt(widthTxt.getText()));
             tumbler.setProductType("tumbler");
+            tumbler.setQuantity(Integer.parseInt(quantTxt.getText()));
             
             JOptionPane.showMessageDialog(null, "Tumbler Added Successfully");
         }
@@ -181,8 +191,10 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField priceTxt;
+    private javax.swing.JTextField quantTxt;
     private javax.swing.JComboBox typeCombo;
     private javax.swing.JTextField widthTxt;
     // End of variables declaration//GEN-END:variables
