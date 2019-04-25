@@ -12,10 +12,9 @@ package business.models.Product;
 public class CropProduce extends Product {
     
     private String name;
-    private String cropId;
-    private float expenses;
-    private float compostRequired;
-    private float cropQuantity;
+    private double expenses;
+    private double compostRequired;
+    private double cropQuantity;
     private double cropPrice;
 
     public String getName() {
@@ -26,35 +25,28 @@ public class CropProduce extends Product {
         this.name = name;
     }
 
-    public String getCropId() {
-        return cropId;
-    }
 
-    public void setCropId(String cropId) {
-        this.cropId = cropId;
-    }
-
-    public float getExpenses() {
+    public double getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(float expenses) {
+    public void setExpenses(double expenses) {
         this.expenses = expenses;
     }
 
-    public float getCompostRequired() {
+    public double getCompostRequired() {
         return compostRequired;
     }
 
-    public void setCompostRequired(float compostRequired) {
+    public void setCompostRequired(double compostRequired) {
         this.compostRequired = compostRequired;
     }
 
-    public float getCropQuantity() {
+    public double getCropQuantity() {
         return cropQuantity;
     }
 
-    public void setCropQuantity(float cropQuantity) {
+    public void setCropQuantity(double cropQuantity) {
         this.cropQuantity = cropQuantity;
     }
 

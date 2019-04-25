@@ -124,10 +124,11 @@ public void populatetable(int n)
                 {
                     row[0] = p;
                     row[1] = p.getName();
-                    row[2] = p.getProductId();
-                    row[3] = p.getQuantity();
-                    row[4] = p.getPrice();
-                    row[5] = p.gettPrice();
+                    row[2] = ((CropProduce) p).getProductId();
+                    row[3] = ((CropProduce) p).getCropPrice();
+                    row[4] = ((CropProduce) p).getCropQuantity();
+                    
+
 
                     model.addRow(row);
                 }

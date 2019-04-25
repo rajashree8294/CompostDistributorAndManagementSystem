@@ -15,7 +15,27 @@ public class SellCropProduceWorkRequest extends WorkRequest {
     private int cropQuantity;
     private String cropName;
     private double price;
+    private double expenses;
+    private double compostRequired;
 
+    public double getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(double expenses) {
+        this.expenses = expenses;
+    }
+
+    public double getCompostRequired() {
+        return compostRequired;
+    }
+
+    public void setCompostRequired(double compostRequired) {
+        this.compostRequired = compostRequired;
+    }
+
+    
+    
     public double getPrice() {
         return price;
     }
