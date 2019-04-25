@@ -242,7 +242,7 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
             int selectedRow = tumblerTbl.getSelectedRow();
             Tumbler tumbler = (Tumbler) tumblerTbl.getValueAt(selectedRow, 0);
             
-            if(tumbler.getPrice() < Double.parseDouble(quantityTxt.getText())) {
+            if(tumbler.getQuantity() < Double.parseDouble(quantityTxt.getText())) {
                 JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available tumblers", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 String type = String.valueOf(productCombo.getSelectedItem());
@@ -253,9 +253,9 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
                 request.setQuantity(quantity);
-                request.setType(type);
                 request.setMessage("New Tumbler Request");
-
+                request.setProductId(type);
+                
                 Organization org = null;
                 for (Organization orgz : enterprise.getOrganizationDirectory().getOrganizationList()){
                     if (orgz instanceof DistributorOrganization){

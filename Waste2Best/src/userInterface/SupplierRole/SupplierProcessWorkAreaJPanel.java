@@ -198,7 +198,6 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        //  request.setTestResult(resultJTextField.getText());
         if(flag==1){
         processLabel.setText("Adding Crop Produce to Directory");
         String message = messageJTextField.getText();
@@ -219,27 +218,31 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         if (flag==2){
-                        processLabel.setText("Adding Compost to Directory");
+            processLabel.setText("Adding Compost to Directory");
             String message = messageJTextField.getText();
-        cGrequest.setMessage(message);
-        cGrequest.setReceiver(userAccount);
-        cGrequest.setStatus("Completed");
+            cGrequest.setMessage(message);
+            cGrequest.setReceiver(userAccount);
+            cGrequest.setStatus("Completed");
         }
         
         if (flag==3){
             processLabel.setText("Sending Food to Customer");
             String message = messageJTextField.getText();
-        foRequest.setMessage(message);
-        foRequest.setReceiver(userAccount);
-        foRequest.setStatus("Completed");
+            foRequest.setMessage(message);
+            foRequest.setReceiver(userAccount);
+            foRequest.setStatus("Completed");
         }
         if (flag==4){
-             processLabel.setText("Sending Tumbler to Customer");
+            processLabel.setText("Sending Tumbler to Customer");
             String message = messageJTextField.getText();
-        tRequest.setMessage(message);
-        tRequest.setReceiver(userAccount);
-        tRequest.setStatus("Completed");
-            
+            enterprise.getProductDirectory().getProducts().stream().forEach(product -> {
+                if(product.getProductId().equalsIgnoreCase(tRequest.getProductId())){
+                    product.setQuantity(product.getQuantity() - tRequest.getQuantity());
+                }
+            });
+            tRequest.setMessage(message);
+            tRequest.setReceiver(userAccount);
+            tRequest.setStatus("Completed");
         }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
