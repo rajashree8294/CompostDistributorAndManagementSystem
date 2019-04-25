@@ -169,6 +169,23 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                 row[3] = ((Compost) p).getQuantity();
                 model.addRow(row);
             }
+            
+            if (n==3)
+            {
+                if (p instanceof Seed)
+                {
+                    row[0] = p;
+                    row[1] = p.getName();
+                    row[2] = ((Seed) p).getProductId();
+                    row[3] = ((Seed) p).getPrice();
+                    row[4] = ((Seed) p).getQuantity();
+                    
+
+
+                    model.addRow(row);
+                }
+            }
+
         }
     });
 }

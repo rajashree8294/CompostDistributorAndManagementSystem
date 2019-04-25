@@ -11,6 +11,7 @@ import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
+import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -35,6 +36,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private FoodProductWorkRequest foRequest;
     private PurchaseCompostWorkRequest pCRequest;
     private TumblerWorkRequest tRequest;
+    private SeedWorkRequest sWRequest;
     private User userAccount;
     private Enterprise enterprise;
     private int flag;
@@ -81,6 +83,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         flag = 5;
     }
+        public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  SeedWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        sWRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 6;    
+        }       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,6 +275,26 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(pCRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(pCRequest);
+       }
+
+            
+        }
+        else if (flag == 6){
+            String message = messageJTextField.getText();
+        sWRequest.setMessage(message);
+        sWRequest.setReceiver(userAccount);
+        sWRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+               org = organization;
+               break;
+           }
+       }
+       if (org!=null){
+           org.getWorkQueue().getWorkRequestList().add(sWRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(sWRequest);
        }
 
             

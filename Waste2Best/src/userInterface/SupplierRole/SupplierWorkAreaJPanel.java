@@ -10,6 +10,7 @@ import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
+import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -267,6 +268,17 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         tumblerWorkRequest.setStatus("Completed");
 
         SupplierProcessWorkAreaJPanel supplierProcessWorkAreaJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, tumblerWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", supplierProcessWorkAreaJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
+             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SeedWorkRequest ){
+        SeedWorkRequest seedWorkRequest = (SeedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        seedWorkRequest.setStatus("Completed");
+
+        SupplierProcessWorkAreaJPanel supplierProcessWorkAreaJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, seedWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", supplierProcessWorkAreaJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

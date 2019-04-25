@@ -181,11 +181,15 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void orderBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBttnActionPerformed
         // TODO add your handling code here:
-        MarketJPanel marketJPanel= new MarketJPanel(rightJPanel,enterprise);
+        /*CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        SeedPurchaseJPanel seedPurchaseJPanel= new SeedPurchaseJPanel(rightPanel, userAccount,organization, enterprise);
         //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("MarketJPanel",marketJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
+        rightJPanel.add("SeedPurchaseJPanel",seedPurchaseJPanel);
+        layout.next(rightJPanel); */
+        
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        rightPanel.add("RequestSellProductPanel", new SeedPurchaseJPanel(rightPanel, userAccount,organization, enterprise));
+        layout.next(rightPanel);
     }//GEN-LAST:event_orderBttnActionPerformed
 
     private void purchaseCompostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseCompostButtonActionPerformed
