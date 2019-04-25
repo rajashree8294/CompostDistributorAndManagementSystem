@@ -92,6 +92,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(180);
 
         rightPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rightPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(rightPanel);
 
