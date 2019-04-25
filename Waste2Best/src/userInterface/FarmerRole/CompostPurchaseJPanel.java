@@ -6,9 +6,11 @@
 package userInterface.FarmerRole;
 
 import business.models.Product.Compost;
+import business.models.Product.Product;
 import business.models.Product.Tumbler;
 import business.models.User.User;
 import business.models.workRequest.PurchaseCompostWorkRequest;
+import business.models.workRequest.TumblerWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ private final JPanel rightPanel;
     private final User userAccount;
     private final Enterprise enterprise;
     private final FarmerOrganization organization;
-    private final ArrayList<Tumbler> compost = new ArrayList<>();
+    private final ArrayList<Compost> compost = new ArrayList<>();
     
     CompostPurchaseJPanel(JPanel rightPanel, User userAccount, FarmerOrganization organization, Enterprise enterprise) {
         initComponents();
@@ -50,8 +52,8 @@ private final JPanel rightPanel;
       private void populateTable(){
         enterprise.getProductDirectory().getProducts().stream()
                   .filter(product -> {
-                        if(product.getProductType().equalsIgnoreCase("tumbler")){
-                            compost.add((Tumbler)product);
+                         if(product instanceof Compost){
+                            compost.add((Compost)product);
                         }
                         return !compost.isEmpty();
                   }).collect(Collectors.toList());
@@ -105,7 +107,7 @@ private final JPanel rightPanel;
         jLabel1 = new javax.swing.JLabel();
         productCombo = new javax.swing.JComboBox();
         quantityLabel = new javax.swing.JLabel();
-        tumblerTypeLabel = new javax.swing.JLabel();
+        compostTypeLabel = new javax.swing.JLabel();
         quantityTxt = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
 
@@ -138,7 +140,7 @@ private final JPanel rightPanel;
 
         quantityLabel.setText("Quantity");
 
-        tumblerTypeLabel.setText("Product ID");
+        compostTypeLabel.setText("Product ID");
 
         quantityTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -177,7 +179,7 @@ private final JPanel rightPanel;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tumblerTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(compostTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(productCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -210,7 +212,7 @@ private final JPanel rightPanel;
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tumblerTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(compostTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(productCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -254,23 +256,21 @@ private final JPanel rightPanel;
         } else if(!quantError.getText().isEmpty()){
             JOptionPane.showMessageDialog(rightPanel, "Enter valid quantity", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int selectedRow = compostTbl.getSelectedRow();
-            Compost compost = (Compost) compostTbl.getValueAt(selectedRow, 0);
-
-            if(compost.getPrice() < Double.parseDouble(quantityTxt.getText())) {
-                JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available Compost", "Error", JOptionPane.ERROR_MESSAGE);
+            String prodId = String.valueOf(productCombo.getSelectedItem());
+            Product compost = enterprise.getProductDirectory().getProducts().stream()
+                              .filter(product -> product.getProductId().equalsIgnoreCase(prodId)).findFirst().orElse(null);
+            
+            if(compost.getQuantity() < Double.parseDouble(quantityTxt.getText())) {
+                JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available compost", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                String type = String.valueOf(productCombo.getSelectedItem());
-                int quantity = Integer.parseInt(quantityTxt.getText());
-
-                PurchaseCompostWorkRequest request = new PurchaseCompostWorkRequest();
+                TumblerWorkRequest request = new TumblerWorkRequest();
                 request.setSender(userAccount);
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
-                request.setQuantity(quantity);
-                request.setType(type);
+                request.setQuantity(Integer.parseInt(quantityTxt.getText()));
                 request.setMessage("New Compost Request");
-
+                request.setProductId(prodId);
+                
                 Organization org = null;
                 for (Organization orgz : enterprise.getOrganizationDirectory().getOrganizationList()){
                     if (orgz instanceof DistributorOrganization){
@@ -290,6 +290,7 @@ private final JPanel rightPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTable compostTbl;
+    private javax.swing.JLabel compostTypeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -298,6 +299,5 @@ private final JPanel rightPanel;
     private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField quantityTxt;
     private javax.swing.JButton submitButton;
-    private javax.swing.JLabel tumblerTypeLabel;
     // End of variables declaration//GEN-END:variables
 }
