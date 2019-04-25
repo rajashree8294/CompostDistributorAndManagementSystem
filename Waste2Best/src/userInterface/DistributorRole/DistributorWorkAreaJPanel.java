@@ -5,8 +5,6 @@
  */
 package userInterface.DistributorRole;
 
-import business.models.Role.DistributorRole;
-import business.models.Role.SupplierRole;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
@@ -27,10 +25,10 @@ import organizations.DistributorOrganization;
  * @author Aditya
  */
 public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
-   private JPanel userProcessContainer;
-    private DistributorOrganization organization;
-    private Enterprise enterprise;
-    private User userAccount;
+   private final JPanel userProcessContainer;
+    private final DistributorOrganization organization;
+    private final Enterprise enterprise;
+    private final User userAccount;
     /**
     
     /**
@@ -43,7 +41,6 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
-        //valueLabel.setText(enterprise.getName());
         populateTable();
     }
     
@@ -53,15 +50,16 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        organization.getWorkQueue().getWorkRequestList().stream().map((request) -> {
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
-            
-            model.addRow(row);
-        }
+           return row;
+       }).forEach((row) -> {
+           model.addRow(row);
+       });
     }
 
     /**
@@ -197,114 +195,69 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
             return;
         }
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-         if(request.getStatus().equals("Sent to Supplier"))
-        {JOptionPane.showMessageDialog(null, "Request  is in Process");
-        }else if(request.getStatus().equals("Sent")){
-            JOptionPane.showMessageDialog(null, "Assign Request to yourself and then Process");
-        }else
-            
-       {
-         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
-        SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        switch (request.getStatus()) {
+           case "Sent to Supplier":
+               JOptionPane.showMessageDialog(null, "Request  is in Process");
+               break;
+           case "Sent":
+               JOptionPane.showMessageDialog(null, "Assign Request to yourself and then Process");
+               break;
+           default:
+               if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
+                   SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   
+                   sellCropProduceWorkRequest.setStatus("Sent to Supplier");
+                   
+                   ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
+                   userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+                   CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                   layout.next(userProcessContainer);
+                   
+               }  if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+                   CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   
+                   compostGeneratedWorkRequest.setStatus("Sent to Supplier");
+                   
+                   ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
+                   userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+                   CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                   layout.next(userProcessContainer);
+                   
+               }  if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
+                   FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   
+                   foodProductWorkRequest.setStatus("Sent to Supplier");
+                   
+                   ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
+                   userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+                   CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                   layout.next(userProcessContainer);
+                   
+               }  if (workRequestJTable.getValueAt(selectedRow, 0) instanceof TumblerWorkRequest ){
+                   TumblerWorkRequest tumblerWorkRequest = (TumblerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   tumblerWorkRequest.setStatus("Sent to Supplier");
+                   
+                   ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, tumblerWorkRequest);
+                   userProcessContainer.add("ProcessWorkRequestJPanel", processWorkRequestJPanel);
+                   CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                   layout.next(userProcessContainer);
+                   
+               }  if (workRequestJTable.getValueAt(selectedRow, 0) instanceof PurchaseCompostWorkRequest ){
+                   PurchaseCompostWorkRequest purchaseCompostWorkRequest = (PurchaseCompostWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   purchaseCompostWorkRequest.setStatus("Sent to Supplier");
 
-        sellCropProduceWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-            
-             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
-        CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        compostGeneratedWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-             
-              if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
-        FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        foodProductWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-                if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
-        FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        foodProductWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-            
-             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof PurchaseCompostWorkRequest ){
-        PurchaseCompostWorkRequest purchaseCompostWorkRequest = (PurchaseCompostWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        purchaseCompostWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise,purchaseCompostWorkRequest );
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-             
-             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof PurchaseCompostWorkRequest ){
-        PurchaseCompostWorkRequest purchaseCompostWorkRequest = (PurchaseCompostWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        purchaseCompostWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise,purchaseCompostWorkRequest );
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-             
-        if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SeedWorkRequest ){
-        SeedWorkRequest purchaseSeedWorkRequest = (SeedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        purchaseSeedWorkRequest.setStatus("Sent to Supplier");
-
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise,purchaseSeedWorkRequest );
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-               
-            }
-             
-             
-        }
-        
-       
-          
-            
-        
-      
-      
-       
-
+                    ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, purchaseCompostWorkRequest);
+                    userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+                }  break;
+       }
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
