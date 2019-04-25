@@ -20,9 +20,9 @@ public abstract class Role {
         Admin("Admin"),
         Supplier("Supplier"),
         Distributor("Distributor"),
-        LabAssistant("Lab Assistant");
-//        Customer("Customer"),
-//        Farmer("Farmer");
+        LabAssistant("Lab Assistant"),
+        Customer("Customer"),
+         Farmer("Farmer");
         
         
         private String value;
@@ -48,6 +48,6 @@ public abstract class Role {
 
     @Override
     public String toString() {
-        return this.getClass().getName();
+        return this.getClass().getSimpleName();
     }
 }
