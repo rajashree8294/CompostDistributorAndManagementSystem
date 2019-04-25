@@ -36,8 +36,8 @@
                           <Component id="cropNameTextField" alignment="1" max="32767" attributes="0"/>
                           <Component id="cropIdTextField" alignment="1" max="32767" attributes="0"/>
                           <Component id="cropPriceTextField" alignment="1" pref="69" max="32767" attributes="0"/>
-                          <Component id="cropPriceTextField1" alignment="1" pref="69" max="32767" attributes="0"/>
-                          <Component id="cropPriceTextField2" alignment="0" pref="69" max="32767" attributes="0"/>
+                          <Component id="expensesTxt" alignment="1" pref="69" max="32767" attributes="0"/>
+                          <Component id="compostRequiredTxt" alignment="0" pref="69" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -103,16 +103,15 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cropPriceTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="expensesTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cropPriceTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="compostRequiredTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
               <Component id="submitButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
           </Group>
@@ -195,14 +194,14 @@
         <Property name="text" type="java.lang.String" value="Crop Expenses"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="cropPriceTextField1">
+    <Component class="javax.swing.JTextField" name="expensesTxt">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cropPriceTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="expensesTxtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="cropPriceTextField2">
+    <Component class="javax.swing.JTextField" name="compostRequiredTxt">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cropPriceTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compostRequiredTxtActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
