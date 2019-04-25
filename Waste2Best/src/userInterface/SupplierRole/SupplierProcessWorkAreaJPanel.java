@@ -5,12 +5,14 @@
  */
 package userInterface.SupplierRole;
 
+import business.models.Product.Compost;
 import java.awt.Component;
 import business.models.Product.CropProduce;
 import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
+import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -37,6 +39,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private SellCropProduceWorkRequest sCrequest;
     private CompostGeneratedWorkRequest cGrequest;
+    private PurchaseCompostWorkRequest pCRequest;
     private User userAccount;
     private Enterprise enterprise;
     private int flag;
@@ -81,6 +84,15 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount=userAccount;
         this.enterprise=enterprise;
         flag = 4;
+    }
+                  public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, PurchaseCompostWorkRequest request) {
+        initComponents();
+         processLabel.setText("Sending Tumbler to Customer");
+        this.userProcessContainer = userProcessContainer;
+        pCRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 5;
     }
 
     /**
@@ -219,10 +231,17 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         
         if (flag==2){
             processLabel.setText("Adding Compost to Directory");
+            
             String message = messageJTextField.getText();
             cGrequest.setMessage(message);
             cGrequest.setReceiver(userAccount);
             cGrequest.setStatus("Completed");
+            
+         Compost compost = (Compost) enterprise.getProductDirectory().createProduct("compost");
+        compost.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
+        compost.setName(cGrequest.getCompostUserName());
+        compost.setQuantity(cGrequest.getCompostQuantity());
+        compost.setPrice(sCrequest.getPrice());
         }
         
         if (flag==3){
@@ -244,6 +263,19 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
             tRequest.setReceiver(userAccount);
             tRequest.setStatus("Completed");
         }
+        if (flag==5){
+              processLabel.setText("Sending Tumbler to Customer");
+            String message = messageJTextField.getText();
+            enterprise.getProductDirectory().getProducts().stream().forEach(product -> {
+                if(product.getProductId().equalsIgnoreCase(pCRequest.getProductId())){
+                    product.setQuantity(product.getQuantity() - pCRequest.getQuantity());
+                }
+            });
+            pCRequest.setMessage(message);
+            pCRequest.setReceiver(userAccount);
+            pCRequest.setStatus("Completed");
+        }
+        
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 

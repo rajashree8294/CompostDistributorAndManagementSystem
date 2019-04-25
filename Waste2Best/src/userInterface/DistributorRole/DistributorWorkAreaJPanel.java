@@ -10,6 +10,7 @@ import business.models.Role.SupplierRole;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
+import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -244,13 +245,24 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
                
             }
+                if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
+        FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        foodProductWorkRequest.setStatus("Sent to Supplier");
+
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
             
-             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof TumblerWorkRequest ){
-        TumblerWorkRequest tumblerWorkRequest = (TumblerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof PurchaseCompostWorkRequest ){
+        PurchaseCompostWorkRequest purchaseCompostWorkRequest = (PurchaseCompostWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        tumblerWorkRequest.setStatus("Sent to Supplier");
+        purchaseCompostWorkRequest.setStatus("Sent to Supplier");
 
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, tumblerWorkRequest);
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise,purchaseCompostWorkRequest );
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
