@@ -7,14 +7,12 @@ package userInterface.FarmerRole;
 
 import business.Ecosystem;
 import business.models.User.User;
-import business.models.workRequest.SellCropProduceWorkRequest;
-import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.FarmerOrganization;
-import userInterface.MarketJPanel;
+import userInterface.ContactUsJPanel;
 
 /**
  *
@@ -22,10 +20,10 @@ import userInterface.MarketJPanel;
  */
 public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
   
-    private JPanel rightPanel;
-    private FarmerOrganization organization;
-    private Enterprise enterprise;
-    private User userAccount;
+    private final JPanel rightPanel;
+    private final FarmerOrganization organization;
+    private final Enterprise enterprise;
+    private final User userAccount;
     private JPanel rightJPanel;
     
     /**
@@ -196,7 +194,10 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_purchaseCompostButtonActionPerformed
 
     private void sellCropProduceBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellCropProduceBttn1ActionPerformed
-        // TODO add your handling code here:
+        ContactUsJPanel contactUsJPanel = new ContactUsJPanel(rightPanel);
+        rightPanel.add("ContactUsJPanel", contactUsJPanel);
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        cardLayout.next(rightPanel);
     }//GEN-LAST:event_sellCropProduceBttn1ActionPerformed
 
 
