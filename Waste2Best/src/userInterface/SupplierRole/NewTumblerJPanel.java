@@ -159,7 +159,7 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
             tumbler.setWidth(Integer.parseInt(widthTxt.getText()));
             tumbler.setProductType("tumbler");
             
-            JOptionPane.showMessageDialog(null, "Seed Added Successfully");
+            JOptionPane.showMessageDialog(null, "Tumbler Added Successfully");
         }
     }//GEN-LAST:event_addTumblerBtnActionPerformed
 

@@ -196,14 +196,12 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         
           String message = messageTextField.getText();
           String cropName = cropNameTextField.getText();
-          String cropId = cropIdTextField.getText();
           Double cropPrice = Double.parseDouble(cropPriceTextField.getText());
           Integer cropQuantity =  Integer.valueOf(cropQuantityTextField.getText());
           Double compostRequired = Double.parseDouble(compostRequiredTxt.getText());
           Double expenses = Double.parseDouble(expensesTxt.getText());
         
         SellCropProduceWorkRequest request = new SellCropProduceWorkRequest();
-        request.setCropId(cropId);
         request.setCropName(cropName);
         request.setCropQuantity(cropQuantity);
         request.setPrice(cropPrice);

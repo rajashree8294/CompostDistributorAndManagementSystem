@@ -99,10 +99,12 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
     else if (value.equals("Tumbler"))
             {
                 pFlag = 2;
+                populatetable(pFlag);
             }
     else if(value.equals("Seed"))
             {
                 pFlag = 3;
+                populatetable(pFlag);
             }
     }//GEN-LAST:event_productComboBoxActionPerformed
 
@@ -125,7 +127,7 @@ public void populatetable(int n)
                     row[0] = p;
                     row[1] = p.getName();
                     row[2] = ((CropProduce) p).getProductId();
-                    row[3] = ((CropProduce) p).getCropPrice();
+                    row[3] = ((CropProduce) p).getPrice();
                     row[4] = ((CropProduce) p).getCropQuantity();
                     
 
@@ -133,7 +135,21 @@ public void populatetable(int n)
                     model.addRow(row);
                 }
             }
-            
+            else if (n==2)
+            {
+                if (p instanceof Tumbler)
+                {
+                    row[0] = p;
+                    row[1] = p.getName();
+                    row[2] = ((Tumbler) p).getProductId();
+                    row[3] = ((Tumbler) p).getPrice();
+                    row[4] = ((Tumbler) p).getCapacity();
+                    
+
+
+                    model.addRow(row);
+                }
+            }
             
 
 

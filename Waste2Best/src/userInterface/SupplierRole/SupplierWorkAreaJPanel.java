@@ -260,11 +260,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow < 0){
             return;
         }
-
+         WorkRequest req =(WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+            if(!req.getStatus().equals("In Progress by Supplier")){
+                JOptionPane.showMessageDialog(null, "Request  already in Lab Testing or completed"); 
+            }else{
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
       compostGeneratedWorkRequest.setStatus("In Lab Testing");
-      
+      populateTable();
 
       LabTestWorkRequest request = new LabTestWorkRequest();
        
@@ -285,9 +288,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
                
-            }else{
+            }   }else{
             JOptionPane.showMessageDialog(null, "Please select only compost requests for testing");
         }
+        
         
         
         
