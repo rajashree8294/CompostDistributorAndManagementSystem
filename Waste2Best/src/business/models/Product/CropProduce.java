@@ -15,7 +15,6 @@ public class CropProduce extends Product {
     private double expenses;
     private double compostRequired;
     private double cropQuantity;
-    private double cropPrice;
 
     public String getName() {
         return name;
@@ -49,15 +48,6 @@ public class CropProduce extends Product {
     public void setCropQuantity(double cropQuantity) {
         this.cropQuantity = cropQuantity;
     }
-
-    public double getCropPrice() {
-        return cropPrice;
-    }
-
-    public void setCropPrice(double cropPrice) {
-        this.cropPrice = cropPrice;
-    }
-    
     
     
     

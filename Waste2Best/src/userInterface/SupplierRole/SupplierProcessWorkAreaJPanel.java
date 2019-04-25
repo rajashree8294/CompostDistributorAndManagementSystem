@@ -175,8 +175,8 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         crop.setName(sCrequest.getCropName());
         crop.setExpenses( sCrequest.getExpenses());
         crop.setCompostRequired(sCrequest.getCompostRequired());
-        crop.setCropQuantity(sCrequest.getCropQuantity());
-        crop.setCropPrice(sCrequest.getPrice());
+        crop.setQuantity(sCrequest.getCropQuantity());
+        crop.setPrice(sCrequest.getPrice());
         
 
         JOptionPane.showMessageDialog(null, "Seed Added Successfully");
