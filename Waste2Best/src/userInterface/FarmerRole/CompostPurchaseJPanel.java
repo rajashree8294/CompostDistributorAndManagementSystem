@@ -5,6 +5,7 @@
  */
 package userInterface.FarmerRole;
 
+import business.models.Product.Compost;
 import business.models.Product.Tumbler;
 import business.models.User.User;
 import business.models.workRequest.PurchaseCompostWorkRequest;
@@ -254,9 +255,9 @@ private final JPanel rightPanel;
             JOptionPane.showMessageDialog(rightPanel, "Enter valid quantity", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int selectedRow = compostTbl.getSelectedRow();
-            Tumbler tumbler = (Tumbler) compostTbl.getValueAt(selectedRow, 0);
+            Compost compost = (Compost) compostTbl.getValueAt(selectedRow, 0);
 
-            if(tumbler.getPrice() < Double.parseDouble(quantityTxt.getText())) {
+            if(compost.getPrice() < Double.parseDouble(quantityTxt.getText())) {
                 JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available Compost", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 String type = String.valueOf(productCombo.getSelectedItem());

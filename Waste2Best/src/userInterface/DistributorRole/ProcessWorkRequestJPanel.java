@@ -10,6 +10,7 @@ import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
+import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -32,6 +33,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private SellCropProduceWorkRequest cRequest;
     private CompostGeneratedWorkRequest coRequest;
     private FoodProductWorkRequest foRequest;
+    private PurchaseCompostWorkRequest pCRequest;
     private TumblerWorkRequest tRequest;
     private User userAccount;
     private Enterprise enterprise;
@@ -70,6 +72,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.userAccount=userAccount;
         this.enterprise=enterprise;
         flag = 4;
+    }
+             public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  PurchaseCompostWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        pCRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 5;
     }
 
     /**
@@ -239,6 +249,27 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        }
 
       }
+        else if (flag == 5){
+            String message = messageJTextField.getText();
+        pCRequest.setMessage(message);
+        pCRequest.setReceiver(userAccount);
+        pCRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+               org = organization;
+               break;
+           }
+       }
+       if (org!=null){
+           org.getWorkQueue().getWorkRequestList().add(pCRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(pCRequest);
+       }
+
+            
+        }
+     
        
 
     }//GEN-LAST:event_submitJButtonActionPerformed
