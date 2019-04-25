@@ -14,7 +14,6 @@ public class Product {
     private String name;
     private double price;
     private int quantity;
-    private double tPrice;
     private String productType;
 
     public String getProductType() {
@@ -25,15 +24,6 @@ public class Product {
         this.productType = productType;
     }
 
-
-    public double gettPrice() {
-        return tPrice;
-    }
-
-    public void settPrice(double tPrice) {
-        this.tPrice = tPrice;
-    }
-    
     public String getProductId() {
         return productId;
     }
@@ -66,5 +56,8 @@ public class Product {
         this.quantity = quantity;
     }
     
-    
+    @Override
+    public String toString(){
+        return productId;
+    }
 }

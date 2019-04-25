@@ -6,9 +6,6 @@
 package userInterface.SupplierRole;
 
 import enterprise.Enterprise;
-import organizations.Organization;
-import business.models.Product.ProductDirectory;
-import business.models.workRequest.WorkRequest;
 import javax.swing.table.DefaultTableModel;
 import business.models.Product.*;
 import javax.swing.JPanel;

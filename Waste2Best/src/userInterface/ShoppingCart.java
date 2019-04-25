@@ -83,7 +83,7 @@ public class ShoppingCart extends javax.swing.JPanel {
             row[1] = s.getName();
             row[2] = s.getQuantity();
             row[3] = s.getPrice();
-            row[4] = s.gettPrice();
+          //  row[4] = s.gettPrice();
             
             dtm.addRow(row);
         }

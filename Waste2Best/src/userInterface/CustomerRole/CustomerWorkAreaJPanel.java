@@ -187,7 +187,10 @@ public final class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tumblerBtnActionPerformed
 
     private void tumblerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tumblerBtn1ActionPerformed
-        // TODO add your handling code here:
+        PurchaseProductJPanel purchaseProductJPanel = new PurchaseProductJPanel(rightPanel, enterprise, userAccount);
+        rightPanel.add("PurchaseProductJPanel", purchaseProductJPanel);
+        CardLayout cardLayout = (CardLayout) rightPanel.getLayout();
+        cardLayout.next(rightPanel);
     }//GEN-LAST:event_tumblerBtn1ActionPerformed
 
     private void reportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBtnActionPerformed

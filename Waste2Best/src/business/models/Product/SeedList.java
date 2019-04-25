@@ -35,7 +35,7 @@ public class SeedList {
         seed.setQuantity(quantity);
         seed.setName(name);
         seed.setType(type);
-        seed.settPrice(totalPrice);
+      //  seed.settPrice(totalPrice);
 
         seedList.add(seed);
         return seed;

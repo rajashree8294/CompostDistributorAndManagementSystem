@@ -6,16 +6,16 @@
 package business.models.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDirectory {
     private ArrayList<Product> productList;
+    static int counter;
     
     public ProductDirectory(){
         productList = new ArrayList<>();
     }
 
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return productList;
     }
 
@@ -25,6 +25,7 @@ public class ProductDirectory {
     
     public Product createProduct(String type){
         Product product = productFactory(type);
+        product.setProductId("Prod-"+type+(++counter));
         productList.add(product);
         return product;
     }
