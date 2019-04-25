@@ -38,7 +38,6 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
-      //  valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
     
@@ -46,16 +45,15 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        userAccount.getWorkQueue().getWorkRequestList().stream().map((request) -> {
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-           // String result = ((SellCropProduceWorkRequest) request).getTestResult();
-            //row[3] = result == null ? "Waiting" : result;
-            
+            return row;
+        }).forEach((row) -> {
             model.addRow(row);
-        }
+        });
     }
 
     /**
@@ -75,6 +73,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         purchaseCompostButton = new javax.swing.JButton();
+        sellCropProduceBttn1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Farmer Dashboard");
@@ -133,6 +132,13 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        sellCropProduceBttn1.setText("Report");
+        sellCropProduceBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellCropProduceBttn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +154,10 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(orderBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(191, Short.MAX_VALUE))
+                        .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(sellCropProduceBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +167,8 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(purchaseCompostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(orderBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sellCropProduceBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sellCropProduceBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(118, 118, 118)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(267, Short.MAX_VALUE))
@@ -174,13 +183,6 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sellCropProduceBttnActionPerformed
 
     private void orderBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBttnActionPerformed
-        // TODO add your handling code here:
-        /*CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        SeedPurchaseJPanel seedPurchaseJPanel= new SeedPurchaseJPanel(rightPanel, userAccount,organization, enterprise);
-        //splitPane.setRightComponent(viewJPanel);
-        rightJPanel.add("SeedPurchaseJPanel",seedPurchaseJPanel);
-        layout.next(rightJPanel); */
-        
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         rightPanel.add("RequestSellProductPanel", new SeedPurchaseJPanel(rightPanel, userAccount,organization, enterprise));
         layout.next(rightPanel);
@@ -193,6 +195,10 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(rightPanel);
     }//GEN-LAST:event_purchaseCompostButtonActionPerformed
 
+    private void sellCropProduceBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellCropProduceBttn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sellCropProduceBttn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
@@ -201,6 +207,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton orderBttn;
     private javax.swing.JButton purchaseCompostButton;
     private javax.swing.JButton sellCropProduceBttn;
+    private javax.swing.JButton sellCropProduceBttn1;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
