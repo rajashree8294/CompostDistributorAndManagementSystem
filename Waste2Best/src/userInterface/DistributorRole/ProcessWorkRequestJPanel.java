@@ -9,7 +9,9 @@ import business.models.Product.CropProduce;
 import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
+import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
@@ -29,6 +31,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private SellCropProduceWorkRequest cRequest;
     private CompostGeneratedWorkRequest coRequest;
+    private FoodProductWorkRequest foRequest;
+    private TumblerWorkRequest tRequest;
     private User userAccount;
     private Enterprise enterprise;
     private int flag;
@@ -50,6 +54,22 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.userAccount=userAccount;
         this.enterprise=enterprise;
         flag = 2;
+    }
+       public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  FoodProductWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.foRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 3;
+    }
+         public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  TumblerWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.tRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 4;
     }
 
     /**
@@ -175,10 +195,50 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
            userAccount.getWorkQueue().getWorkRequestList().add(coRequest);
        }
       }
+      
+      else if (flag ==3)
+      {
 
+        String message = messageJTextField.getText();
+        foRequest.setMessage(message);
+        foRequest.setReceiver(userAccount);
+        foRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+               org = organization;
+               break;
+           }
+       }
+       if (org!=null){
+           org.getWorkQueue().getWorkRequestList().add(foRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(foRequest);
+       }
 
+      }
+      
+        else if (flag ==4)
+      {
 
+        String message = messageJTextField.getText();
+        tRequest.setMessage(message);
+        tRequest.setReceiver(userAccount);
+        tRequest.setStatus("Sent to Supplier");
+        
+        Organization org = null;
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+           if (organization instanceof SupplierOrganization){
+               org = organization;
+               break;
+           }
+       }
+       if (org!=null){
+           org.getWorkQueue().getWorkRequestList().add(tRequest);
+           userAccount.getWorkQueue().getWorkRequestList().add(tRequest);
+       }
 
+      }
        
 
     }//GEN-LAST:event_submitJButtonActionPerformed

@@ -9,7 +9,9 @@ import business.models.Role.DistributorRole;
 import business.models.Role.SupplierRole;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
+import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
@@ -230,6 +232,32 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
                
             }
+             
+              if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
+        FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        foodProductWorkRequest.setStatus("Sent to Supplier");
+
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
+            
+             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof TumblerWorkRequest ){
+        TumblerWorkRequest tumblerWorkRequest = (TumblerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        tumblerWorkRequest.setStatus("Sent to Supplier");
+
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, tumblerWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
+             
+             
         }
         
        

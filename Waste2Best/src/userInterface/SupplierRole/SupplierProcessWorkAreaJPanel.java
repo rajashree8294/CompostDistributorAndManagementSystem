@@ -10,7 +10,9 @@ import business.models.Product.CropProduce;
 import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
+import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
@@ -38,6 +40,8 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     private User userAccount;
     private Enterprise enterprise;
     private int flag;
+    private FoodProductWorkRequest foRequest;
+    private TumblerWorkRequest tRequest;
     
     
     public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SellCropProduceWorkRequest request) {
@@ -57,6 +61,23 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         flag =2;
         }
+        
+          public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  FoodProductWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.foRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 3;
+    }
+         public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  TumblerWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.tRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 4;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
