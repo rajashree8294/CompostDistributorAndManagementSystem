@@ -180,10 +180,10 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if(request.getReceiver().getRole() instanceof SupplierRole)
-        {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
-        }else if(request.getReceiver().getRole() instanceof DistributorRole){
-                JOptionPane.showMessageDialog(null, "Request already assigned to Distributor");
+        
+       // if(request.getReceiver().getRole() instanceof SupplierRole)
+       if(!request.getStatus().equals("Sent"))
+        {JOptionPane.showMessageDialog(null, "Request already assigned or is in Process");
         }else{
         request.setReceiver(userAccount);
         request.setStatus("Pending");
@@ -200,15 +200,17 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-         if(request.getReceiver().getRole() instanceof SupplierRole)
-        {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
-        }else if(request.getReceiver().getRole() instanceof DistributorRole){
-                JOptionPane.showMessageDialog(null, "Request already assigned to Distributor");
-        }else{
+         if(request.getStatus().equals("Sent to Supplier"))
+        {JOptionPane.showMessageDialog(null, "Request  is in Process");
+        }else if(request.getStatus().equals("Sent")){
+            JOptionPane.showMessageDialog(null, "Assign Request to yourself and then Process");
+        }else
+            
+       {
          if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
         SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        sellCropProduceWorkRequest.setStatus("Processing");
+        sellCropProduceWorkRequest.setStatus("Sent to Supplier");
 
         ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
@@ -220,7 +222,7 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
              if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        compostGeneratedWorkRequest.setStatus("Processing");
+        compostGeneratedWorkRequest.setStatus("Sent to Supplier");
 
         ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);

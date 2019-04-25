@@ -12,6 +12,7 @@ import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.DistributorOrganization;
@@ -32,6 +33,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private final SupplierOrganization organization;
     private final Enterprise enterprise;
     private final User userAccount;
+    private static Boolean compostFlag = false;
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
@@ -41,6 +43,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        
         valueLabel.setText(enterprise.getName());
         populateTable();
         
@@ -74,14 +77,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
-        assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
+        assignJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         seedBtn = new javax.swing.JButton();
-        tumblerBtn = new javax.swing.JButton();
-        reqCompostButton = new javax.swing.JButton();
         processJButton1 = new javax.swing.JButton();
+        reqCompostButton = new javax.swing.JButton();
+        tumblerBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Supplier Dashboard");
@@ -94,14 +97,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText("<value>");
         add(valueLabel);
 
-        assignJButton.setText("Assign to me");
-        assignJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButtonActionPerformed(evt);
-            }
-        });
-        add(assignJButton);
-
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +104,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(processJButton);
+
+        assignJButton.setText("Assign to me");
+        assignJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignJButtonActionPerformed(evt);
+            }
+        });
+        add(assignJButton);
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,13 +151,13 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(seedBtn);
 
-        tumblerBtn.setText("Add Tumbler");
-        tumblerBtn.addActionListener(new java.awt.event.ActionListener() {
+        processJButton1.setText("Products");
+        processJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tumblerBtnActionPerformed(evt);
+                processJButton1ActionPerformed(evt);
             }
         });
-        add(tumblerBtn);
+        add(processJButton1);
 
         reqCompostButton.setText("Request Compost Test");
         reqCompostButton.addActionListener(new java.awt.event.ActionListener() {
@@ -164,13 +167,13 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(reqCompostButton);
 
-        processJButton1.setText("Products");
-        processJButton1.addActionListener(new java.awt.event.ActionListener() {
+        tumblerBtn.setText("Add Tumbler");
+        tumblerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                processJButton1ActionPerformed(evt);
+                tumblerBtnActionPerformed(evt);
             }
         });
-        add(processJButton1);
+        add(tumblerBtn);
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -182,8 +185,13 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if((request.getStatus().equals("Completed")||request.getStatus().equals("In Lab Testing")||request.getStatus().equals("In Progress by Supplier"))){
+          JOptionPane.showMessageDialog(null, "Request  is already in Process or Completed");  
+        }else{
+        
         request.setReceiver(userAccount);
-        request.setStatus("Pending");
+        request.setStatus("In Progress by Supplier");
+        }
         populateTable();
     }//GEN-LAST:event_assignJButtonActionPerformed
 
@@ -194,11 +202,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow < 0){
             return;
         }
-
+        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if(request.getStatus().equals("In Progress by Supplier")){
+            
+        
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
         SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        sellCropProduceWorkRequest.setStatus("Processing");
+        sellCropProduceWorkRequest.setStatus("Completed");
 
         SupplierProcessWorkAreaJPanel processWorkRequestJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, sellCropProduceWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
@@ -208,16 +219,23 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
             
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+            if(request.getStatus().equals("In Lab Testing")){
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        compostGeneratedWorkRequest.setStatus("Processing");
+        compostGeneratedWorkRequest.setStatus("Completed");
 
         SupplierProcessWorkAreaJPanel processWorkRequestJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-               
+            }else
+            {
+             JOptionPane.showMessageDialog(null, "Carry Lab Testing first");    
             }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Request  is already in Process or Completed"); 
+        }
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void seedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seedBtnActionPerformed
@@ -238,14 +256,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private void reqCompostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqCompostButtonActionPerformed
         // TODO add your handling code here:
          int selectedRow = workRequestJTable.getSelectedRow();
-
+         
         if (selectedRow < 0){
             return;
         }
 
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
+      compostGeneratedWorkRequest.setStatus("In Lab Testing");
       
 
       LabTestWorkRequest request = new LabTestWorkRequest();
@@ -267,7 +285,9 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
                
-            }
+            }else{
+            JOptionPane.showMessageDialog(null, "Please select only compost requests for testing");
+        }
         
         
         
