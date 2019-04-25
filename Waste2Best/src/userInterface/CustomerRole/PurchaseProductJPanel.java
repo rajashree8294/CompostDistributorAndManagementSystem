@@ -6,13 +6,14 @@
 package userInterface.CustomerRole;
 
 import business.models.Product.CropProduce;
-import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.FoodProductWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,6 +60,7 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
         productCombo = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         quanTxt = new javax.swing.JTextField();
+        quantError = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("Product Catalog");
@@ -106,6 +108,12 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Quantity");
 
+        quanTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                quanTxtFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,9 +131,6 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
                 .addGap(219, 219, 219)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(productCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
@@ -133,14 +138,19 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(quanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(487, 487, 487))
+                                .addGap(70, 70, 70)
+                                .addComponent(quantError, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(errorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addGap(0, 424, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,14 +165,20 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(quantError, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,7 +190,9 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(quanTxt.getText().equals("") || productCombo.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rightPanel, "Product ID or Quantity is empty");
+            JOptionPane.showMessageDialog(rightPanel, "Product ID or Quantity is empty", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if(!quantError.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rightPanel, "Enter valid quantity", "Error", JOptionPane.ERROR_MESSAGE);
         } else{
            int selectedRow = productTbl.getSelectedRow();
            CropProduce crop = (CropProduce) productTbl.getValueAt(selectedRow, 0);
@@ -182,7 +200,7 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
            if(crop.getPrice() < Double.parseDouble(quanTxt.getText())){
                JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available products", "Error", JOptionPane.ERROR_MESSAGE);
            } else {
-               FoodProductWorkRequest request = new FoodProductWorkRequest();
+                FoodProductWorkRequest request = new FoodProductWorkRequest();
                 request.setSender(userAccount);
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
@@ -206,6 +224,19 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void quanTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quanTxtFocusLost
+        String regex = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(quanTxt.getText());
+        
+        if(matcher.matches()){
+           quantError.setText("");
+        }
+        else{
+           quantError.setText("Quantity should be Numeric");
+        }
+    }//GEN-LAST:event_quanTxtFocusLost
 
     private void populateTable(){
         enterprise.getProductDirectory().getProducts().stream()
@@ -259,5 +290,6 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox productCombo;
     private javax.swing.JTable productTbl;
     private javax.swing.JTextField quanTxt;
+    private javax.swing.JLabel quantError;
     // End of variables declaration//GEN-END:variables
 }

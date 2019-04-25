@@ -13,6 +13,15 @@ package business.models.workRequest;
 public class TumblerWorkRequest extends WorkRequest{
     private String type;
     private int quantity;
+    private String productId;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     public String getType() {
         return type;

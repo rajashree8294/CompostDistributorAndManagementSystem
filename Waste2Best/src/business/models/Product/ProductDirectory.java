@@ -25,7 +25,7 @@ public class ProductDirectory {
     
     public Product createProduct(String type){
         Product product = productFactory(type);
-        product.setProductId("Prod-"+type+(++counter));
+        product.setProductId("Product/"+type+"/"+(++counter));
         productList.add(product);
         return product;
     }

@@ -5,7 +5,6 @@
  */
 package business.models.User;
 
-import business.models.Product.CropProduce;
 import business.models.Product.Tumbler;
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Customer extends User{
     private  ArrayList<Tumbler> tumbler;
-    private int registrationNumber;
+    private String registrationNumber;
     private int rewardPoints;
 
     
@@ -28,11 +27,11 @@ public class Customer extends User{
         this.tumbler = tumbler;
     }
 
-    public int getRegistrationNumber() {
+    public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(int registrationNumber) {
+    public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
 
