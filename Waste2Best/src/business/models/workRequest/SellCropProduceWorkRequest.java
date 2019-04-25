@@ -11,9 +11,8 @@ package business.models.workRequest;
  */
 public class SellCropProduceWorkRequest extends WorkRequest {
     
-    private String cropId;
-    private int cropQuantity;
     private String cropName;
+    private int cropQuantity;
     private double price;
     private double expenses;
     private double compostRequired;
@@ -33,8 +32,6 @@ public class SellCropProduceWorkRequest extends WorkRequest {
     public void setCompostRequired(double compostRequired) {
         this.compostRequired = compostRequired;
     }
-
-    
     
     public double getPrice() {
         return price;
@@ -42,15 +39,6 @@ public class SellCropProduceWorkRequest extends WorkRequest {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    
-    public String getCropId() {
-        return cropId;
-    }
-
-    public void setCropId(String cropId) {
-        this.cropId = cropId;
     }
 
     public int getCropQuantity() {
@@ -68,7 +56,4 @@ public class SellCropProduceWorkRequest extends WorkRequest {
     public void setCropName(String cropName) {
         this.cropName = cropName;
     }
-    
-    
-    
 }

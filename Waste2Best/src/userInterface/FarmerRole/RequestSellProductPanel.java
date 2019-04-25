@@ -8,6 +8,9 @@ package userInterface.FarmerRole;
 import business.models.User.User;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import enterprise.Enterprise;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import organizations.DistributorOrganization;
 import organizations.Organization;
@@ -35,12 +38,8 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        messageTextField = new javax.swing.JTextField();
         cropNameTextField = new javax.swing.JTextField();
-        cropIdTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
         cropQuantityTextField = new javax.swing.JTextField();
@@ -50,15 +49,22 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         cropPriceTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        expensesTxt = new javax.swing.JTextField();
+        cropExpensesTxt = new javax.swing.JTextField();
         compostRequiredTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-
-        jLabel1.setText("Message");
+        cropNameError = new javax.swing.JLabel();
+        cropQuantError = new javax.swing.JLabel();
+        cropPriceError = new javax.swing.JLabel();
+        cropExpError = new javax.swing.JLabel();
+        compostReqError = new javax.swing.JLabel();
 
         jLabel2.setText("Crop Name");
 
-        jLabel3.setText("Crop ID");
+        cropNameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cropNameTextFieldFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Sell Crop Produce");
@@ -70,6 +76,11 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
             }
         });
 
+        cropQuantityTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cropQuantityTextFieldFocusLost(evt);
+            }
+        });
         cropQuantityTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cropQuantityTextFieldActionPerformed(evt);
@@ -83,6 +94,11 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Crop Quantity");
 
+        cropPriceTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cropPriceTextFieldFocusLost(evt);
+            }
+        });
         cropPriceTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cropPriceTextFieldActionPerformed(evt);
@@ -93,12 +109,22 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Crop Expenses");
 
-        expensesTxt.addActionListener(new java.awt.event.ActionListener() {
+        cropExpensesTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cropExpensesTxtFocusLost(evt);
+            }
+        });
+        cropExpensesTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                expensesTxtActionPerformed(evt);
+                cropExpensesTxtActionPerformed(evt);
             }
         });
 
+        compostRequiredTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                compostRequiredTxtFocusLost(evt);
+            }
+        });
         compostRequiredTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compostRequiredTxtActionPerformed(evt);
@@ -114,25 +140,6 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cropQuantityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                            .addComponent(messageTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cropNameTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cropIdTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cropPriceTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                            .addComponent(expensesTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                            .addComponent(compostRequiredTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -141,9 +148,36 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
                             .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(submitButton)))
-                .addContainerGap(222, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(191, 191, 191)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(compostRequiredTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(213, 213, 213)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cropNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                                    .addComponent(cropQuantityTextField)
+                                    .addComponent(cropPriceTextField)
+                                    .addComponent(cropExpensesTxt))))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropQuantError, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropExpError, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(compostReqError, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,71 +190,78 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(valueLabel))
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cropNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cropNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cropQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))
+                            .addComponent(cropQuantError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cropNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cropPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7))
+                            .addComponent(cropPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cropIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cropQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cropPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(34, 34, 34))
+                        .addComponent(cropExpError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(expensesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cropExpensesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compostRequiredTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(compostRequiredTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9))
+                    .addComponent(compostReqError, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addComponent(submitButton)
-                .addGap(101, 101, 101))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-        
-          String message = messageTextField.getText();
-          String cropName = cropNameTextField.getText();
-          Double cropPrice = Double.parseDouble(cropPriceTextField.getText());
-          Integer cropQuantity =  Integer.valueOf(cropQuantityTextField.getText());
-          Double compostRequired = Double.parseDouble(compostRequiredTxt.getText());
-          Double expenses = Double.parseDouble(expensesTxt.getText());
-        
-        SellCropProduceWorkRequest request = new SellCropProduceWorkRequest();
-        request.setCropName(cropName);
-        request.setCropQuantity(cropQuantity);
-        request.setPrice(cropPrice);
-        request.setSender(user);
-        request.setStatus("Sent");
-        request.setExpenses(expenses);
-        request.setCompostRequired(compostRequired);
+       if(cropNameTextField.getText().equals("") || cropQuantityTextField.getText().equals("") || compostRequiredTxt.getText().equals("") 
+               || cropExpensesTxt.getText().equals("") || cropPriceTextField.getText().equals("")){
+           JOptionPane.showMessageDialog(userProcessContainer, "One or many field is empty", "Error", JOptionPane.ERROR_MESSAGE);
+       } else if(!cropNameError.getText().isEmpty() || !cropQuantError.getText().isEmpty() || !cropExpError.getText().isEmpty() 
+               || !cropPriceError.getText().isEmpty() || !compostReqError.getText().isEmpty()){
+           JOptionPane.showMessageDialog(userProcessContainer, "One or many field is having invalid data", "Error", JOptionPane.ERROR_MESSAGE);
+       } else{
+            String cropName = cropNameTextField.getText();
+            Double cropPrice = Double.parseDouble(cropPriceTextField.getText());
+            Integer cropQuantity =  Integer.valueOf(cropQuantityTextField.getText());
+            Double compostRequired = Double.parseDouble(compostRequiredTxt.getText());
+            Double expenses = Double.parseDouble(cropExpensesTxt.getText());
 
-        
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof DistributorOrganization){
-                org = organization;
-                break;
+            SellCropProduceWorkRequest request = new SellCropProduceWorkRequest();
+            request.setCropName(cropName);
+            request.setCropQuantity(cropQuantity);
+            request.setPrice(cropPrice);
+            request.setSender(user);
+            request.setStatus("Sent");
+            request.setExpenses(expenses);
+            request.setCompostRequired(compostRequired);
+
+
+            Organization org = null;
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof DistributorOrganization){
+                    org = organization;
+                    break;
+                }
             }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            user.getWorkQueue().getWorkRequestList().add(request);
+            if (org!=null){
+                org.getWorkQueue().getWorkRequestList().add(request);
+                user.getWorkQueue().getWorkRequestList().add(request);
+            }
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
@@ -232,32 +273,98 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cropPriceTextFieldActionPerformed
 
-    private void expensesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensesTxtActionPerformed
+    private void cropExpensesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropExpensesTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_expensesTxtActionPerformed
+    }//GEN-LAST:event_cropExpensesTxtActionPerformed
 
     private void compostRequiredTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compostRequiredTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_compostRequiredTxtActionPerformed
 
+    private void cropNameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cropNameTextFieldFocusLost
+        String regex = "^[A-Za-z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cropNameTextField.getText());
+        
+        if(matcher.matches()){
+           cropNameError.setText("");
+        }
+        else{
+           cropNameError.setText("Crop Name should be Alphabetic");
+        }
+    }//GEN-LAST:event_cropNameTextFieldFocusLost
+
+    private void cropQuantityTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cropQuantityTextFieldFocusLost
+        String regex = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cropQuantityTextField.getText());
+        
+        if(matcher.matches()){
+           cropQuantError.setText("");
+        }
+        else{
+           cropQuantError.setText("Quantity should be Numeric");
+        }
+    }//GEN-LAST:event_cropQuantityTextFieldFocusLost
+
+    private void cropPriceTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cropPriceTextFieldFocusLost
+        String regex = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cropPriceTextField.getText());
+        
+        if(matcher.matches()){
+           cropPriceError.setText("");
+        }
+        else{
+           cropPriceError.setText("Crop Price should be Numeric");
+        }
+    }//GEN-LAST:event_cropPriceTextFieldFocusLost
+
+    private void cropExpensesTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cropExpensesTxtFocusLost
+        String regex = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cropExpensesTxt.getText());
+        
+        if(matcher.matches()){
+           cropExpError.setText("");
+        }
+        else{
+           cropExpError.setText("Expenses should be Numeric");
+        }
+    }//GEN-LAST:event_cropExpensesTxtFocusLost
+
+    private void compostRequiredTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_compostRequiredTxtFocusLost
+        String regex = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(compostRequiredTxt.getText());
+        
+        if(matcher.matches()){
+           compostReqError.setText("");
+        }
+        else{
+           compostReqError.setText("Compost Require should be Numeric");
+        }
+    }//GEN-LAST:event_compostRequiredTxtFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel compostReqError;
     private javax.swing.JTextField compostRequiredTxt;
-    private javax.swing.JTextField cropIdTextField;
+    private javax.swing.JLabel cropExpError;
+    private javax.swing.JTextField cropExpensesTxt;
+    private javax.swing.JLabel cropNameError;
     private javax.swing.JTextField cropNameTextField;
+    private javax.swing.JLabel cropPriceError;
     private javax.swing.JTextField cropPriceTextField;
+    private javax.swing.JLabel cropQuantError;
     private javax.swing.JTextField cropQuantityTextField;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JTextField expensesTxt;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField messageTextField;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
