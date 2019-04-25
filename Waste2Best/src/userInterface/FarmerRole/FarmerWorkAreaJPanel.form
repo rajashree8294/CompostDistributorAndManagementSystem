@@ -25,7 +25,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" pref="316" max="-2" attributes="0"/>
-                      <EmptySpace pref="281" max="32767" attributes="0"/>
+                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <Component id="purchaseCompostButton" min="-2" pref="183" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="sellCropProduceBttn" min="-2" pref="183" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="orderBttn" min="-2" pref="200" max="-2" attributes="0"/>
@@ -48,6 +50,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="sellCropProduceBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="orderBttn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="purchaseCompostButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -120,5 +123,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="purchaseCompostButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Purchase Compost"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseCompostButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
