@@ -5,6 +5,7 @@
  */
 package userInterface.DistributorRole;
 
+import business.models.Role.DistributorRole;
 import business.models.Role.SupplierRole;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
@@ -181,8 +182,9 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
         if(request.getReceiver().getRole() instanceof SupplierRole)
         {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
+        }else if(request.getReceiver().getRole() instanceof DistributorRole){
+                JOptionPane.showMessageDialog(null, "Request already assigned to Distributor");
         }else{
-        
         request.setReceiver(userAccount);
         request.setStatus("Pending");
         }
@@ -200,6 +202,8 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
          if(request.getReceiver().getRole() instanceof SupplierRole)
         {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
+        }else if(request.getReceiver().getRole() instanceof DistributorRole){
+                JOptionPane.showMessageDialog(null, "Request already assigned to Distributor");
         }else{
          if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
         SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
