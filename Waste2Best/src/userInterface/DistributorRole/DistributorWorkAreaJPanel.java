@@ -5,12 +5,14 @@
  */
 package userInterface.DistributorRole;
 
+import business.models.Role.SupplierRole;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.DistributorOrganization;
@@ -177,8 +179,13 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if(request.getReceiver().getRole() instanceof SupplierRole)
+        {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
+        }else{
+        
         request.setReceiver(userAccount);
         request.setStatus("Pending");
+        }
         populateTable();
 
     }//GEN-LAST:event_assignJButtonActionPerformed
@@ -190,9 +197,11 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow < 0){
             return;
         }
-        
-       
-            if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
+        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+         if(request.getReceiver().getRole() instanceof SupplierRole)
+        {JOptionPane.showMessageDialog(null, "Request already Sent to Supplier");
+        }else{
+         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
         SellCropProduceWorkRequest sellCropProduceWorkRequest = (SellCropProduceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
         sellCropProduceWorkRequest.setStatus("Processing");
@@ -215,6 +224,10 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
                
             }
+        }
+        
+       
+          
             
         
       
