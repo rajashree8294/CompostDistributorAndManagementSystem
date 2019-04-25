@@ -6,6 +6,7 @@
 package userInterface.CustomerRole;
 
 import business.models.Product.CropProduce;
+import business.models.Product.Product;
 import business.models.User.User;
 import business.models.workRequest.FoodProductWorkRequest;
 import enterprise.Enterprise;
@@ -14,22 +15,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.DistributorOrganization;
 import organizations.Organization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author lenovo
  */
 public class PurchaseProductJPanel extends javax.swing.JPanel {
+    private final User userAccount;
     private final JPanel rightPanel;
     private final Enterprise enterprise;
     private final ArrayList<CropProduce> crops = new ArrayList<>();
-    private final User userAccount;
+    private final Logger logger = LoggerFactory.getLogger(PurchaseProductJPanel.class);
 
     PurchaseProductJPanel(JPanel rightPanel, Enterprise enterprise, User userAccount) {
         this.rightPanel = rightPanel;
@@ -194,10 +199,12 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
         } else if(!quantError.getText().isEmpty()){
             JOptionPane.showMessageDialog(rightPanel, "Enter valid quantity", "Error", JOptionPane.ERROR_MESSAGE);
         } else{
-           int selectedRow = productTbl.getSelectedRow();
-           CropProduce crop = (CropProduce) productTbl.getValueAt(selectedRow, 0);
+           String prodId = String.valueOf(productCombo.getSelectedItem());
            
-           if(crop.getPrice() < Double.parseDouble(quanTxt.getText())){
+           Product product1 = enterprise.getProductDirectory().getProducts().stream()
+                              .filter(product -> product.getProductId().equalsIgnoreCase(prodId)).findFirst().orElse(null);
+           
+           if(product1.getQuantity()< Double.parseDouble(quanTxt.getText())){
                JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available products", "Error", JOptionPane.ERROR_MESSAGE);
            } else {
                 FoodProductWorkRequest request = new FoodProductWorkRequest();
@@ -205,9 +212,9 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
                 request.setQuantity(Double.parseDouble(quanTxt.getText()));
-                request.setProductName(crop.getName());
-                request.setProductPrice(crop.getPrice());
-                request.setProductId(crop.getProductId());
+                request.setProductName(product1.getName());
+                request.setProductPrice(product1.getPrice());
+                request.setProductId(product1.getProductId());
                 request.setMessage("Product Request");
                 
                 Organization org = null;
@@ -239,13 +246,14 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_quanTxtFocusLost
 
     private void populateTable(){
-        enterprise.getProductDirectory().getProducts().stream()
+        try{
+            enterprise.getProductDirectory().getProducts().stream()
                   .filter(product -> {
-                        if(product.getProductType().equalsIgnoreCase("crop")){
+                           if(product.getProductType().equalsIgnoreCase("crop")){
                             crops.add((CropProduce)product);
-                        }
-                        return !crops.isEmpty();
-                  }).findAny();
+                           }
+                        return !crops.isEmpty();                    
+                  }).collect(Collectors.toList());
         
         if(crops.isEmpty()){
             JOptionPane.showMessageDialog(rightPanel, "No Products has been added for sale.");
@@ -265,6 +273,9 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
             }).forEach((row)->{
                 defaultTableModel.addRow(row);
             });
+        }
+        }catch(NullPointerException e){
+            logger.warn("NullPointer exception while populating table in PurchaseProductJPanel");
         }
     }
     

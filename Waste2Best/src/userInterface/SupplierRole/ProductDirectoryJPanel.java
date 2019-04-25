@@ -8,6 +8,7 @@ package userInterface.SupplierRole;
 import enterprise.Enterprise;
 import javax.swing.table.DefaultTableModel;
 import business.models.Product.*;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -38,10 +39,11 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductDirectoryTable = new javax.swing.JTable();
-        productComboBox = new javax.swing.JComboBox<>();
+        productDirTbl = new javax.swing.JTable();
+        productComboBox = new javax.swing.JComboBox<String>();
+        deleteBtn = new javax.swing.JButton();
 
-        ProductDirectoryTable.setModel(new javax.swing.table.DefaultTableModel(
+        productDirTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -52,12 +54,19 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane1.setViewportView(ProductDirectoryTable);
+        jScrollPane1.setViewportView(productDirTbl);
 
-        productComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seed", "Tumbler", "Crop" }));
+        productComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seed", "Tumbler", "Crop" }));
         productComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productComboBoxActionPerformed(evt);
+            }
+        });
+
+        deleteBtn.setText("Delete Item");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
             }
         });
 
@@ -69,8 +78,11 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                 .addGap(236, 236, 236)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(330, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(deleteBtn)))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,43 +90,54 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addComponent(productComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteBtn)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(447, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void productComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productComboBoxActionPerformed
-        // TODO add your handling code here:
-            
     String value = productComboBox.getSelectedItem().toString();
     
-    if (value.equals("Crop"))
-            {
+        switch (value) {
+            case "Crop":
                 pFlag = 1;
                 populatetable(pFlag);
-            }
-    else if (value.equals("Tumbler"))
-            {
+                break;
+            case "Tumbler":
                 pFlag = 2;
                 populatetable(pFlag);
-            }
-    else if(value.equals("Seed"))
-            {
+                break;
+            case "Seed":
                 pFlag = 3;
                 populatetable(pFlag);
-            }
+                break;
+        }
     }//GEN-LAST:event_productComboBoxActionPerformed
 
-
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int selectedRow = productDirTbl.getSelectedRow();
+        
+        if(selectedRow >= 0){
+            int decision = JOptionPane.showConfirmDialog(rightPanel, "Do you really want to remove this Item from Product directory?", "Warning", JOptionPane.YES_NO_OPTION);
+            if(decision == JOptionPane.YES_OPTION){
+                Product product = (Product) productDirTbl.getValueAt(selectedRow, 0);
+                enterprise.getProductDirectory().removeItem(product);
+                JOptionPane.showMessageDialog(rightPanel, "Product deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                populatetable(pFlag);
+            }
+        } else
+            JOptionPane.showMessageDialog(rightPanel, "Please select a row.", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 public void populatetable(int n)
 {
-    DefaultTableModel model = (DefaultTableModel)ProductDirectoryTable.getModel();
+    DefaultTableModel model = (DefaultTableModel)productDirTbl.getModel();
         
         model.setRowCount(0);
         
-        for(Product p : enterprise.getProductDirectory().getProducts()){
-            
+        enterprise.getProductDirectory().getProducts().stream().forEach((p) -> {
             Object[] row = new Object[6];
             
             if (n==1)
@@ -126,9 +149,6 @@ public void populatetable(int n)
                     row[2] = ((CropProduce) p).getProductId();
                     row[3] = ((CropProduce) p).getPrice();
                     row[4] = ((CropProduce) p).getCropQuantity();
-                    
-
-
                     model.addRow(row);
                 }
             }
@@ -141,20 +161,15 @@ public void populatetable(int n)
                     row[2] = ((Tumbler) p).getProductId();
                     row[3] = ((Tumbler) p).getPrice();
                     row[4] = ((Tumbler) p).getCapacity();
-                    
-
-
                     model.addRow(row);
                 }
             }
-            
-
-
-        }
+        });
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ProductDirectoryTable;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> productComboBox;
+    private javax.swing.JTable productDirTbl;
     // End of variables declaration//GEN-END:variables
 }

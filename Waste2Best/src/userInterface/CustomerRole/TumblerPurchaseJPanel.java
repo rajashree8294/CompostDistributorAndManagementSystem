@@ -5,6 +5,7 @@
  */
 package userInterface.CustomerRole;
 
+import business.models.Product.Product;
 import business.models.Product.Tumbler;
 import business.models.User.User;
 import business.models.workRequest.TumblerWorkRequest;
@@ -239,22 +240,20 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
         } else if(!quantError.getText().isEmpty()){
             JOptionPane.showMessageDialog(rightPanel, "Enter valid quantity", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int selectedRow = tumblerTbl.getSelectedRow();
-            Tumbler tumbler = (Tumbler) tumblerTbl.getValueAt(selectedRow, 0);
+            String prodId = String.valueOf(productCombo.getSelectedItem());
+            Product tumbler = enterprise.getProductDirectory().getProducts().stream()
+                              .filter(product -> product.getProductId().equalsIgnoreCase(prodId)).findFirst().orElse(null);
             
             if(tumbler.getQuantity() < Double.parseDouble(quantityTxt.getText())) {
                 JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available tumblers", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                String type = String.valueOf(productCombo.getSelectedItem());
-                int quantity = Integer.parseInt(quantityTxt.getText());
-
                 TumblerWorkRequest request = new TumblerWorkRequest();
                 request.setSender(userAccount);
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
-                request.setQuantity(quantity);
+                request.setQuantity(Integer.parseInt(quantityTxt.getText()));
                 request.setMessage("New Tumbler Request");
-                request.setProductId(type);
+                request.setProductId(prodId);
                 
                 Organization org = null;
                 for (Organization orgz : enterprise.getOrganizationDirectory().getOrganizationList()){
