@@ -241,7 +241,8 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         compost.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
         compost.setName(cGrequest.getCompostUserName());
         compost.setQuantity(cGrequest.getCompostQuantity());
-        compost.setPrice(sCrequest.getPrice());
+     //   compost.setPrice(sCrequest.getPrice());
+        compost.setProductType("compost");
         }
         
         if (flag==3){
@@ -264,7 +265,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
             tRequest.setStatus("Completed");
         }
         if (flag==5){
-              processLabel.setText("Sending Tumbler to Customer");
+              processLabel.setText("Sending Compost to Farmer");
             String message = messageJTextField.getText();
             enterprise.getProductDirectory().getProducts().stream().forEach(product -> {
                 if(product.getProductId().equalsIgnoreCase(pCRequest.getProductId())){

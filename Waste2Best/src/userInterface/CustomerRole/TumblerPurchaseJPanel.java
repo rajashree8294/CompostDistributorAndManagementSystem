@@ -112,6 +112,11 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
         jLabel1.setText("Purchase Tumbler");
 
         productCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Small-S", "Medium-M", "Large-L" }));
+        productCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productComboActionPerformed(evt);
+            }
+        });
 
         quantityLabel.setText("Quantity");
 
@@ -282,6 +287,10 @@ public class TumblerPurchaseJPanel extends javax.swing.JPanel {
            quantError.setText("Quantity should be Numeric");
         }
     }//GEN-LAST:event_quantityTxtFocusLost
+
+    private void productComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
