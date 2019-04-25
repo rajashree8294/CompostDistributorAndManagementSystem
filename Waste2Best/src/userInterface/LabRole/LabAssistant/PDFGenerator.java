@@ -13,16 +13,21 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.ZapfDingbatsList;
 import com.itextpdf.text.pdf.PdfWriter;
 import enterprise.Enterprise;
+import java.util.ArrayList;
 import javax.swing.JPanel;
  
 public class PDFGenerator
 {
     
    private LabTestWorkRequest request;
+    private final int n;
+    private final int p;
+    private final int k;
    
-   
-   public PDFGenerator( LabTestWorkRequest  request) {
-       
+   public PDFGenerator( LabTestWorkRequest  request,int n, int p, int k) {
+       this.n=n;
+       this.p=p;
+       this.k=k;
         this.request = request;
         generate();
       
@@ -35,11 +40,20 @@ public class PDFGenerator
          PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("CompostReport.pdf"));
          document.open();
          document.add(new Paragraph("Compost Report."));
+         document.add(new Paragraph(request.getCompostUserName().toString()));
          ZapfDingbatsList zapfDingbatsList = new ZapfDingbatsList(43, 30);
-         zapfDingbatsList.add(new ListItem("Nitrogen Value is"+request.getNitrogen()));
-         zapfDingbatsList.add(new ListItem("Phosphorous value is"+ request.getPhosphorous()));
-         zapfDingbatsList.add(new ListItem("Potassium Value is"+ request.getPotassium()));
+         zapfDingbatsList.add(new ListItem("Nitrogen Value is"+n));
+         zapfDingbatsList.add(new ListItem("Phosphorous value is"+ p));
+         zapfDingbatsList.add(new ListItem("Potassium Value is"+ k));
          document.add(zapfDingbatsList);
+         document.add(new Paragraph("Following metal traces are found"));
+         ArrayList arr = request.getMetalContents();
+          ZapfDingbatsList l = new ZapfDingbatsList(43, 30);
+         for (int i = 0; i < arr.size(); i++){
+             l.add(new ListItem(arr.get(i).toString()));
+             document.add(l);
+         }
+         
          document.close();
          writer.close();
       } catch (DocumentException e)

@@ -10,6 +10,7 @@ import business.models.workRequest.LabTestWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import organizations.DistributorOrganization;
@@ -137,14 +138,14 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                             .addGap(21, 21, 21)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addGap(44, 44, 44)
                             .addComponent(assignJButton)
                             .addGap(220, 220, 220)
-                            .addComponent(processJButton))))
-                .addContainerGap(592, Short.MAX_VALUE))
+                            .addComponent(processJButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,8 +173,13 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
+        if (!request.getStatus().equals("Sent")){
+             JOptionPane.showMessageDialog(null, "Request already in process");
+        }else{
+            request.setReceiver(userAccount);
         request.setStatus("Pending");
+        }
+        
         populateTable();
     }//GEN-LAST:event_assignJButtonActionPerformed
 
@@ -184,8 +190,11 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow < 0){
             return;
         }
-
-        if (workRequestJTable.getValueAt(selectedRow, 0) instanceof LabTestWorkRequest ){
+        WorkRequest req = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+      if(req.getStatus().equals("Sent")){
+          JOptionPane.showMessageDialog(null, "Assign to yourself and then Process");
+      }else if (req.getStatus().equals("Pending")||req.getStatus().equals("Processing")){
+            if (workRequestJTable.getValueAt(selectedRow, 0) instanceof LabTestWorkRequest ){
             LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
             labTestWorkRequest.setStatus("Processing");
@@ -196,6 +205,10 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
 
         }
+      }else{
+           JOptionPane.showMessageDialog(null, "Either completed or already in process");
+      
+      }
 
       
 
