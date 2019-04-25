@@ -9,7 +9,7 @@ package business.models.Product;
  *
  * @author tinyteddybear
  */
-abstract class Product {
+public class Product {
     private String productId;
     private String name;
     private double price;

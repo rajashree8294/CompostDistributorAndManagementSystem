@@ -7,12 +7,11 @@ package userInterface.LabRole.LabAssistant;
 
 import business.models.User.User;
 import business.models.workRequest.LabTestWorkRequest;
-import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,6 +23,9 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     LabTestWorkRequest request;
     User userAccount;
     Enterprise enterprise;
+    int valueN, valueP, valueK;
+    private final Logger logger = LoggerFactory.getLogger(LabAssistantProcessJPanel.class);
+    
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
@@ -36,8 +38,7 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
          populateCombo();
     }
      
-     public void populateCombo(){
-         
+     public void populateCombo(){         
          ratingJComboBox.addItem("1");
          ratingJComboBox.addItem("2");
          ratingJComboBox.addItem("3");
@@ -70,15 +71,21 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         workRequestJTable1 = new javax.swing.JTable();
         zincCheckBox = new javax.swing.JCheckBox();
         mangeneseCheckBox = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
+        completeReqBtn = new javax.swing.JButton();
         nitrogenJslider = new javax.swing.JSlider();
         sulphurCheckBox = new javax.swing.JCheckBox();
         phosphorousJslider = new javax.swing.JSlider();
         ratingLabel = new javax.swing.JLabel();
-        ratingJComboBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        ratingJComboBox = new javax.swing.JComboBox<String>();
+        compostAnalysisBtn = new javax.swing.JButton();
 
         carbonCheckBox.setText("Carbon");
+
+        potassiumJslider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                potassiumJsliderStateChanged(evt);
+            }
+        });
 
         magnesiumCheckBox.setText("Magnesium");
 
@@ -131,23 +138,35 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
 
         mangeneseCheckBox.setText("Mangenese");
 
-        jButton3.setText("Complete Request");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        completeReqBtn.setText("Complete Request");
+        completeReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                completeReqBtnActionPerformed(evt);
+            }
+        });
+
+        nitrogenJslider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                nitrogenJsliderStateChanged(evt);
             }
         });
 
         sulphurCheckBox.setText("Sulphur");
 
+        phosphorousJslider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                phosphorousJsliderStateChanged(evt);
+            }
+        });
+
         ratingLabel.setText("Rating");
 
-        ratingJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ratingJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Compost Analysis");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        compostAnalysisBtn.setText("Compost Analysis");
+        compostAnalysisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                compostAnalysisBtnActionPerformed(evt);
             }
         });
 
@@ -169,9 +188,9 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(completeReqBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(compostAnalysisBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -209,8 +228,8 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1))
+                            .addComponent(completeReqBtn)
+                            .addComponent(compostAnalysisBtn))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +244,7 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                                 .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35))
                             .addComponent(potassiumJslider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(190, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(sulphurCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -251,15 +270,11 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-       
+    private void completeReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeReqBtnActionPerformed
        nitrogenJslider.setPreferredSize(new Dimension(40, 0));
        phosphorousJslider.setPreferredSize(new Dimension (40,0));
        potassiumJslider.setPreferredSize(new Dimension (40,0));
-       int valueN = nitrogenJslider.getValue();
-       int valueP = phosphorousJslider.getValue();
-       int valueK = potassiumJslider.getValue();
+       logger.info("Sending NPK Values: {}{}{}", valueN, valueP, valueK);
        request.setNitrogen(valueN);
        request.setPhosphorous(valueP);
        request.setPotassium(valueK);
@@ -291,20 +306,37 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
            request.addMetalContents("Copper");
        }
      
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_completeReqBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void compostAnalysisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compostAnalysisBtnActionPerformed
+        logger.info("Sending NPK Values: {}{}{}", valueN, valueP, valueK);
+        PieChartAnalysis ex = new PieChartAnalysis(valueN, valueP, valueK);
+        ex.setVisible(true);
+    }//GEN-LAST:event_compostAnalysisBtnActionPerformed
+
+    private void nitrogenJsliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nitrogenJsliderStateChanged
+        valueN = nitrogenJslider.getValue();
+        logger.info("Nitrogen Value changed: {}{}{}", valueN); 
+    }//GEN-LAST:event_nitrogenJsliderStateChanged
+
+    private void phosphorousJsliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_phosphorousJsliderStateChanged
+        valueP = phosphorousJslider.getValue();
+        logger.info("Phosphorous Value changed: {}{}{}", valueP);
+    }//GEN-LAST:event_phosphorousJsliderStateChanged
+
+    private void potassiumJsliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_potassiumJsliderStateChanged
+        valueK = potassiumJslider.getValue();
+        logger.info("Potassium Value changed: {}{}{}", valueK);
+    }//GEN-LAST:event_potassiumJsliderStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox carbonCheckBox;
+    private javax.swing.JButton completeReqBtn;
+    private javax.swing.JButton compostAnalysisBtn;
     private javax.swing.JCheckBox copperCheckBox;
     private javax.swing.JCheckBox iodineCheckBox;
     private javax.swing.JCheckBox ironCheckBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

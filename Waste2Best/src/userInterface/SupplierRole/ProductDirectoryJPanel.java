@@ -10,20 +10,23 @@ import organizations.Organization;
 import business.models.Product.ProductDirectory;
 import business.models.workRequest.WorkRequest;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.Iterator;
+import business.models.Product.*;
+import javax.swing.JPanel;
 
 /**
  *
  * @author tinyteddybear
  */
+
 public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProductDirectoryJPanel
      */
+    private int pFlag;
     private Enterprise enterprise;
-    public ProductDirectoryJPanel(Enterprise enterprise) {
+    private JPanel rightPanel;
+    public ProductDirectoryJPanel(Enterprise enterprise,JPanel rightPanel) {
         initComponents();
         this.enterprise=enterprise;
     }
@@ -43,18 +46,18 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
         ProductDirectoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(ProductDirectoryTable);
 
-        productComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seed", "Tumbler", "Crop" }));
         productComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productComboBoxActionPerformed(evt);
@@ -85,15 +88,55 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
     private void productComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productComboBoxActionPerformed
         // TODO add your handling code here:
+            
+    String value = productComboBox.getSelectedItem().toString();
+    
+    if (value.equals("Crop"))
+            {
+                pFlag = 1;
+                populatetable(pFlag);
+            }
+    else if (value.equals("Tumbler"))
+            {
+                pFlag = 2;
+            }
+    else if(value.equals("Seed"))
+            {
+                pFlag = 3;
+            }
     }//GEN-LAST:event_productComboBoxActionPerformed
 
-public void popOrganizationComboBox() {
-        productComboBox.removeAllItems();
-}
 
-public void populatetable()
+
+public void populatetable(int n)
 {
-    
+    DefaultTableModel model = (DefaultTableModel)ProductDirectoryTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(Product p : enterprise.getProductDirectory().getProducts()){
+            
+            Object[] row = new Object[6];
+            
+            if (n==1)
+            {
+                if (p instanceof CropProduce)
+                {
+                    row[0] = p;
+                    row[1] = p.getName();
+                    row[2] = p.getProductId();
+                    row[3] = p.getQuantity();
+                    row[4] = p.getPrice();
+                    row[5] = p.gettPrice();
+
+                    model.addRow(row);
+                }
+            }
+            
+            
+
+
+        }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ProductDirectoryTable;
