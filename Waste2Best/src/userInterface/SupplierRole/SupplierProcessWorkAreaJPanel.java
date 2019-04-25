@@ -32,19 +32,31 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form SupplierProcessWorkAreaJPanel
      */
     
-    JPanel userProcessContainer;
-    WorkRequest request;
-    User userAccount;
-    Enterprise enterprise;
+    private JPanel userProcessContainer;
+    private SellCropProduceWorkRequest sCrequest;
+    private CompostGeneratedWorkRequest cGrequest;
+    private User userAccount;
+    private Enterprise enterprise;
+    private int flag;
     
-    public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, WorkRequest request) {
+    
+    public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SellCropProduceWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.request = request;
+        sCrequest = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
-        
+        flag=1;
     }
+    
+        public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, CompostGeneratedWorkRequest request) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        cGrequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag =2;
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,13 +166,13 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         //  request.setTestResult(resultJTextField.getText());
         String message = messageJTextField.getText();
-        request.setMessage(message);
-        request.setReceiver(userAccount);
-        request.setStatus("Sent to Supplier");
+        sCrequest.setMessage(message);
+        sCrequest.setReceiver(userAccount);
+        sCrequest.setStatus("Sent to Supplier");
 
         CropProduce crop = (CropProduce) enterprise.getProductDirectory().createProduct("crop");
         crop.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
-        crop.setName(request.getMessage());
+        crop.setName(sCrequest.getMessage());
 
         JOptionPane.showMessageDialog(null, "Seed Added Successfully");
 
