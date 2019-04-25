@@ -7,8 +7,10 @@ package userInterface.SupplierRole;
 
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
+import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
+import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
@@ -233,6 +235,34 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(null, "Carry Lab Testing first");    
             }
             }
+        
+            if (workRequestJTable.getValueAt(selectedRow, 0) instanceof FoodProductWorkRequest ){
+        FoodProductWorkRequest foodProductWorkRequest = (FoodProductWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        foodProductWorkRequest.setStatus("Completed");
+
+        SupplierProcessWorkAreaJPanel supplierProcessWorkAreaJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, foodProductWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", supplierProcessWorkAreaJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
+            
+             if (workRequestJTable.getValueAt(selectedRow, 0) instanceof TumblerWorkRequest ){
+        TumblerWorkRequest tumblerWorkRequest = (TumblerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        tumblerWorkRequest.setStatus("Completed");
+
+        SupplierProcessWorkAreaJPanel supplierProcessWorkAreaJPanel = new SupplierProcessWorkAreaJPanel(userProcessContainer,userAccount,enterprise, tumblerWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", supplierProcessWorkAreaJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+               
+            }
+        
+        
+        
+        
         }else if (request.getStatus().equals("Sent to Supplier")){
             JOptionPane.showMessageDialog(null, "Assign to Yourself"); 
         }else{

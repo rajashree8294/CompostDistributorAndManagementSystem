@@ -46,6 +46,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     
     public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SellCropProduceWorkRequest request) {
         initComponents();
+        processLabel.setText("Adding Crop Produce to Directory");
         this.userProcessContainer = userProcessContainer;
         sCrequest = request;
         this.userAccount=userAccount;
@@ -55,6 +56,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     
         public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, CompostGeneratedWorkRequest request) {
         initComponents();
+         processLabel.setText("Adding Compost to Directory");
         this.userProcessContainer = userProcessContainer;
         cGrequest = request;
         this.userAccount=userAccount;
@@ -64,6 +66,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         
           public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  FoodProductWorkRequest request) {
         initComponents();
+         processLabel.setText("Sending Food to Customer");
         this.userProcessContainer = userProcessContainer;
         this.foRequest = request;
         this.userAccount=userAccount;
@@ -72,6 +75,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     }
          public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  TumblerWorkRequest request) {
         initComponents();
+         processLabel.setText("Sending Tumbler to Customer");
         this.userProcessContainer = userProcessContainer;
         this.tRequest = request;
         this.userAccount=userAccount;
@@ -93,6 +97,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         submitJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        processLabel = new javax.swing.JLabel();
 
         messageJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,29 +121,37 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Message:");
 
+        processLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backJButton)
-                    .addComponent(jLabel1))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(backJButton)
+                            .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(586, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submitJButton)
+                                .addGap(63, 63, 63))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                        .addComponent(submitJButton)
-                        .addGap(63, 63, 63))))
+                        .addGap(9, 9, 9)
+                        .addComponent(processLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addComponent(processLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,7 +159,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(backJButton))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -154,16 +167,16 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,10 +199,12 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         //  request.setTestResult(resultJTextField.getText());
+        if(flag==1){
+        processLabel.setText("Adding Crop Produce to Directory");
         String message = messageJTextField.getText();
         sCrequest.setMessage(message);
         sCrequest.setReceiver(userAccount);
-        sCrequest.setStatus("Sent to Supplier");
+        sCrequest.setStatus("Completed");
 
         CropProduce crop = (CropProduce) enterprise.getProductDirectory().createProduct("crop");
         crop.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
@@ -200,8 +215,32 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         crop.setPrice(sCrequest.getPrice());
         
 
-        JOptionPane.showMessageDialog(null, "Seed Added Successfully");
-
+        JOptionPane.showMessageDialog(null, "Crop Produce Added Successfully");
+        }
+        
+        if (flag==2){
+                        processLabel.setText("Adding Compost to Directory");
+            String message = messageJTextField.getText();
+        cGrequest.setMessage(message);
+        cGrequest.setReceiver(userAccount);
+        cGrequest.setStatus("Completed");
+        }
+        
+        if (flag==3){
+            processLabel.setText("Sending Food to Customer");
+            String message = messageJTextField.getText();
+        foRequest.setMessage(message);
+        foRequest.setReceiver(userAccount);
+        foRequest.setStatus("Completed");
+        }
+        if (flag==4){
+             processLabel.setText("Sending Tumbler to Customer");
+            String message = messageJTextField.getText();
+        tRequest.setMessage(message);
+        tRequest.setReceiver(userAccount);
+        tRequest.setStatus("Completed");
+            
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
 
@@ -210,6 +249,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField messageJTextField;
+    private javax.swing.JLabel processLabel;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }
