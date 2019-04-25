@@ -33,7 +33,18 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         this.request = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
+         populateCombo();
     }
+     
+     public void populateCombo(){
+         
+         ratingJComboBox.addItem("1");
+         ratingJComboBox.addItem("2");
+         ratingJComboBox.addItem("3");
+         ratingJComboBox.addItem("4");
+         ratingJComboBox.addItem("5");
+     }
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +74,9 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         nitrogenJslider = new javax.swing.JSlider();
         sulphurCheckBox = new javax.swing.JCheckBox();
         phosphorousJslider = new javax.swing.JSlider();
+        ratingLabel = new javax.swing.JLabel();
+        ratingJComboBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         carbonCheckBox.setText("Carbon");
 
@@ -126,6 +140,17 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
 
         sulphurCheckBox.setText("Sulphur");
 
+        ratingLabel.setText("Rating");
+
+        ratingJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Compost Analysis");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,14 +168,19 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                         .addGap(277, 277, 277))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(ratingLabel))
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(potassiumJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -178,7 +208,9 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +241,10 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(iodineCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(zincCheckBox)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(zincCheckBox)
+                            .addComponent(ratingLabel)
+                            .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mangeneseCheckBox)
                         .addGap(89, 89, 89))))
@@ -218,16 +253,19 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-       nitrogenJslider.setPreferredSize(new Dimension(150, 30));
-       phosphorousJslider.setPreferredSize(new Dimension (150,30));
-       potassiumJslider.setPreferredSize(new Dimension (150,30));
+       
+       nitrogenJslider.setPreferredSize(new Dimension(40, 0));
+       phosphorousJslider.setPreferredSize(new Dimension (40,0));
+       potassiumJslider.setPreferredSize(new Dimension (40,0));
        int valueN = nitrogenJslider.getValue();
        int valueP = phosphorousJslider.getValue();
        int valueK = potassiumJslider.getValue();
        request.setNitrogen(valueN);
        request.setPhosphorous(valueP);
        request.setPotassium(valueK);
+       request.setResult(ratingJComboBox.getSelectedItem().toString());
+       request.setStatus("Completed"+" Rating is "+request.getResult());
+       
        if(sulphurCheckBox.isSelected()){
            request.addMetalContents("Sulphur");
        }
@@ -255,12 +293,17 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
      
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox carbonCheckBox;
     private javax.swing.JCheckBox copperCheckBox;
     private javax.swing.JCheckBox iodineCheckBox;
     private javax.swing.JCheckBox ironCheckBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel2;
@@ -273,6 +316,8 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     private javax.swing.JSlider nitrogenJslider;
     private javax.swing.JSlider phosphorousJslider;
     private javax.swing.JSlider potassiumJslider;
+    private javax.swing.JComboBox<String> ratingJComboBox;
+    private javax.swing.JLabel ratingLabel;
     private javax.swing.JCheckBox sulphurCheckBox;
     private javax.swing.JTable workRequestJTable1;
     private javax.swing.JCheckBox zincCheckBox;

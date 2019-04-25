@@ -143,7 +143,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        DistributorWorkAreaJPanel dwjp = (DistributorWorkAreaJPanel) component;
+        SupplierWorkAreaJPanel dwjp = (SupplierWorkAreaJPanel) component;
         dwjp.populateTable();
         
 

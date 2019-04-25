@@ -24,7 +24,7 @@
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="tumblerBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="reqCompostButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="assignJButton" min="-2" max="-2" attributes="0"/>
@@ -72,7 +72,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="seedBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tumblerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="reqCompostButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
@@ -178,12 +178,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tumblerBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="reqCompostButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Request Compost Test"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reqCompostButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

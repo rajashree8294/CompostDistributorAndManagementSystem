@@ -17,9 +17,18 @@ public class LabTestWorkRequest extends WorkRequest {
       private float potassium;
       private float phosphorous;
       private ArrayList<String> metalContents;
+      private String result;
       
         public LabTestWorkRequest(){
         metalContents = new ArrayList<>();
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
       
 
