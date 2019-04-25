@@ -205,7 +205,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if(request.getStatus().equals("In Progress by Supplier")||request.getStatus().equals("In Lab Testing")){
+        if(request.getStatus().equals("In Progress by Supplier")||request.getStatus().contains("Completed Rating is")){
             
         
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
@@ -221,7 +221,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
             
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
-            if(request.getStatus().equals("In Lab Testing")){
+            if(request.getStatus().contains("Completed Rating is")){
         CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
         compostGeneratedWorkRequest.setStatus("Completed");
@@ -297,15 +297,15 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             if(!req.getStatus().equals("In Progress by Supplier")){
                 JOptionPane.showMessageDialog(null, "Request  already in Lab Testing or completed"); 
             }else{
-        CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-      compostGeneratedWorkRequest.setStatus("In Lab Testing");
+      CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+      compostGeneratedWorkRequest.setStatus("Sent to Lab");
       populateTable();
 
       LabTestWorkRequest request = new LabTestWorkRequest();
        
         
         request.setSender(userAccount);
-        request.setStatus("Sent");
+      //  request.setStatus("Sent to Lab");
         request.setCompostUserName(compostGeneratedWorkRequest.getCompostUserName());
         
          Organization org = null;
@@ -316,8 +316,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
         if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
+            org.getWorkQueue().getWorkRequestList().add(compostGeneratedWorkRequest);
+            userAccount.getWorkQueue().getWorkRequestList().add(compostGeneratedWorkRequest);
         }
                
             }   }else{

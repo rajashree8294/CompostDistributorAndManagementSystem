@@ -6,6 +6,7 @@
 package userInterface.LabRole.LabAssistant;
 
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
 import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
@@ -173,11 +174,11 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if (!request.getStatus().equals("Sent")){
+        if (!request.getStatus().equals("Sent to Lab")){
              JOptionPane.showMessageDialog(null, "Request already in process");
         }else{
             request.setReceiver(userAccount);
-        request.setStatus("Pending");
+        request.setStatus("Pending by Lab");
         }
         
         populateTable();
@@ -191,15 +192,15 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest req = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-      if(req.getStatus().equals("Sent")){
+      if(req.getStatus().equals("Sent to Lab")){
           JOptionPane.showMessageDialog(null, "Assign to yourself and then Process");
-      }else if (req.getStatus().equals("Pending")||req.getStatus().equals("Processing")){
-            if (workRequestJTable.getValueAt(selectedRow, 0) instanceof LabTestWorkRequest ){
-            LabTestWorkRequest labTestWorkRequest = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+      }else if (req.getStatus().equals("Pending by Lab")||req.getStatus().equals("Processing by Lab")){
+            if (workRequestJTable.getValueAt(selectedRow, 0) instanceof CompostGeneratedWorkRequest ){
+            CompostGeneratedWorkRequest compostGeneratedWorkRequest = (CompostGeneratedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-            labTestWorkRequest.setStatus("Processing");
+            compostGeneratedWorkRequest.setStatus("Processing by Lab");
 
-            LabAssistantProcessJPanel processWorkRequestJPanel = new LabAssistantProcessJPanel(userProcessContainer,userAccount,enterprise, labTestWorkRequest);
+            LabAssistantProcessJPanel processWorkRequestJPanel = new LabAssistantProcessJPanel(userProcessContainer,userAccount,enterprise, compostGeneratedWorkRequest);
             userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

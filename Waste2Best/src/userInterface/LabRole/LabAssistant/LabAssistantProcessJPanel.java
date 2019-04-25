@@ -6,6 +6,7 @@
 package userInterface.LabRole.LabAssistant;
 
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
 import enterprise.Enterprise;
 import java.awt.Dimension;
@@ -20,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class LabAssistantProcessJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
-    LabTestWorkRequest request;
+    CompostGeneratedWorkRequest request;
     User userAccount;
     Enterprise enterprise;
     int valueN, valueP, valueK;
@@ -29,7 +30,7 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-     public LabAssistantProcessJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, LabTestWorkRequest  request) {
+     public LabAssistantProcessJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, CompostGeneratedWorkRequest  request) {
         initComponents();
         usernameLabel.setText(request.getCompostUserName());
         this.userProcessContainer = userProcessContainer;
@@ -249,11 +250,11 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(zincCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mangeneseCheckBox)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(ratingLabel)
-                                .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mangeneseCheckBox))
                         .addGap(171, 171, 171))))
         );
     }// </editor-fold>//GEN-END:initComponents

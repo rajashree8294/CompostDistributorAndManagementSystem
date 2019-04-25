@@ -2,6 +2,7 @@
 package userInterface.LabRole.LabAssistant;
 
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,12 +20,12 @@ import javax.swing.JPanel;
 public class PDFGenerator
 {
     
-   private LabTestWorkRequest request;
+   private CompostGeneratedWorkRequest request;
     private final int n;
     private final int p;
     private final int k;
    
-   public PDFGenerator( LabTestWorkRequest  request,int n, int p, int k) {
+   public PDFGenerator( CompostGeneratedWorkRequest  request,int n, int p, int k) {
        this.n=n;
        this.p=p;
        this.k=k;
