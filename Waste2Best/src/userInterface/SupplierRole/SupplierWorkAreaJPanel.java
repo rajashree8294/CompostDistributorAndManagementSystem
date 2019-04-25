@@ -203,7 +203,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if(request.getStatus().equals("In Progress by Supplier")){
+        if(request.getStatus().equals("In Progress by Supplier")||request.getStatus().equals("In Lab Testing")){
             
         
         if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SellCropProduceWorkRequest ){
@@ -233,6 +233,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(null, "Carry Lab Testing first");    
             }
             }
+        }else if (request.getStatus().equals("Sent to Supplier")){
+            JOptionPane.showMessageDialog(null, "Assign to Yourself"); 
         }else{
             JOptionPane.showMessageDialog(null, "Request  is already in Process or Completed"); 
         }
