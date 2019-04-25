@@ -30,6 +30,10 @@ public class ProductDirectory {
         return product;
     }
     
+    public void removeItem(Product p){
+        productList.remove(p);
+    }
+    
     private Product productFactory(String type){
         switch(type){
             case "seed":    return new Seed();
