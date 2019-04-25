@@ -211,7 +211,7 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
                 request.setSender(userAccount);
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
-                request.setQuantity(Double.parseDouble(quanTxt.getText()));
+                request.setQuantity(Integer.parseInt(quanTxt.getText()));
                 request.setProductName(product1.getName());
                 request.setProductPrice(product1.getPrice());
                 request.setProductId(product1.getProductId());
@@ -249,7 +249,7 @@ public class PurchaseProductJPanel extends javax.swing.JPanel {
         try{
             enterprise.getProductDirectory().getProducts().stream()
                   .filter(product -> {
-                           if(product.getProductType().equalsIgnoreCase("crop")){
+                           if(product.getProductType().equalsIgnoreCase("crop") && product.getQuantity() != 0){
                             crops.add((CropProduce)product);
                            }
                         return !crops.isEmpty();                    

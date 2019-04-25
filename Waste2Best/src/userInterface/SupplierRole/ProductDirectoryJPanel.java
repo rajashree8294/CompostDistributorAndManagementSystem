@@ -22,7 +22,7 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
      * Creates new form ProductDirectoryJPanel
      */
     private int pFlag;
-    private Enterprise enterprise;
+    private final Enterprise enterprise;
     private JPanel rightPanel;
     public ProductDirectoryJPanel(Enterprise enterprise,JPanel rightPanel) {
         initComponents();
@@ -102,7 +102,6 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
     private void productComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productComboBoxActionPerformed
     String value = productComboBox.getSelectedItem().toString();
-    
         switch (value) {
             case "Crop":
                 pFlag = 1;
@@ -116,18 +115,13 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                 pFlag = 3;
                 populatetable(pFlag);
             case "Compost":
-                pFlag=4;
+                pFlag = 4;
                  populatetable(pFlag);
             }
-   
-    
-        
-        
     }//GEN-LAST:event_productComboBoxActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-         int selectedRow = productDirTbl.getSelectedRow();
+       int selectedRow = productDirTbl.getSelectedRow();
 
        if(selectedRow >= 0){
            int decision = JOptionPane.showConfirmDialog(rightPanel, "Do you really want to remove this Item from Product directory?", "Warning", JOptionPane.YES_NO_OPTION);
@@ -143,19 +137,14 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
     
 
-public void populatetable(int n)
-{
-    DefaultTableModel model = (DefaultTableModel)productDirTbl.getModel();
-        
+    public void populatetable(int n) {
+        DefaultTableModel model = (DefaultTableModel)productDirTbl.getModel();
         model.setRowCount(0);
-        
+
         enterprise.getProductDirectory().getProducts().stream().forEach((p) -> {
             Object[] row = new Object[6];
-            
-            if (n==1)
-            {
-                if (p instanceof CropProduce)
-                {
+            if (n==1) {
+                if (p instanceof CropProduce){
                     row[0] = p;
                     row[1] = p.getName();
                     row[2] = ((CropProduce) p).getProductId();
@@ -163,11 +152,8 @@ public void populatetable(int n)
                     row[4] = ((CropProduce) p).getCropQuantity();
                     model.addRow(row);
                 }
-            }
-            else if (n==2)
-            {
-                if (p instanceof Tumbler)
-                {
+            } else if (n==2) {
+                if (p instanceof Tumbler){
                     row[0] = p;
                     row[1] = p.getName();
                     row[2] = ((Tumbler) p).getProductId();
@@ -175,25 +161,16 @@ public void populatetable(int n)
                     row[4] = ((Tumbler) p).getCapacity();
                     model.addRow(row);
                 }
+            } else if ( n==4){
+              if (p instanceof Compost) {
+                row[0] = p;
+                row[1] = p.getName();
+                row[2] = ((Compost) p).getProductId();
+                row[3] = ((Compost) p).getQuantity();
+                model.addRow(row);
             }
-            else if ( n==4)
-            {
-                  if (p instanceof Compost)
-                {
-                    row[0] = p;
-                    row[1] = p.getName();
-                    row[2] = ((Compost) p).getProductId();
-                    //row[3] = ((Tumbler) p).getPrice();
-                    row[4] = ((Compost) p).getQuantity();
-                    
-
-
-                    model.addRow(row);
-                }
-            
-
-            }
-        });
+        }
+    });
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteBtn;

@@ -5,16 +5,16 @@ package business.models.workRequest;
  * @author Rajashree
  */
 public class FoodProductWorkRequest extends WorkRequest{
-    private double quantity;
+    private int quantity;
     private String productName;
     private String productId;
     private double productPrice;
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
