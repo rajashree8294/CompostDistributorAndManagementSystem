@@ -11,6 +11,7 @@ import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
+import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import enterprise.Enterprise;
@@ -34,9 +35,10 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
     private SellCropProduceWorkRequest sCrequest;
     private CompostGeneratedWorkRequest cGrequest;
     private PurchaseCompostWorkRequest pCRequest;
-    private final User userAccount;
-    private final Enterprise enterprise;
-    private  final int flag;
+    private SeedWorkRequest sWRequest;
+    private User userAccount;
+    private Enterprise enterprise;
+    private int flag;
     private FoodProductWorkRequest foRequest;
     private TumblerWorkRequest tRequest;
     
@@ -88,6 +90,17 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         flag = 5;
     }
+                  
+        public SupplierProcessWorkAreaJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, SeedWorkRequest request) {
+        initComponents();
+         processLabel.setText("Sending Tumbler to Customer");
+        this.userProcessContainer = userProcessContainer;
+        sWRequest = request;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        flag = 6;
+    }          
+                  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -271,6 +284,19 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
             pCRequest.setMessage(message);
             pCRequest.setReceiver(userAccount);
             pCRequest.setStatus("Completed");
+        }
+        if (flag==6){
+              processLabel.setText("Sending Seed to Customer");
+            String message = messageJTextField.getText();
+            enterprise.getProductDirectory().getProducts().stream().forEach(product -> {
+                if(product.getProductId().equalsIgnoreCase(sWRequest.getProductId())){
+                    product.setQuantity(product.getQuantity() - sWRequest.getQuantity());
+                }
+            });
+            sWRequest.setMessage(message);
+            sWRequest.setReceiver(userAccount);
+            sWRequest.setStatus("Completed");
+        
         }
         
     }//GEN-LAST:event_submitJButtonActionPerformed
