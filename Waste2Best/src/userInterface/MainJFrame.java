@@ -131,7 +131,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 102));
-        jLabel2.setText("User ID");
+        jLabel2.setText("Email ID");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 102));
