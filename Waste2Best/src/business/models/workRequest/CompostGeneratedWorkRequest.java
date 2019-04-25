@@ -15,10 +15,10 @@ public class CompostGeneratedWorkRequest extends WorkRequest{
     
     private int compostQuantity;
     private String  compostUserName;
-     private float nitrogen;
-      private float potassium;
+    private float nitrogen;
+    private float potassium;
       
-        public CompostGeneratedWorkRequest(){
+    public CompostGeneratedWorkRequest(){
         metalContents = new ArrayList<>();
     }
 

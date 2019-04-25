@@ -9,6 +9,7 @@ import business.models.Product.Compost;
 import business.models.Product.Product;
 import business.models.Product.Tumbler;
 import business.models.User.User;
+import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import enterprise.Enterprise;
@@ -263,13 +264,14 @@ private final JPanel rightPanel;
             if(compost.getQuantity() < Double.parseDouble(quantityTxt.getText())) {
                 JOptionPane.showMessageDialog(rightPanel, "Your quantity is more than available compost", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                TumblerWorkRequest request = new TumblerWorkRequest();
+                PurchaseCompostWorkRequest request = new PurchaseCompostWorkRequest();
                 request.setSender(userAccount);
                 request.setStatus("Sent");
                 request.setRequestDate(new Date());
                 request.setQuantity(Integer.parseInt(quantityTxt.getText()));
                 request.setMessage("New Compost Request");
                 request.setProductId(prodId);
+                request.setType("compost");
                 
                 Organization org = null;
                 for (Organization orgz : enterprise.getOrganizationDirectory().getOrganizationList()){
