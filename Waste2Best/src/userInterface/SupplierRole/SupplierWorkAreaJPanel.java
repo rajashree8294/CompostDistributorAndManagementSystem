@@ -89,6 +89,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         reqCompostButton = new javax.swing.JButton();
         tumblerBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Supplier Dashboard");
         add(jLabel1);
@@ -100,6 +102,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText("<value>");
         add(valueLabel);
 
+        processJButton.setBackground(new java.awt.Color(153, 204, 255));
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +111,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(processJButton);
 
+        assignJButton.setBackground(new java.awt.Color(153, 204, 255));
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +150,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1);
 
+        seedBtn.setBackground(new java.awt.Color(153, 204, 255));
         seedBtn.setText("Add Seed");
         seedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +159,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(seedBtn);
 
+        processJButton1.setBackground(new java.awt.Color(153, 204, 255));
         processJButton1.setText("Products");
         processJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +168,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(processJButton1);
 
+        reqCompostButton.setBackground(new java.awt.Color(153, 204, 255));
         reqCompostButton.setText("Request Compost Test");
         reqCompostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +177,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(reqCompostButton);
 
+        tumblerBtn.setBackground(new java.awt.Color(153, 204, 255));
         tumblerBtn.setText("Add Tumbler");
         tumblerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
