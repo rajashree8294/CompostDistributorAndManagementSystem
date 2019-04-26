@@ -103,6 +103,7 @@ public class MainJFrame extends javax.swing.JFrame {
         aboutBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
         aboutBtn.setText("About US");
         aboutBtn.setToolTipText("Know more about us");
+        aboutBtn.setRolloverEnabled(false);
         aboutBtn.setVerifyInputWhenFocusTarget(false);
         aboutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +115,6 @@ public class MainJFrame extends javax.swing.JFrame {
         loginBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
         loginBtn.setText("Login");
         loginBtn.setToolTipText("login into system");
-        loginBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/userInterface/aboutUs.png"))); // NOI18N
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
