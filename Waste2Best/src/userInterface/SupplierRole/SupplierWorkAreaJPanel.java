@@ -19,13 +19,11 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import organizations.DistributorOrganization;
 import organizations.LabOrganization;
 import organizations.Organization;
 
 
 import organizations.SupplierOrganization;
-import userInterface.DistributorRole.ProcessWorkRequestJPanel;
 
 /**
  *

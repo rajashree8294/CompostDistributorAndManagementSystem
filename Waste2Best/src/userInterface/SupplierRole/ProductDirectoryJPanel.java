@@ -186,45 +186,37 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
             if (n==1) {
                 if (p instanceof CropProduce){
-                    row[0] = ((CropProduce) p).getProductId();
+                    row[0] = p;
                     row[1] = p.getName();
                     row[2] = ((CropProduce) p).getPrice();
                     row[3] = ((CropProduce) p).getCropQuantity();
                     model.addRow(row);
-                }
+                } 
             } else if (n==2) {
-                if (p instanceof Tumbler){
-                    row[0] = ((Tumbler) p).getProductId();;
+                 if (p instanceof Tumbler){
+                    row[0] = p;
                     row[1] = p.getName();
                     row[2] = ((Tumbler) p).getPrice();
                     row[3] = ((Tumbler) p).getCapacity();
                     model.addRow(row);
                 }
+            }else if (n==3) {
+                if (p instanceof Seed) {
+                    row[0] = p;
+                    row[1] = p.getName();
+                    row[2] = ((Seed) p).getPrice();
+                    row[3] = ((Seed) p).getQuantity();
+                    model.addRow(row);
+                }
             } else if ( n==4){
               if (p instanceof Compost) {
-                row[0] = ((Compost) p).getProductId();;
+                row[0] = p;
                 row[1] = p.getName();
                 row[2] = p.getPrice();
                 row[3] = ((Compost) p).getQuantity();
                 model.addRow(row);
-            }
-            
-            if (n==3)
-            {
-                if (p instanceof Seed)
-                {
-                    row[0] = ((Seed) p).getProductId();
-                    row[1] = p.getName();
-                    row[2] = ((Seed) p).getPrice();
-                    row[3] = ((Seed) p).getQuantity();
-                    
-
-
-                    model.addRow(row);
-                }
-            }
-
-        }
+               } 
+            } 
     });
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
