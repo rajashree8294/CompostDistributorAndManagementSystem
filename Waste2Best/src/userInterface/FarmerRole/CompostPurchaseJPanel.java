@@ -283,6 +283,7 @@ private final JPanel rightPanel;
                 if (org!=null){
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
+                     JOptionPane.showMessageDialog(null, "Request  submitted Successfully");
                 }
             }
         }

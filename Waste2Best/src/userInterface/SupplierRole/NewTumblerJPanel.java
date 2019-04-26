@@ -8,6 +8,7 @@ package userInterface.SupplierRole;
 import business.models.Product.Tumbler;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -177,6 +178,15 @@ public class NewTumblerJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+         Component[] comps = userProcessContainer.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof SupplierWorkAreaJPanel)
+            {
+                SupplierWorkAreaJPanel panel =(SupplierWorkAreaJPanel) c;
+                panel.populateTable();
+            }
+        }
     }//GEN-LAST:event_backBtnActionPerformed
 
 

@@ -9,10 +9,13 @@ import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import organizations.DistributorOrganization;
 import organizations.Organization;
+import userInterface.FarmerRole.FarmerWorkAreaJPanel;
 
 /**
  *
@@ -165,6 +168,7 @@ public class RequestCompostPickupJPanel extends javax.swing.JPanel {
         if (org!=null){
             org.getWorkQueue().getWorkRequestList().add(request);
             user.getWorkQueue().getWorkRequestList().add(request);
+            JOptionPane.showMessageDialog(null, "Request  submitted Successfully");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -172,6 +176,15 @@ public class RequestCompostPickupJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+         Component[] comps = userProcessContainer.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof CustomerWorkAreaJPanel)
+            {
+                CustomerWorkAreaJPanel panel =(CustomerWorkAreaJPanel) c;
+                panel.populateRequestTable();
+            }
+        }
     }//GEN-LAST:event_backBtnActionPerformed
 
 

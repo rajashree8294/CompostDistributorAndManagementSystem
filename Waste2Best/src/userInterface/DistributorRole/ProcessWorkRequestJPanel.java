@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import organizations.Organization;
 import organizations.SupplierOrganization;
+import userInterface.CustomerRole.CustomerWorkAreaJPanel;
 
 /**
  *
@@ -165,13 +166,22 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
+        /*Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DistributorWorkAreaJPanel dwjp = (DistributorWorkAreaJPanel) component;
-        dwjp.populateTable();
+        dwjp.populateTable();*/
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        Component[] comps = userProcessContainer.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof DistributorWorkAreaJPanel)
+            {
+                DistributorWorkAreaJPanel panel =(DistributorWorkAreaJPanel) c;
+                panel.populateTable();
+            }
+        }
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
@@ -193,6 +203,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(cRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(cRequest);
+           JOptionPane.showMessageDialog(null, "Request submitted Successfully");
        }
       }
       else if (flag ==2 )
@@ -213,6 +224,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(coRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(coRequest);
+           JOptionPane.showMessageDialog(null, "Request submitted Successfully");
+           
        }
       }
       
@@ -234,6 +247,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(foRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(foRequest);
+           JOptionPane.showMessageDialog(null, "Request submitted Successfully");
        }
 
       }
@@ -256,6 +270,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(tRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(tRequest);
+            JOptionPane.showMessageDialog(null, "Request submitted Successfully");
        }
 
       }
@@ -275,6 +290,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(pCRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(pCRequest);
+            JOptionPane.showMessageDialog(null, "Request submitted Successfully");
        }
 
             
@@ -295,6 +311,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
        if (org!=null){
            org.getWorkQueue().getWorkRequestList().add(sWRequest);
            userAccount.getWorkQueue().getWorkRequestList().add(sWRequest);
+            JOptionPane.showMessageDialog(null, "Request submitted Successfully");
        }
 
             

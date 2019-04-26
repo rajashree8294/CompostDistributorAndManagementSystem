@@ -205,7 +205,7 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-        userProcessContainer.remove(this);
+       /* userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SupplierWorkAreaJPanel dwjp = (SupplierWorkAreaJPanel) component;
@@ -213,7 +213,19 @@ public class SupplierProcessWorkAreaJPanel extends javax.swing.JPanel {
         
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);*/
+       userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+         Component[] comps = userProcessContainer.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof SupplierWorkAreaJPanel)
+            {
+                SupplierWorkAreaJPanel panel =(SupplierWorkAreaJPanel) c;
+                panel.populateTable();
+            }
+        }
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
