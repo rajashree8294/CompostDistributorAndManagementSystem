@@ -5,10 +5,8 @@
  */
 package userInterface.FarmerRole;
 import business.models.Product.Seed;
-import business.models.Product.Tumbler;
 import business.models.User.User;
 import business.models.workRequest.SeedWorkRequest;
-import business.models.workRequest.TumblerWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -21,11 +19,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import organizations.CustomerOrganization;
 import organizations.DistributorOrganization;
 import organizations.FarmerOrganization;
 import organizations.Organization;
-import userInterface.DistributorRole.DistributorWorkAreaJPanel;
 
 
 /**
@@ -78,8 +74,6 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
 
         quantityLabel.setText("Quantity");
 
-        productCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Small-S", "Medium-M", "Large-L" }));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Seed Purchase");
 
@@ -96,7 +90,7 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(SeedTbl);
 
-        jLabel2.setText("Tumbler Catalog");
+        jLabel2.setText("Seed Catalog");
 
         backBtn.setBackground(new java.awt.Color(153, 204, 255));
         backBtn.setText("<< Back");
@@ -136,9 +130,6 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -164,7 +155,10 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(469, 469, 469)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,9 +168,9 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
