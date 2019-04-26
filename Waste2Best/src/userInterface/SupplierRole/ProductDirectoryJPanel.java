@@ -8,6 +8,8 @@ package userInterface.SupplierRole;
 import enterprise.Enterprise;
 import javax.swing.table.DefaultTableModel;
 import business.models.Product.*;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -27,6 +29,7 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
     public ProductDirectoryJPanel(Enterprise enterprise,JPanel rightPanel) {
         initComponents();
         this.enterprise=enterprise;
+        this.rightPanel=rightPanel;
     }
 
     /**
@@ -42,6 +45,7 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
         productDirTbl = new javax.swing.JTable();
         productComboBox = new javax.swing.JComboBox<>();
         deleteBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         productDirTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,6 +71,13 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,6 +85,7 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(236, 236, 236)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn)
                     .addComponent(productComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -93,7 +105,9 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(deleteBtn)))
-                .addContainerGap(447, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(backBtn)
+                .addContainerGap(370, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,6 +145,22 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
        } else
            JOptionPane.showMessageDialog(rightPanel, "Please select a row.", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+         rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.previous(rightPanel);
+         Component[] comps = rightPanel.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof SupplierWorkAreaJPanel)
+            {
+                SupplierWorkAreaJPanel panel =(SupplierWorkAreaJPanel) c;
+                panel.populateTable();
+            }
+        }
+    }//GEN-LAST:event_backBtnActionPerformed
 
     
 
@@ -184,6 +214,7 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
     });
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> productComboBox;

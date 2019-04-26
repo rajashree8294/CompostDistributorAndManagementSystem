@@ -11,6 +11,7 @@ import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -24,6 +25,7 @@ import organizations.CustomerOrganization;
 import organizations.DistributorOrganization;
 import organizations.FarmerOrganization;
 import organizations.Organization;
+import userInterface.DistributorRole.DistributorWorkAreaJPanel;
 
 
 /**
@@ -234,6 +236,15 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
         rightPanel.remove(this);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
+         Component[] comps = rightPanel.getComponents();
+        for (Component c: comps)
+        {
+            if(c instanceof FarmerWorkAreaJPanel)
+            {
+                FarmerWorkAreaJPanel panel =(FarmerWorkAreaJPanel) c;
+                panel.populateRequestTable();
+            }
+        }
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -269,6 +280,7 @@ public class SeedPurchaseJPanel extends javax.swing.JPanel {
                 if (org!=null){
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    JOptionPane.showMessageDialog(null, "Request submitted Successfully");
                 }
             }
         }

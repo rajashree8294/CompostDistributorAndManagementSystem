@@ -278,6 +278,7 @@ public class RequestSellProductPanel extends javax.swing.JPanel {
             if (org!=null){
                 org.getWorkQueue().getWorkRequestList().add(request);
                 user.getWorkQueue().getWorkRequestList().add(request);
+                JOptionPane.showMessageDialog(null, "Request submitted Successfully");
             }
         }
     }//GEN-LAST:event_submitButtonActionPerformed
