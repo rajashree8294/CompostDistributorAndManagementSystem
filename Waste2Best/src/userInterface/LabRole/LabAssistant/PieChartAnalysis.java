@@ -6,6 +6,13 @@
 package userInterface.LabRole.LabAssistant;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -26,7 +33,7 @@ public class PieChartAnalysis extends javax.swing.JFrame {
      * @param p
      * @param k
      */
-    public PieChartAnalysis(int n, int p, int k) {
+    public PieChartAnalysis(int n, int p, int k) throws IOException {
         logger.info("Receiving values of NPK: {}{}{}", n,p,k);
         this.n = n;
         this.p = p;
@@ -55,7 +62,7 @@ public class PieChartAnalysis extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initUI(){
+    private void initUI() throws IOException{
         DefaultPieDataset dataset = createDataset();
 
         JFreeChart chart = createChart(dataset);
@@ -68,6 +75,19 @@ public class PieChartAnalysis extends javax.swing.JFrame {
         setTitle("Pie chart");
         setLocationRelativeTo(null);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        BufferedImage objBufferedImage=chart.createBufferedImage(600,800);
+        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(objBufferedImage, "png", bas);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        byte[] byteArray=bas.toByteArray();
+        InputStream in = new ByteArrayInputStream(byteArray);
+        BufferedImage image = ImageIO.read(in);
+        File outputfile = new File("image.png");
+        ImageIO.write(image, "png", outputfile);
     }
     
     private DefaultPieDataset createDataset() {

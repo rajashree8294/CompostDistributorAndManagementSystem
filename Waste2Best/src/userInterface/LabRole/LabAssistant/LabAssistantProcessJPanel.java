@@ -8,8 +8,11 @@ package userInterface.LabRole.LabAssistant;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.LabTestWorkRequest;
+import com.itextpdf.text.BadElementException;
 import enterprise.Enterprise;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
 import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,11 +36,13 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
      public LabAssistantProcessJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise, CompostGeneratedWorkRequest  request) {
         initComponents();
         usernameLabel.setText(request.getCompostUserName());
+        generateReportButton.setVisible(false);
         this.userProcessContainer = userProcessContainer;
         this.request = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
          populateCombo();
+        request.getMetalContents().clear();
     }
      
      public void populateCombo(){  
@@ -63,7 +68,6 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         potassiumJslider = new javax.swing.JSlider();
         magnesiumCheckBox = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox4 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         copperCheckBox = new javax.swing.JCheckBox();
@@ -94,8 +98,6 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
         magnesiumCheckBox.setText("Magnesium");
 
         jLabel3.setText("Nitrogen");
-
-        jCheckBox4.setText("Carbon");
 
         jLabel4.setText("Phosphorous");
 
@@ -166,101 +168,102 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
                         .addGap(21, 21, 21)
                         .addComponent(compostUserLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(ratingLabel))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(potassiumJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(76, 76, 76)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(carbonCheckBox)
-                            .addComponent(sulphurCheckBox)
-                            .addComponent(magnesiumCheckBox)
-                            .addComponent(jCheckBox4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(copperCheckBox)
-                                .addComponent(ironCheckBox, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(iodineCheckBox, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(zincCheckBox, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(mangeneseCheckBox)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(completeReqBtn)
-                        .addGap(38, 38, 38)
-                        .addComponent(compostAnalysisBtn)
-                        .addGap(55, 55, 55)
-                        .addComponent(generateReportButton)))
-                .addContainerGap(490, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(ratingLabel))
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(potassiumJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(carbonCheckBox)
+                                    .addComponent(sulphurCheckBox)
+                                    .addComponent(magnesiumCheckBox)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(copperCheckBox)
+                                        .addComponent(ironCheckBox, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(iodineCheckBox, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(zincCheckBox, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(mangeneseCheckBox)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(completeReqBtn)
+                                .addGap(38, 38, 38)
+                                .addComponent(compostAnalysisBtn)
+                                .addGap(55, 55, 55)
+                                .addComponent(generateReportButton)))
+                        .addContainerGap(490, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(compostUserLabel)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(completeReqBtn)
+                    .addComponent(compostAnalysisBtn)
+                    .addComponent(generateReportButton))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(compostUserLabel)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(completeReqBtn)
-                            .addComponent(compostAnalysisBtn)
-                            .addComponent(generateReportButton))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nitrogenJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
-                            .addComponent(potassiumJslider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(267, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sulphurCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carbonCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(magnesiumCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(copperCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ironCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(iodineCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(zincCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(ratingLabel)
-                                .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(mangeneseCheckBox))
-                        .addGap(171, 171, 171))))
+                        .addComponent(jLabel4)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(phosphorousJslider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addComponent(potassiumJslider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(267, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addComponent(sulphurCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(carbonCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(magnesiumCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(copperCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ironCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(iodineCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(zincCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mangeneseCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ratingLabel)
+                    .addComponent(ratingJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(174, 174, 174))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void completeReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeReqBtnActionPerformed
-       nitrogenJslider.setPreferredSize(new Dimension(40, 0));
+        request.getMetalContents().clear();
+        nitrogenJslider.setPreferredSize(new Dimension(40, 0));
        phosphorousJslider.setPreferredSize(new Dimension (40,0));
        potassiumJslider.setPreferredSize(new Dimension (40,0));
        logger.info("Sending NPK Values: {}{}{}", valueN, valueP, valueK);
@@ -269,7 +272,7 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
        request.setPotassium(valueK);
        request.setResult(ratingJComboBox.getSelectedItem().toString());
        request.setStatus("Completed"+" Rating is "+request.getResult());
-       
+      
        if(sulphurCheckBox.isSelected()){
            request.addMetalContents("Sulphur");
        }
@@ -298,9 +301,14 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_completeReqBtnActionPerformed
 
     private void compostAnalysisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compostAnalysisBtnActionPerformed
-        logger.info("Sending NPK Values: {}{}{}", valueN, valueP, valueK);
-        PieChartAnalysis ex = new PieChartAnalysis(valueN, valueP, valueK);
-        ex.setVisible(true);
+        try {
+            logger.info("Sending NPK Values: {}{}{}", valueN, valueP, valueK);
+            PieChartAnalysis ex = new PieChartAnalysis(valueN, valueP, valueK);
+            ex.setVisible(true);
+            generateReportButton.setVisible(true);
+        } catch (IOException ex1) {
+            java.util.logging.Logger.getLogger(LabAssistantProcessJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+        }
     }//GEN-LAST:event_compostAnalysisBtnActionPerformed
 
     private void nitrogenJsliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nitrogenJsliderStateChanged
@@ -319,34 +327,41 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_potassiumJsliderStateChanged
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
-        // TODO add your handling code here:
-        
-        request.getMetalContents().clear();
-         if(sulphurCheckBox.isSelected()){
-           request.addMetalContents("Sulphur");
-       }
-       if(ironCheckBox.isSelected()){
-           request.addMetalContents("Iron");
-       }
-       if(carbonCheckBox.isSelected()){
-           request.addMetalContents("Carbon");
-       }
-       if(mangeneseCheckBox.isSelected()){
-           request.addMetalContents("Manganese");
-       }
-       if(iodineCheckBox.isSelected()){
-           request.addMetalContents("Iodine");
-       }
-       if(magnesiumCheckBox.isSelected()){
-           request.addMetalContents("Magnesium");
-       }
-       if(zincCheckBox.isSelected()){
-           request.addMetalContents("Zinc");
-       }
-       if(copperCheckBox.isSelected()){
-           request.addMetalContents("Copper");
-       }
-        PDFGenerator gen = new PDFGenerator(request,valueN, valueP, valueK);
+        try {
+             request.getMetalContents().clear();
+            // TODO add your handling code here:
+            
+           
+            if(sulphurCheckBox.isSelected()){
+                request.addMetalContents("Sulphur");
+            }
+            if(ironCheckBox.isSelected()){
+                request.addMetalContents("Iron");
+            }
+            if(carbonCheckBox.isSelected()){
+                request.addMetalContents("Carbon");
+            }
+            if(mangeneseCheckBox.isSelected()){
+                request.addMetalContents("Manganese");
+            }
+            if(iodineCheckBox.isSelected()){
+                request.addMetalContents("Iodine");
+            }
+            if(magnesiumCheckBox.isSelected()){
+                request.addMetalContents("Magnesium");
+            }
+            if(zincCheckBox.isSelected()){
+                request.addMetalContents("Zinc");
+            }
+            if(copperCheckBox.isSelected()){
+                request.addMetalContents("Copper");
+            }
+            PDFGenerator gen = new PDFGenerator(request,valueN, valueP, valueK, ratingJComboBox.getSelectedItem().toString());
+        } catch (BadElementException ex) {
+            java.util.logging.Logger.getLogger(LabAssistantProcessJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(LabAssistantProcessJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
 
@@ -359,7 +374,6 @@ public class LabAssistantProcessJPanel extends javax.swing.JPanel {
     private javax.swing.JButton generateReportButton;
     private javax.swing.JCheckBox iodineCheckBox;
     private javax.swing.JCheckBox ironCheckBox;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
