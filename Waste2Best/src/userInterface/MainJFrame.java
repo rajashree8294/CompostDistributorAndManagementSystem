@@ -68,7 +68,17 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("West2Best: Compost Managing and Distributing Platform");
+        jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                jLabel1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         loginBtn.setBackground(new java.awt.Color(153, 204, 255));
         loginBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
+        loginBtn.setForeground(new java.awt.Color(0, 153, 153));
         loginBtn.setText("Login");
         loginBtn.setToolTipText("login into system");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +196,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,6 +316,10 @@ public class MainJFrame extends javax.swing.JFrame {
         crdLyt.next(rightPanel);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void jLabel1AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1AncestorRemoved
 
     /**
      * @param args the command line arguments

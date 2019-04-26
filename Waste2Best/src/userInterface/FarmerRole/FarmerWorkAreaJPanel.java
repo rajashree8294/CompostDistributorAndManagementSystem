@@ -7,6 +7,7 @@ package userInterface.FarmerRole;
 
 import business.Ecosystem;
 import business.models.User.User;
+import business.models.workRequest.SellCropProduceWorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -45,13 +46,14 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         userAccount.getWorkQueue().getWorkRequestList().stream().map((request) -> {
             Object[] row = new Object[4];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            row[0] = ((SellCropProduceWorkRequest)request).getCropName();
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+            //String result = ((SellCropProduceWorkRequest) request).getTestResult();
+            ////row[3] = result == null ? "Waiting" : result;
             return row;
-        }).forEach((row) -> {
-            model.addRow(row);
-        });
+        }).forEach(row -> model.addRow(row));
     }
 
     /**
@@ -103,7 +105,7 @@ public class FarmerWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Crop", "Sender", "Receiver", "Status"
             }
         ) {
             Class[] types = new Class [] {

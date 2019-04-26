@@ -50,11 +50,10 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         organization.getWorkQueue().getWorkRequestList().stream().map((request) -> {
-            Object[] row = new Object[4];
+            Object[] row = new Object[3];
             row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
+            row[1] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[2] = request.getStatus();
            return row;
        }).forEach((row) -> {
            model.addRow(row);
@@ -79,20 +78,20 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "Sender", "Receiver", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
