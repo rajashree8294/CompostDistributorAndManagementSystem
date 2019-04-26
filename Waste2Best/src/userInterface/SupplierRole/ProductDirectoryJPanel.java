@@ -139,9 +139,11 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
             case "Seed":
                 pFlag = 3;
                 populatetable(pFlag);
+                break;
             case "Compost":
                 pFlag = 4;
                  populatetable(pFlag);
+                 break;
             }
     }//GEN-LAST:event_productComboBoxActionPerformed
 
