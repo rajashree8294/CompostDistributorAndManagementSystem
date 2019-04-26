@@ -45,13 +45,10 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
 
         productDirTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Product ID", "Name", "Price/Unit", "Quantity"
             }
         ));
         jScrollPane1.setViewportView(productDirTbl);
@@ -142,30 +139,28 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         enterprise.getProductDirectory().getProducts().stream().forEach((p) -> {
-            Object[] row = new Object[6];
+            Object[] row = new Object[4];
             if (n==1) {
                 if (p instanceof CropProduce){
-                    row[0] = p;
+                    row[0] = ((CropProduce) p).getProductId();
                     row[1] = p.getName();
-                    row[2] = ((CropProduce) p).getProductId();
-                    row[3] = ((CropProduce) p).getPrice();
-                    row[4] = ((CropProduce) p).getCropQuantity();
+                    row[2] = ((CropProduce) p).getPrice();
+                    row[3] = ((CropProduce) p).getCropQuantity();
                     model.addRow(row);
                 }
             } else if (n==2) {
                 if (p instanceof Tumbler){
-                    row[0] = p;
+                    row[0] = ((Tumbler) p).getProductId();;
                     row[1] = p.getName();
-                    row[2] = ((Tumbler) p).getProductId();
-                    row[3] = ((Tumbler) p).getPrice();
-                    row[4] = ((Tumbler) p).getCapacity();
+                    row[2] = ((Tumbler) p).getPrice();
+                    row[3] = ((Tumbler) p).getCapacity();
                     model.addRow(row);
                 }
             } else if ( n==4){
               if (p instanceof Compost) {
-                row[0] = p;
+                row[0] = ((Compost) p).getProductId();;
                 row[1] = p.getName();
-                row[2] = ((Compost) p).getProductId();
+                row[2] = p.getPrice();
                 row[3] = ((Compost) p).getQuantity();
                 model.addRow(row);
             }
@@ -174,11 +169,10 @@ public class ProductDirectoryJPanel extends javax.swing.JPanel {
             {
                 if (p instanceof Seed)
                 {
-                    row[0] = p;
+                    row[0] = ((Seed) p).getProductId();
                     row[1] = p.getName();
-                    row[2] = ((Seed) p).getProductId();
-                    row[3] = ((Seed) p).getPrice();
-                    row[4] = ((Seed) p).getQuantity();
+                    row[2] = ((Seed) p).getPrice();
+                    row[3] = ((Seed) p).getQuantity();
                     
 
 
