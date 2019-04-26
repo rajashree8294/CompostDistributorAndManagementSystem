@@ -5,8 +5,6 @@
  */
 package userInterface;
 
-import business.models.User.CustomerCatalog;
-import business.models.User.FarmerCatalog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -16,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class AboutUs extends javax.swing.JPanel {
     
-    private JPanel righPanel;
+    private final JPanel righPanel;
     /**
      * Creates new form AboutUs
      */
@@ -39,37 +37,40 @@ public class AboutUs extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
         backBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Waste2Best");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Our Waste2Best system is precisely focusing on this issue and giving every individual an opportunity to contribute to the process of increasing healthy food production. By installing compost tumblers for individual houses, entire apartments, at universities, colleges, organizations premise and each and every possible area. How these compost tumblers will be helpful? What these tumblers will require to work? What actions do we need to take? Just dump wet trash! Now, these tumblers will generate compost fertilizer from dumped trash and user of our application can notify to a distributor for collection. A distributor will send fertilizer's samples for lab testing and segregate them up according to their efficacy. These fertilizers will then be a good and free source for farmers to grow food organically. As far as monetary benefits involved, each individual has to pay charges for tumbler installation. Each registered user will receive lifetime free membership card which they can use to buy organic food on discounts on the basis of rewards points they gained. Rewards points will be calculated on the number of times and amount of compost user provided. A distributor will gain money from farmers from the benefits accrued by selling organic food in the market. In a nutshell, Waste2Best system will run for every individual and needless to say, it's a contribution from society for society.");
+        jTextArea1.setText("  \n Our Waste2Best system is precisely focusing on this issue and giving every individual an opportunity to contribute to the process of increasing healthy food production. By installing compost tumblers for individual houses, entire apartments, at universities, colleges, organizations premise and each and every possible area. How these compost tumblers will be helpful? What these tumblers will require to work? What actions do we need to take? Just dump wet trash! Now, these tumblers will generate compost fertilizer from dumped trash and user of our application can notify to a distributor for collection. A distributor will send fertilizer's samples for lab testing and segregate them up according to their efficacy. These fertilizers will then be a good and free source for farmers to grow food organically. As far as monetary benefits involved, each individual has to pay charges for tumbler installation. Each registered user will receive lifetime free membership card which they can use to buy organic food on discounts on the basis of rewards points they gained. Rewards points will be calculated on the number of times and amount of compost user provided. A distributor will gain money from farmers from the benefits accrued by selling organic food in the market. In a nutshell, Waste2Best system will run for every individual and needless to say, it's a contribution from society for society.");
         jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
 
-        backBtn.setText("Back");
+        backBtn.setBackground(new java.awt.Color(153, 204, 255));
+        backBtn.setFont(new java.awt.Font("Century Schoolbook", 1, 18)); // NOI18N
+        backBtn.setText("<< Back");
+        backBtn.setToolTipText("Go back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setText("About Us");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(backBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,32 +83,40 @@ public class AboutUs extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(889, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(backBtn)
-                .addGap(38, 38, 38)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        righPanel.remove(this);
-        CardLayout cardLayout = (CardLayout) righPanel.getLayout();
-        cardLayout.previous(righPanel);
+       righPanel.remove(this);
+       CardLayout cardLayout = (CardLayout) righPanel.getLayout();
+       cardLayout.previous(righPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

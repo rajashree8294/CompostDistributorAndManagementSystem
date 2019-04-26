@@ -22,11 +22,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="backBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -43,20 +38,30 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="backBtn" min="-2" pref="116" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="185" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="backBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="backBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="22" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="225" max="-2" attributes="0"/>
-              <EmptySpace pref="275" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="389" max="-2" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,7 +70,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Schoolbook" size="18" style="1"/>
+          <Font name="Dialog" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Waste2Best"/>
       </Properties>
@@ -82,16 +87,14 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Schoolbook" size="14" style="1"/>
+              <Font name="Dialog" size="18" style="1"/>
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Our Waste2Best system is precisely focusing on this issue and giving every individual an opportunity to contribute to the process of increasing healthy food production. By installing compost tumblers for individual houses, entire apartments, at universities, colleges, organizations premise and each and every possible area. How these compost tumblers will be helpful? What these tumblers will require to work? What actions do we need to take? Just dump wet trash! Now, these tumblers will generate compost fertilizer from dumped trash and user of our application can notify to a distributor for collection. A distributor will send fertilizer&apos;s samples for lab testing and segregate them up according to their efficacy. These fertilizers will then be a good and free source for farmers to grow food organically. As far as monetary benefits involved, each individual has to pay charges for tumbler installation. Each registered user will receive lifetime free membership card which they can use to buy organic food on discounts on the basis of rewards points they gained. Rewards points will be calculated on the number of times and amount of compost user provided. A distributor will gain money from farmers from the benefits accrued by selling organic food in the market. In a nutshell, Waste2Best system will run for every individual and needless to say, it&apos;s a contribution from society for society."/>
+            <Property name="text" type="java.lang.String" value="  &#xa; Our Waste2Best system is precisely focusing on this issue and giving every individual an opportunity to contribute to the process of increasing healthy food production. By installing compost tumblers for individual houses, entire apartments, at universities, colleges, organizations premise and each and every possible area. How these compost tumblers will be helpful? What these tumblers will require to work? What actions do we need to take? Just dump wet trash! Now, these tumblers will generate compost fertilizer from dumped trash and user of our application can notify to a distributor for collection. A distributor will send fertilizer&apos;s samples for lab testing and segregate them up according to their efficacy. These fertilizers will then be a good and free source for farmers to grow food organically. As far as monetary benefits involved, each individual has to pay charges for tumbler installation. Each registered user will receive lifetime free membership card which they can use to buy organic food on discounts on the basis of rewards points they gained. Rewards points will be calculated on the number of times and amount of compost user provided. A distributor will gain money from farmers from the benefits accrued by selling organic food in the market. In a nutshell, Waste2Best system will run for every individual and needless to say, it&apos;s a contribution from society for society."/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder roundedCorners="true"/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
         </Component>
@@ -101,11 +104,26 @@
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Schoolbook" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Back"/>
+        <Property name="toolTipText" type="java.lang.String" value="Go back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="36" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="About Us"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
