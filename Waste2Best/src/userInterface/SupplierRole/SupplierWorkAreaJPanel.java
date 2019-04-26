@@ -196,6 +196,9 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if(request.getStatus().contains("Completed")){
+         JOptionPane.showMessageDialog(null, "Process the request"); 
+    }else
         if((request.getStatus().equals("Completed")||request.getStatus().equals("In Lab Testing")||request.getStatus().equals("In Progress by Supplier"))){
           JOptionPane.showMessageDialog(null, "Request  is already in Process or Completed");  
         }else{
