@@ -194,6 +194,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
         String name = nameJTextField.getText();
+         if(nameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Dont leave Fields Blank");
+        }else{
         int checkFlag = 1;
        for(Enterprise e :  network.getEnterpriseDirectory().getEnterpriseList()){
            if (e.getName().equals(name)){
@@ -204,6 +207,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
        if(checkFlag==1){
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
        }
+         }
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed

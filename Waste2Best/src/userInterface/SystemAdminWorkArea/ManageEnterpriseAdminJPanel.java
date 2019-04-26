@@ -251,6 +251,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
+          if (username.equals("") || password.equals("") || name.equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"One or more fields are empty");
+        } else{
         
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         
@@ -263,6 +267,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          }else{
              JOptionPane.showMessageDialog(null,"Username already exists!");
          }
+         
+          }
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

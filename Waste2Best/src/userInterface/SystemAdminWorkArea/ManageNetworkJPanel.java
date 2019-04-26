@@ -101,6 +101,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
+        nameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameJTextFieldActionPerformed(evt);
+            }
+        });
+
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +152,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         String name = nameJTextField.getText();
+        if(nameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Dont leave Fields Blank");
+        }else{
         int checkFlag=1;
         for(Network network : system.getNetworkList()){
             if(network.getName().equals(name)){
@@ -157,7 +166,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         Network network = system.createAndAddNetwork();
         network.setName(name);
        }
-
+        }
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -170,6 +179,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameJTextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
