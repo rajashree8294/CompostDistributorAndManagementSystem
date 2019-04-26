@@ -9,6 +9,7 @@ import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
 import business.models.workRequest.PurchaseCompostWorkRequest;
+import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
 import business.models.workRequest.WorkRequest;
@@ -254,7 +255,15 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
                     userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
                     CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                     layout.next(userProcessContainer);
-                }  break;
+                }  if (workRequestJTable.getValueAt(selectedRow, 0) instanceof SeedWorkRequest ){
+                   SeedWorkRequest seedWorkRequest = (SeedWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+                   seedWorkRequest.setStatus("Sent to Supplier");
+
+                    ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer,userAccount,enterprise, seedWorkRequest);
+                    userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+                } break;
        }
     }//GEN-LAST:event_processJButtonActionPerformed
 

@@ -11,7 +11,6 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userInterface.LabRole.LabAssistant.LabAssistantWorkAreaJPanel;
 
 /**
  *
@@ -142,14 +141,13 @@ public class NewSeedJPanel extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "One or more fields are empty");
        } else{
         Seed seed = (Seed) enterprise.getProductDirectory().createProduct("seed");
-        seed.setProductId(String.valueOf(enterprise.getProductDirectory().getProducts().size()));
         seed.setName(nameTxt.getText());
         seed.setPrice(Double.parseDouble(priceTxt.getText()));
         seed.setQuantity(Integer.parseInt(quantityTxt.getText()));
         seed.setType(typeTxt.getText());
         seed.setProductType("seed");
         
-        JOptionPane.showMessageDialog(null, "Seed Added Successfully");
+        JOptionPane.showMessageDialog(userProcessContainer, "Seed Added Successfully");
        }
     }//GEN-LAST:event_seedBtnActionPerformed
 

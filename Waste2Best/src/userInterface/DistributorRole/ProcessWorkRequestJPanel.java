@@ -5,8 +5,6 @@
  */
 package userInterface.DistributorRole;
 
-import business.models.Product.CropProduce;
-import business.models.Product.Seed;
 import business.models.User.User;
 import business.models.workRequest.CompostGeneratedWorkRequest;
 import business.models.workRequest.FoodProductWorkRequest;
@@ -14,7 +12,6 @@ import business.models.workRequest.PurchaseCompostWorkRequest;
 import business.models.workRequest.SeedWorkRequest;
 import business.models.workRequest.SellCropProduceWorkRequest;
 import business.models.workRequest.TumblerWorkRequest;
-import business.models.workRequest.WorkRequest;
 import enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -22,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import organizations.Organization;
 import organizations.SupplierOrganization;
-import userInterface.CustomerRole.CustomerWorkAreaJPanel;
 
 /**
  *
@@ -76,7 +72,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         flag = 4;
     }
-             public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  PurchaseCompostWorkRequest request) {
+    public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  PurchaseCompostWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         pCRequest = request;
@@ -84,14 +80,14 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         flag = 5;
     }
-        public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  SeedWorkRequest request) {
+    public ProcessWorkRequestJPanel(JPanel userProcessContainer, User userAccount ,Enterprise enterprise,  SeedWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         sWRequest = request;
         this.userAccount=userAccount;
         this.enterprise=enterprise;
         flag = 6;    
-        }       
+    }       
 
     /**
      * This method is called from within the constructor to initialize the form.
